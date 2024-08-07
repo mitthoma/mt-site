@@ -1,13 +1,11 @@
 import HomeBanner from "./components/HomeBanner";
-import Cube from "./components/Cube";
-import Satellite from "./components/Satellite";
+import AboutSection from "./components/AboutSection";
 
 export default function Home() {
   return (
     <main>
       <HomeBanner />
-      <Cube />
-      <Satellite />
+      <AboutSection />
     </main>
   );
 }
