@@ -563,3 +563,28 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .engine-container svg {
   filter: drop-shadow(0 0 20px rgba(112, 230, 255, 0.3));
 }
+
+/* Custom scrollbar for audio player */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(112, 230, 255, 0.1);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(112, 230, 255, 0.5);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(112, 230, 255, 0.7);
+}
+
+/* Firefox scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(112, 230, 255, 0.5) rgba(112, 230, 255, 0.1);
+}

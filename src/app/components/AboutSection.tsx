@@ -48,7 +48,7 @@ export default function AboutSection() {
                 </div>
                 </div>
                 {/* adjust lg:top-[x] value here to adjust where the below container freeze point is on scroll  */}
-                <div className="-ml-12 p-12 lg:sticky lg:top-80 lg:col-start-2 lg:row-span-2 lg:row-start-1 overflow-visible mt-24">
+                <div className="-ml-12 p-12 lg:sticky lg:top-80 lg:col-start-2 lg:row-span-2 lg:row-start-1 overflow-visible mt-24 mb-48">
                 {/* <Image
                     width="100"
                     height="100"

@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll";
 import Logo from "./components/Logo";
+import AudioPlayer from "./components/SpotifyPlayer";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -36,6 +37,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <SmoothScroll />
         <Logo />
+        <AudioPlayer />
         {children}
       </body>
     </html>
