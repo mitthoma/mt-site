@@ -1,13 +1,28 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
+import SmoothScroll from "./components/SmoothScroll";
 
 
 const inter = Inter({ subsets: ["latin"] });
 
+const bbhSans = localFont({
+  src: '../../public/fonts/BBHSansBogle-Regular.ttf',
+  variable: '--font-bbh-sans',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   title: "Mitchell Thomas Software Engineer",
   description: "Portfolio showcase of work",
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
 };
 
 export default function RootLayout({
@@ -16,8 +31,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={bbhSans.variable}>
+      <body className={inter.className}>
+        <SmoothScroll />
+        {children}
+      </body>
     </html>
   );
 }

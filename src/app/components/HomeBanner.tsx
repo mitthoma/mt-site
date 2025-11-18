@@ -26,7 +26,7 @@ export default function HomeBanner() {
                 </span>
               </a>
             </div>
-            <h1 className="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl">
+            <h1 className="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl font-[family-name:var(--font-bbh-sans)]">
               Mitchell Thomas
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-300">

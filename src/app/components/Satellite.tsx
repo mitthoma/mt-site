@@ -8,8 +8,15 @@ export default function Satellite() {
         // Holgraphic Steps
         const holgraphicSteps = document.getElementById('holgraphicSteps') as HTMLElement;
 
-        const titles = ["Step 1", "Step 2", "Step 3", "Step 4", "Step 5", "Step 6"];
-        const descriptions = ["Idea Consultation", "Mockups/Design", "Structural Development", "Stylizing", "Beta Testing", "Launch"];
+        const titles = ["Architecture", "Frontend", "Backend", "Database", "DevOps", "Scale"];
+        const descriptions = [
+            "System Design & Patterns",
+            "React · Next.js · TypeScript",
+            "Node.js · Python · APIs",
+            "PostgreSQL · Redis · MongoDB",
+            "Docker · AWS · CI/CD",
+            "Load Balancing · Caching"
+        ];
 
         for (let i = 1; i <= 6; i++) {
             const li = document.createElement('li');

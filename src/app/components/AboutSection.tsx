@@ -1,7 +1,7 @@
 // import { CloudArrowUpIcon, LockClosedIcon, ServerIcon } from '@heroicons/react/20/solid'
 import Image from 'next/image'
 import { Fragment } from 'react'
-import Cube from './Cube'
+import Satellite from './Satellite'
 
 export default function AboutSection() {
   return (
@@ -48,7 +48,7 @@ export default function AboutSection() {
                 </div>
                 </div>
                 {/* adjust lg:top-[x] value here to adjust where the below container freeze point is on scroll  */}
-                <div className="-ml-12 p-12 lg:sticky lg:top-60 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
+                <div className="-ml-12 p-12 lg:sticky lg:top-80 lg:col-start-2 lg:row-span-2 lg:row-start-1 overflow-visible mt-24">
                 {/* <Image
                     width="100"
                     height="100"
@@ -56,7 +56,9 @@ export default function AboutSection() {
                     src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
                     className="w-[48rem] max-w-none rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem]"
                 /> */}
-                <Cube />
+                <div className="proxz-nav proxz-nav__system">
+                  <Satellite />
+                </div>
                 </div>
                 <div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
                 <div className="lg:pr-4">

@@ -16,6 +16,22 @@
   }
 }
 
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 1536px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1280px) {
+  html {
+    font-size: 13px;
+  }
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -437,7 +453,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   align-items: center;
   padding-top: 5vh;
   padding-bottom: 5vh;
-  padding-left: 300px;
+  padding-left: 250px;
 }
 
 .flex-container {
@@ -498,7 +514,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 @media (max-width: 1200px) {
   .cube-container {
-      margin-left: 15vw;
+      /* margin-left: 15vw; */
   }
 }
 
