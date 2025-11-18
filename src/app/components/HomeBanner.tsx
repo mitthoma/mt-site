@@ -9,7 +9,7 @@ import Cube from './Cube'
 export default function HomeBanner() {
   return (
     <Fragment>
-      <div className="relative isolate overflow-hidden bg-[#131314]" style={{ minHeight: '90vh', display: 'flex', flexDirection: 'column' }}>
+      <div className="relative isolate overflow-hidden bg-[#131314]" style={{ minHeight: '90vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <div
           aria-hidden="true"
           className="absolute left-[calc(50%-4rem)] top-10 -z-10 transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:left-48 lg:top-[calc(50%-30rem)] xl:left-[calc(50%-24rem)]"
@@ -32,10 +32,12 @@ export default function HomeBanner() {
               Mitchell Thomas
             </h1> */}
             <h3 className="mt-6 text-xl leading-8 text-gray-300">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
-              fugiat veniam occaecat fugiat aliqua.
+              Computer science is no more about computers than astronomy is about telescopes.
             </h3>
-            <div className="mt-10 flex items-center gap-x-6">
+            <p className="mt-6 text-xl leading-8 text-gray-300">
+              — Edsger Dijkstra
+            </p>
+            {/* <div className="mt-10 flex items-center gap-x-6">
               <a
                 href="#"
                 className="rounded-md bg-[#131314] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm bg-[#131314] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
@@ -45,7 +47,7 @@ export default function HomeBanner() {
               <a href="#" className="text-sm font-semibold leading-6 text-white">
                 Learn more <span aria-hidden="true">→</span>
               </a>
-            </div>
+            </div> */}
           </div>
           <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32 order-first lg:order-last">
             <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
@@ -66,13 +68,13 @@ export default function HomeBanner() {
           gap: '0.5rem',
           animation: 'bounce 2s infinite'
         }}>
-          <span style={{ color: '#70e6ff', fontSize: '0.9rem', fontWeight: '500' }}>Scroll</span>
+          <span style={{ color: '#ffffff', fontSize: '0.9rem', fontWeight: '500' }}>Scroll</span>
           <svg 
             width="24" 
             height="24" 
             viewBox="0 0 24 24" 
             fill="none" 
-            stroke="#70e6ff" 
+            stroke="#ffffff" 
             strokeWidth="2" 
             strokeLinecap="round" 
             strokeLinejoin="round"

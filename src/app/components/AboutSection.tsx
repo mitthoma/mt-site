@@ -38,11 +38,10 @@ export default function AboutSection() {
                 <div className="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
                 <div className="lg:pr-4">
                     <div className="lg:max-w-lg">
-                    <p className="text-base font-semibold leading-7 text-indigo-600">Deploy faster</p>
-                    <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">A better workflow</h1>
-                    <p className="mt-6 text-xl leading-8 text-gray-700">
-                        Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At arcu, sit dui mi, nibh dui, diam
-                        eget aliquam. Quisque id at vitae feugiat egestas.
+                    <p className="text-base font-semibold leading-7 text-white" style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.3)', paddingBottom: '0.5rem', display: 'inline-block' }}>Senior Full Stack Software Engineer</p>
+                    <h1 className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">7+ Years of Experience</h1>
+                    <p className="mt-6 text-xl leading-8 text-gray-300">
+                        Architecting scalable full-stack solutions from concept to deployment. Specializing in cloud infrastructure, modern web frameworks, and AI-powered applications.
                     </p>
                     </div>
                 </div>
@@ -62,49 +61,93 @@ export default function AboutSection() {
                 </div>
                 <div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
                 <div className="lg:pr-4">
-                    <div className="max-w-xl text-base leading-7 text-gray-700 lg:max-w-lg">
-                    <p>
-                        Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet
-                        vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque
-                        erat velit. Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris
-                        semper sed amet vitae sed turpis id.
-                    </p>
-                    <ul role="list" className="mt-8 space-y-8 text-gray-600">
-                        <li className="flex gap-x-3">
-                        {/* <CloudArrowUpIcon aria-hidden="true" className="mt-1 h-5 w-5 flex-none text-indigo-600" /> */}
-                        <span>
-                            <strong className="font-semibold text-gray-900">Push to deploy.</strong> Lorem ipsum, dolor sit amet
-                            consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate
-                            blanditiis ratione.
-                        </span>
-                        </li>
-                        <li className="flex gap-x-3">
-                        {/* <LockClosedIcon aria-hidden="true" className="mt-1 h-5 w-5 flex-none text-indigo-600" /> */}
-                        <span>
-                            <strong className="font-semibold text-gray-900">SSL certificates.</strong> Anim aute id magna aliqua
-                            ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.
-                        </span>
-                        </li>
-                        <li className="flex gap-x-3">
-                        {/* <ServerIcon aria-hidden="true" className="mt-1 h-5 w-5 flex-none text-indigo-600" /> */}
-                        <span>
-                            <strong className="font-semibold text-gray-900">Database backups.</strong> Ac tincidunt sapien
-                            vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.
-                        </span>
-                        </li>
-                    </ul>
-                    <p className="mt-8">
-                        Et vitae blandit facilisi magna lacus commodo. Vitae sapien duis odio id et. Id blandit molestie auctor
-                        fermentum dignissim. Lacus diam tincidunt ac cursus in vel. Mauris varius vulputate et ultrices hac
-                        adipiscing egestas. Iaculis convallis ac tempor et ut. Ac lorem vel integer orci.
-                    </p>
-                    <h2 className="mt-16 text-2xl font-bold tracking-tight text-gray-900">No server? No problem.</h2>
-                    <p className="mt-6">
-                        Id orci tellus laoreet id ac. Dolor, aenean leo, ac etiam consequat in. Convallis arcu ipsum urna nibh.
-                        Pharetra, euismod vitae interdum mauris enim, consequat vulputate nibh. Maecenas pellentesque id sed
-                        tellus mauris, ultrices mauris. Tincidunt enim cursus ridiculus mi. Pellentesque nam sed nullam sed diam
-                        turpis ipsum eu a sed convallis diam.
-                    </p>
+                    <div className="max-w-xl text-base leading-7 text-gray-300 lg:max-w-lg">
+                    
+                    {/* Tech Stack */}
+                    <h2 className="text-2xl font-bold tracking-tight text-white" style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.3)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>Tech Stack</h2>
+                    <div className="space-y-4 mb-12">
+                        <div>
+                            <h3 className="font-semibold text-white mb-2">Languages & Frameworks</h3>
+                            <div className="flex flex-wrap gap-2">
+                                {['JavaScript', 'TypeScript', 'Python', 'Vue', 'Nuxt', 'React', 'Next.js', 'Node.js', 'Express', 'SQL', 'MongoDB', 'Redis'].map((tech) => (
+                                    <span key={tech} className="px-3 py-1 bg-white bg-opacity-10 border border-white border-opacity-30 text-sm text-white" style={{ borderRadius: '10px' }}>
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                        <div>
+                            <h3 className="font-semibold text-white mb-2">Tools & DevOps</h3>
+                            <div className="flex flex-wrap gap-2">
+                                {['Git', 'Docker', 'AWS', 'CI/CD', 'Jest', 'Smart Contracts', 'Microservices'].map((tech) => (
+                                    <span key={tech} className="px-3 py-1 bg-white bg-opacity-10 border border-white border-opacity-30 text-sm text-white" style={{ borderRadius: '10px' }}>
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Projects */}
+                    <h2 className="text-2xl font-bold tracking-tight text-white" style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.3)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>Featured Projects</h2>
+                    <div className="space-y-6 mb-12">
+                        <div className="p-4 border border-white border-opacity-20 hover:border-opacity-40 transition-all" style={{ background: 'rgba(255, 255, 255, 0.05)', borderRadius: '10px' }}>
+                            <h3 className="font-bold text-white text-lg mb-2">Kickstarter Blockchain Clone</h3>
+                            <p className="text-gray-300 mb-3">
+                                Blockchain-powered crowdfunding platform with smart contracts enabling contributor voting on fund distributions.
+                            </p>
+                            <div className="flex flex-wrap gap-2 mb-3">
+                                {['React', 'Solidity', 'Ethereum', 'Next.js', 'Truffle'].map((tech) => (
+                                    <span key={tech} className="px-2 py-1 text-xs bg-white bg-opacity-10 border border-white border-opacity-20 text-gray-300" style={{ borderRadius: '10px' }}>
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                            <a href="https://github.com/yourusername/kickstarter-blockchain" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                View on GitHub
+                            </a>
+                        </div>
+                        <div className="p-4 border border-white border-opacity-20 hover:border-opacity-40 transition-all" style={{ background: 'rgba(255, 255, 255, 0.05)', borderRadius: '10px' }}>
+                            <h3 className="font-bold text-white text-lg mb-2">Developer Meetup Platform</h3>
+                            <p className="text-gray-300 mb-3">
+                                Web community where developers can schedule meetups based around various chosen topics.
+                            </p>
+                            <div className="flex flex-wrap gap-2 mb-3">
+                                {['React', 'Node.js', 'MongoDB', 'Express'].map((tech) => (
+                                    <span key={tech} className="px-2 py-1 text-xs bg-white bg-opacity-10 border border-white border-opacity-20 text-gray-300" style={{ borderRadius: '10px' }}>
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                            <a href="https://github.com/yourusername/developer-meetup" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                View on GitHub
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Publications */}
+                    <h2 className="text-2xl font-bold tracking-tight text-white" style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.3)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>Publications</h2>
+                    <div className="space-y-3">
+                        {[
+                            { title: 'Comparing SVM and MLP Machine Learning Models', date: '3/20/2019' },
+                            { title: 'Deep Learning with COVID-19 X-Ray CNN', date: '3/20/2020' },
+                            { title: 'Benefits of Decentralized Cloud Storage', date: '4/6/2021' },
+                            { title: 'Simple Example of Deploying a Smart Contract', date: '4/23/2021' },
+                            { title: 'The Groundbreaking Bridge Between Real World Data And Smart Contracts', date: '10/13/2021' },
+                            { title: 'IPFS: The Web3 Data Storage Revolution', date: '10/25/2022' }
+                        ].map((pub, index) => (
+                            <div key={index} className="pb-3 border-b border-white border-opacity-10 last:border-0">
+                                <h3 className="font-semibold text-white text-sm">{pub.title}</h3>
+                                <p className="text-xs text-gray-400 mt-1">{pub.date} • Becoming Human: AI Magazine</p>
+                            </div>
+                        ))}
+                    </div>
                     </div>
                 </div>
                 </div>

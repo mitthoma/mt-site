@@ -35,36 +35,40 @@ export default function HorizontalResume() {
 
   const experiences = [
     {
-      year: '2024',
-      role: 'Senior Full Stack Engineer',
-      company: 'Tech Corp',
-      description: 'Led development of scalable microservices architecture serving 1M+ users',
-      tech: ['React', 'Node.js', 'AWS', 'Docker'],
-      color: '#70e6ff'
+      year: '2021-Present',
+      role: 'Senior Fullstack Developer',
+      company: 'OPEN Health',
+      bullets: [
+        'Architected and built from scratch a central API application supporting multiple platforms',
+        'Spearheaded multi-tenancy architecture redesign optimizing database separation for improved security',
+        'Reduced hosting costs by thousands monthly while enhancing system reliability and scalability'
+      ],
+      tech: ['Vue', 'Nuxt.js', 'Node.js', 'AWS', 'CI/CD', 'MySQL', 'TypeORM', 'Prisma', 'Multi-Tenancy', 'End-To-End', 'Enterprise Production Apps'],
+      color: '#ffffff'
     },
     {
-      year: '2023',
-      role: 'Full Stack Developer',
-      company: 'Startup Inc',
-      description: 'Built real-time collaboration platform from ground up',
-      tech: ['Next.js', 'PostgreSQL', 'Redis', 'WebSocket'],
-      color: '#70ffa0'
+      year: '2019-Present',
+      role: 'Software Engineer, Co-Founder',
+      company: 'Blacsand, LLC',
+      bullets: [
+        'Founded and led a web development firm managing a team of 5 to deliver 25+ full-cycle projects',
+        'Developed HIPAA-compliant SaaS platform with microservice architecture',
+        'Built mobile apps for chiropractic practices driving revenue growth'
+      ],
+      tech: ['Vue 3', 'TypeScript', 'PostgreSQL', 'AWS', 'Swift', 'Java', 'Next.js', 'React Native', 'Prisma', 'React', 'Vue', 'Android/Java'],
+      color: '#e0e0e0'
     },
     {
-      year: '2022',
-      role: 'Frontend Developer',
-      company: 'Digital Agency',
-      description: 'Developed responsive web applications for Fortune 500 clients',
-      tech: ['Vue.js', 'TypeScript', 'TailwindCSS'],
-      color: '#ffcf70'
-    },
-    {
-      year: '2021',
-      role: 'Junior Developer',
-      company: 'Web Solutions',
-      description: 'Implemented UI components and integrated RESTful APIs',
-      tech: ['JavaScript', 'React', 'CSS3'],
-      color: '#ff70db'
+      year: '2018-2019',
+      role: 'Web Developer',
+      company: 'Vadela',
+      bullets: [
+        'Acted as sole web developer for a creative agency',
+        'Increased top-line revenue by $15,000 per year',
+        'Collaborated with designers, marketers, and photographers'
+      ],
+      tech: ['React', 'JavaScript', 'HTML', 'CSS'],
+      color: '#c0c0c0'
     },
   ];
 
@@ -99,7 +103,7 @@ export default function HorizontalResume() {
               flexDirection: 'column',
               justifyContent: 'center',
               paddingLeft: '2rem',
-              borderLeft: '4px solid #70e6ff'
+              borderLeft: '4px solid #ffffff'
             }}>
               <h2 style={{ 
                 fontSize: '3rem', 
@@ -107,7 +111,7 @@ export default function HorizontalResume() {
                 color: 'white',
                 marginBottom: '1rem'
               }}>
-                My Journey
+                Work
               </h2>
               <p style={{ fontSize: '1.2rem', color: '#a0a0a0' }}>
                 Scroll down to explore →
@@ -124,7 +128,7 @@ export default function HorizontalResume() {
                   height: '450px',
                   background: 'linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)',
                   border: `2px solid ${exp.color}`,
-                  borderRadius: '16px',
+                  borderRadius: '10px',
                   padding: '2rem',
                   display: 'flex',
                   flexDirection: 'column',
@@ -142,7 +146,7 @@ export default function HorizontalResume() {
                   background: exp.color,
                   color: '#000',
                   padding: '0.5rem 1rem',
-                  borderRadius: '8px',
+                  borderRadius: '10px',
                   fontWeight: 'bold',
                   fontSize: '1.2rem'
                 }}>
@@ -152,7 +156,7 @@ export default function HorizontalResume() {
                 {/* Role */}
                 <div style={{ marginTop: '3rem' }}>
                   <h3 style={{ 
-                    fontSize: '1.8rem', 
+                    fontSize: '1.4rem', 
                     fontWeight: 'bold', 
                     color: exp.color,
                     marginBottom: '0.5rem'
@@ -169,14 +173,20 @@ export default function HorizontalResume() {
                 </div>
 
                 {/* Description */}
-                <p style={{ 
-                  fontSize: '1rem', 
+                <ul style={{ 
+                  fontSize: '0.95rem', 
                   color: '#d0d0d0',
                   lineHeight: '1.6',
-                  flex: 1
+                  flex: 1,
+                  paddingLeft: '1.5rem',
+                  margin: 0
                 }}>
-                  {exp.description}
-                </p>
+                  {exp.bullets.map((bullet, i) => (
+                    <li key={i} style={{ marginBottom: '0.5rem' }}>
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
 
                 {/* Tech Stack */}
                 <div>
@@ -200,7 +210,7 @@ export default function HorizontalResume() {
                           padding: '0.4rem 0.8rem',
                           background: '#1a1a1a',
                           border: `1px solid ${exp.color}60`,
-                          borderRadius: '6px',
+                          borderRadius: '10px',
                           fontSize: '0.85rem',
                           color: exp.color
                         }}
@@ -234,9 +244,9 @@ export default function HorizontalResume() {
               justifyContent: 'center',
               alignItems: 'flex-end',
               paddingRight: '2rem',
-              borderRight: '4px solid #70e6ff'
+              borderRight: '4px solid #ffffff'
             }}>
-              <h3 style={{ 
+              {/* <h3 style={{ 
                 fontSize: '2rem', 
                 fontWeight: 'bold', 
                 color: 'white',
@@ -244,16 +254,17 @@ export default function HorizontalResume() {
                 textAlign: 'right'
               }}>
                 Let's Build Together
-              </h3>
+              </h3> */}
               <button style={{
                 padding: '1rem 2rem',
-                background: '#70e6ff',
+                background: '#ffffff',
                 color: '#000',
                 border: 'none',
-                borderRadius: '8px',
+                borderRadius: '10px',
                 fontSize: '1.1rem',
                 fontWeight: 'bold',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)'
               }}>
                 Get In Touch
               </button>

@@ -120,7 +120,7 @@ export default function ContactSection() {
             marginBottom: '2.5rem',
             lineHeight: '1.6'
           }}>
-            Have a project in mind or want to collaborate? Drop me a message and let's create something amazing together.
+            Have a project in mind or want to collaborate? Drop me a message.
           </p>
 
           <form onSubmit={handleSubmit} style={{
@@ -132,7 +132,7 @@ export default function ContactSection() {
             <div style={{ position: 'relative' }}>
               <label style={{
                 display: 'block',
-                color: '#70e6ff',
+                color: '#ffffff',
                 fontSize: '0.9rem',
                 fontWeight: '600',
                 marginBottom: '0.5rem',
@@ -152,14 +152,14 @@ export default function ContactSection() {
                 style={{
                   width: '100%',
                   padding: '1rem',
-                  background: 'rgba(112, 230, 255, 0.05)',
-                  border: `2px solid ${focusedField === 'name' ? '#70e6ff' : 'rgba(112, 230, 255, 0.3)'}`,
-                  borderRadius: '8px',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: `2px solid ${focusedField === 'name' ? '#ffffff' : 'rgba(255, 255, 255, 0.3)'}`,
+                  borderRadius: '10px',
                   color: '#fff',
                   fontSize: '1rem',
                   outline: 'none',
                   transition: 'all 0.3s ease',
-                  boxShadow: focusedField === 'name' ? '0 0 20px rgba(112, 230, 255, 0.3)' : 'none'
+                  boxShadow: focusedField === 'name' ? '0 0 20px rgba(255, 255, 255, 0.3)' : 'none'
                 }}
               />
             </div>
@@ -168,7 +168,7 @@ export default function ContactSection() {
             <div style={{ position: 'relative' }}>
               <label style={{
                 display: 'block',
-                color: '#70e6ff',
+                color: '#fff',
                 fontSize: '0.9rem',
                 fontWeight: '600',
                 marginBottom: '0.5rem',
@@ -188,14 +188,14 @@ export default function ContactSection() {
                 style={{
                   width: '100%',
                   padding: '1rem',
-                  background: 'rgba(112, 230, 255, 0.05)',
-                  border: `2px solid ${focusedField === 'email' ? '#70e6ff' : 'rgba(112, 230, 255, 0.3)'}`,
-                  borderRadius: '8px',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: `2px solid ${focusedField === 'email' ? '#fff' : 'rgba(255, 255, 255, 0.3)'}`,
+                  borderRadius: '10px',
                   color: '#fff',
                   fontSize: '1rem',
                   outline: 'none',
                   transition: 'all 0.3s ease',
-                  boxShadow: focusedField === 'email' ? '0 0 20px rgba(112, 230, 255, 0.3)' : 'none'
+                  boxShadow: focusedField === 'email' ? '0 0 20px rgba(255, 255, 255, 0.3)' : 'none'
                 }}
               />
             </div>
@@ -204,7 +204,7 @@ export default function ContactSection() {
             <div style={{ position: 'relative' }}>
               <label style={{
                 display: 'block',
-                color: '#70e6ff',
+                color: '#fff',
                 fontSize: '0.9rem',
                 fontWeight: '600',
                 marginBottom: '0.5rem',
@@ -224,16 +224,16 @@ export default function ContactSection() {
                 style={{
                   width: '100%',
                   padding: '1rem',
-                  background: 'rgba(112, 230, 255, 0.05)',
-                  border: `2px solid ${focusedField === 'message' ? '#70e6ff' : 'rgba(112, 230, 255, 0.3)'}`,
-                  borderRadius: '8px',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: `2px solid ${focusedField === 'message' ? '#fff' : 'rgba(255, 255, 255, 0.3)'}`,
+                  borderRadius: '10px',
                   color: '#fff',
                   fontSize: '1rem',
                   outline: 'none',
                   transition: 'all 0.3s ease',
                   resize: 'vertical',
                   fontFamily: 'inherit',
-                  boxShadow: focusedField === 'message' ? '0 0 20px rgba(112, 230, 255, 0.3)' : 'none'
+                  boxShadow: focusedField === 'message' ? '0 0 20px rgba(255, 255, 255, 0.3)' : 'none'
                 }}
               />
             </div>
@@ -244,15 +244,15 @@ export default function ContactSection() {
               disabled={isSubmitting}
               style={{
                 padding: '1.25rem 2rem',
-                background: isSubmitting ? 'rgba(112, 230, 255, 0.5)' : 'linear-gradient(135deg, #70e6ff 0%, #00bfff 100%)',
+                background: isSubmitting ? 'rgba(255, 255, 255, 0.5)' : 'linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%)',
                 border: 'none',
-                borderRadius: '8px',
+                borderRadius: '10px',
                 color: '#000',
                 fontSize: '1.1rem',
                 fontWeight: 'bold',
                 cursor: isSubmitting ? 'not-allowed' : 'pointer',
                 transition: 'all 0.3s ease',
-                boxShadow: '0 0 30px rgba(112, 230, 255, 0.4)',
+                boxShadow: '0 0 30px rgba(255, 255, 255, 0.4)',
                 textTransform: 'uppercase',
                 letterSpacing: '1px',
                 opacity: isSubmitting ? 0.7 : 1
@@ -260,13 +260,13 @@ export default function ContactSection() {
               onMouseEnter={(e) => {
                 if (!isSubmitting) {
                   e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 0 40px rgba(112, 230, 255, 0.6)';
+                  e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.6)';
                 }
               }}
               onMouseLeave={(e) => {
                 if (!isSubmitting) {
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 0 30px rgba(112, 230, 255, 0.4)';
+                  e.currentTarget.style.boxShadow = '0 0 30px rgba(255, 255, 255, 0.4)';
                 }
               }}
             >
@@ -283,9 +283,9 @@ export default function ContactSection() {
             opacity: showSuccess ? 1 : 0
           }}>
             <div style={{
-              background: 'rgba(112, 230, 255, 0.1)',
-              border: '1px solid #70e6ff',
-              borderRadius: '8px',
+              background: 'rgba(255, 255, 255, 0.1)',
+              border: '1px solid #ffffff',
+              borderRadius: '10px',
               padding: '1rem',
               color: '#70e6ff',
               fontSize: '1rem',

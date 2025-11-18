@@ -18,12 +18,12 @@ export default function AudioPlayer() {
   
   // Add all your tracks here - put audio files in /public/audio/ folder
   const playlist: Track[] = [
-    { title: "Track One", artist: "Mitchell Thomas", src: "/audio/track1.m4a" },
-    { title: "Track Two", artist: "Mitchell Thomas", src: "/audio/track2.m4a" },
-    { title: "Track Three", artist: "Mitchell Thomas", src: "/audio/track3.mp3" },
-    { title: "Track Four", artist: "Mitchell Thomas", src: "/audio/track4.mp3" },
-    { title: "Track Five", artist: "Mitchell Thomas", src: "/audio/track5.mp3" },
-    { title: "Track Six", artist: "Mitchell Thomas", src: "/audio/track6.mp3" },
+    { title: "Track 001", artist: "Mitchell Thomas", src: "/audio/track2.m4a" },
+    { title: "Track 002", artist: "Mitchell Thomas", src: "/audio/track1.m4a" },
+    { title: "Track 003", artist: "Mitchell Thomas", src: "/audio/track3.wav" },
+    { title: "Track 004", artist: "Mitchell Thomas", src: "/audio/track4.mp3" },
+    { title: "Track 005", artist: "Mitchell Thomas", src: "/audio/track5.mp3" },
+    { title: "Track 006", artist: "Mitchell Thomas", src: "/audio/track6.mp3" },
 
   ];
   
@@ -38,8 +38,11 @@ export default function AudioPlayer() {
       audio.ontimeupdate = () => {
         setCurrentTime(audio.currentTime);
       };
+      // Reset duration when track changes
+      setDuration(0);
+      setCurrentTime(0);
     }
-  }, []);
+  }, [currentTrackIndex]);
 
   const handlePlayPause = () => {
     if (audioRef.current) {
@@ -79,9 +82,21 @@ export default function AudioPlayer() {
   };
 
   const formatTime = (seconds: number) => {
+    if (!seconds || isNaN(seconds)) return '0:00';
     const mins = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
     return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (audioRef.current && duration) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const percentage = x / rect.width;
+      const newTime = percentage * duration;
+      audioRef.current.currentTime = newTime;
+      setCurrentTime(newTime);
+    }
   };
 
   return (
@@ -99,10 +114,10 @@ export default function AudioPlayer() {
           <div style={{
             background: 'rgba(0, 0, 0, 0.95)',
             backdropFilter: 'blur(10px)',
-            border: '1px solid #70e6ff',
-            borderRadius: '12px',
+            border: '1px solid #ffffff',
+            borderRadius: '10px',
             padding: '1rem',
-            boxShadow: '0 0 30px rgba(112, 230, 255, 0.3)',
+            boxShadow: '0 0 30px rgba(255, 255, 255, 0.3)',
             width: '280px'
           }}>
             <div style={{
@@ -111,15 +126,15 @@ export default function AudioPlayer() {
               alignItems: 'center',
               marginBottom: '1rem'
             }}>
-              <span style={{ color: '#70e6ff', fontSize: '0.9rem', fontWeight: '600' }}>
-                🎵 Playlist ({playlist.length} tracks)
+              <span style={{ color: '#ffffff', fontSize: '0.9rem', fontWeight: '600' }}>
+                Playlist ({playlist.length} tracks)
               </span>
               <button
                 onClick={() => setIsExpanded(false)}
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: '#70e6ff',
+                  color: '#ffffff',
                   cursor: 'pointer',
                   fontSize: '1.5rem',
                   padding: 0,
@@ -132,9 +147,9 @@ export default function AudioPlayer() {
 
             {/* Current Track Info */}
             <div style={{
-              background: 'rgba(112, 230, 255, 0.1)',
-              border: '1px solid #70e6ff',
-              borderRadius: '8px',
+              background: 'rgba(255, 255, 255, 0.1)',
+              border: '1px solid #ffffff',
+              borderRadius: '10px',
               padding: '0.75rem',
               marginBottom: '1rem'
             }}>
@@ -153,10 +168,10 @@ export default function AudioPlayer() {
                 style={{
                   flex: 1,
                   padding: '0.75rem',
-                  background: 'rgba(112, 230, 255, 0.2)',
-                  border: '1px solid #70e6ff',
-                  borderRadius: '8px',
-                  color: '#70e6ff',
+                  background: 'rgba(255, 255, 255, 0.2)',
+                  border: '1px solid #ffffff',
+                  borderRadius: '10px',
+                  color: '#ffffff',
                   fontSize: '1rem',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease'
@@ -169,10 +184,10 @@ export default function AudioPlayer() {
                 style={{
                   flex: 2,
                   padding: '0.75rem',
-                  background: isPlaying ? '#70e6ff' : 'rgba(112, 230, 255, 0.2)',
-                  border: '1px solid #70e6ff',
-                  borderRadius: '8px',
-                  color: isPlaying ? '#000' : '#70e6ff',
+                  background: isPlaying ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
+                  border: '1px solid #ffffff',
+                  borderRadius: '10px',
+                  color: isPlaying ? '#000' : '#ffffff',
                   fontSize: '1rem',
                   fontWeight: 'bold',
                   cursor: 'pointer',
@@ -186,10 +201,10 @@ export default function AudioPlayer() {
                 style={{
                   flex: 1,
                   padding: '0.75rem',
-                  background: 'rgba(112, 230, 255, 0.2)',
-                  border: '1px solid #70e6ff',
-                  borderRadius: '8px',
-                  color: '#70e6ff',
+                  background: 'rgba(255, 255, 255, 0.2)',
+                  border: '1px solid #ffffff',
+                  borderRadius: '10px',
+                  color: '#ffffff',
                   fontSize: '1rem',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease'
@@ -201,17 +216,20 @@ export default function AudioPlayer() {
 
             {/* Progress Bar */}
             <div style={{ marginBottom: '0.5rem' }}>
-              <div style={{
-                width: '100%',
-                height: '4px',
-                background: 'rgba(112, 230, 255, 0.2)',
-                borderRadius: '2px',
-                overflow: 'hidden'
-              }}>
+              <div 
+                onClick={handleSeek}
+                style={{
+                  width: '100%',
+                  height: '4px',
+                  background: 'rgba(255, 255, 255, 0.2)',
+                  borderRadius: '10px',
+                  overflow: 'hidden',
+                  cursor: 'pointer'
+                }}>
                 <div style={{
                   width: `${(currentTime / duration) * 100}%`,
                   height: '100%',
-                  background: '#70e6ff',
+                  background: '#ffffff',
                   transition: 'width 0.1s linear'
                 }} />
               </div>
@@ -233,7 +251,7 @@ export default function AudioPlayer() {
             <div style={{
               maxHeight: '500px',
               overflowY: 'auto',
-              borderTop: '1px solid rgba(112, 230, 255, 0.3)',
+              borderTop: '1px solid rgba(255, 255, 255, 0.3)',
               paddingTop: '0.75rem',
               paddingRight: '0.25rem'
             }} className="custom-scrollbar">
@@ -243,16 +261,16 @@ export default function AudioPlayer() {
                   onClick={() => selectTrack(index)}
                   style={{
                     padding: '0.6rem',
-                    borderRadius: '6px',
+                    borderRadius: '10px',
                     marginBottom: '0.4rem',
-                    background: index === currentTrackIndex ? 'rgba(112, 230, 255, 0.2)' : 'transparent',
-                    border: `1px solid ${index === currentTrackIndex ? '#70e6ff' : 'transparent'}`,
+                    background: index === currentTrackIndex ? 'rgba(255, 255, 255, 0.2)' : 'transparent',
+                    border: `1px solid ${index === currentTrackIndex ? '#ffffff' : 'transparent'}`,
                     cursor: 'pointer',
                     transition: 'all 0.2s ease'
                   }}
                   onMouseEnter={(e) => {
                     if (index !== currentTrackIndex) {
-                      e.currentTarget.style.background = 'rgba(112, 230, 255, 0.1)';
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
                     }
                   }}
                   onMouseLeave={(e) => {
@@ -261,7 +279,7 @@ export default function AudioPlayer() {
                     }
                   }}
                 >
-                  <div style={{ fontSize: '0.85rem', fontWeight: '600', color: index === currentTrackIndex ? '#70e6ff' : '#fff', marginBottom: '0.15rem' }}>
+                  <div style={{ fontSize: '0.85rem', fontWeight: '600', color: index === currentTrackIndex ? '#ffffff' : '#fff', marginBottom: '0.15rem' }}>
                     {index === currentTrackIndex && '▶ '}{track.title}
                   </div>
                   <div style={{ fontSize: '0.7rem', color: '#808080' }}>
@@ -278,30 +296,30 @@ export default function AudioPlayer() {
             style={{
               background: 'rgba(0, 0, 0, 0.9)',
               backdropFilter: 'blur(10px)',
-              border: '1px solid #70e6ff',
-              borderRadius: '20px',
+              border: '1px solid #ffffff',
+              borderRadius: '10px',
               padding: '0.75rem 1.25rem',
               display: 'flex',
               alignItems: 'center',
               gap: '0.5rem',
               cursor: 'pointer',
-              boxShadow: '0 0 20px rgba(112, 230, 255, 0.4)',
+              boxShadow: '0 0 20px rgba(255, 255, 255, 0.3)',
               transition: 'all 0.3s ease'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'scale(1.05)';
-              e.currentTarget.style.boxShadow = '0 0 30px rgba(112, 230, 255, 0.6)';
+              e.currentTarget.style.boxShadow = '0 0 30px rgba(255, 255, 255, 0.5)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.boxShadow = '0 0 20px rgba(112, 230, 255, 0.4)';
+              e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.3)';
             }}
             onContextMenu={(e) => {
               e.preventDefault();
               setIsExpanded(true);
             }}
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#70e6ff" strokeWidth="2">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2">
               {isPlaying ? (
                 // Pause icon
                 <>
@@ -310,16 +328,16 @@ export default function AudioPlayer() {
                 </>
               ) : (
                 // Play icon
-                <polygon points="5 3 19 12 5 21 5 3" fill="#70e6ff" />
+                <polygon points="5 3 19 12 5 21 5 3" fill="#ffffff" />
               )}
             </svg>
             <span style={{
-              color: '#70e6ff',
+              color: '#eaeaea',
               fontSize: '0.85rem',
               fontWeight: '600',
               whiteSpace: 'nowrap'
             }}>
-              Produced by me
+              Music produced by me
             </span>
           </button>
         )}
