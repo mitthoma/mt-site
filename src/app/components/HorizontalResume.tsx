@@ -1,0 +1,266 @@
+"use client";
+
+import { useEffect, useRef } from 'react';
+import { Fragment } from 'react';
+
+export default function HorizontalResume() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const scrollContainer = scrollContainerRef.current;
+    if (!container || !scrollContainer) return;
+
+    const handleScroll = () => {
+      const rect = container.getBoundingClientRect();
+      const scrollHeight = container.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      
+      // Calculate scroll progress
+      const start = rect.top;
+      const end = rect.bottom - viewportHeight;
+      const scrollProgress = Math.max(0, Math.min(1, -start / (scrollHeight - viewportHeight)));
+      
+      // Convert to horizontal scroll
+      const maxScroll = scrollContainer.scrollWidth - scrollContainer.offsetWidth;
+      scrollContainer.scrollLeft = scrollProgress * maxScroll;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial call
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const experiences = [
+    {
+      year: '2024',
+      role: 'Senior Full Stack Engineer',
+      company: 'Tech Corp',
+      description: 'Led development of scalable microservices architecture serving 1M+ users',
+      tech: ['React', 'Node.js', 'AWS', 'Docker'],
+      color: '#70e6ff'
+    },
+    {
+      year: '2023',
+      role: 'Full Stack Developer',
+      company: 'Startup Inc',
+      description: 'Built real-time collaboration platform from ground up',
+      tech: ['Next.js', 'PostgreSQL', 'Redis', 'WebSocket'],
+      color: '#70ffa0'
+    },
+    {
+      year: '2022',
+      role: 'Frontend Developer',
+      company: 'Digital Agency',
+      description: 'Developed responsive web applications for Fortune 500 clients',
+      tech: ['Vue.js', 'TypeScript', 'TailwindCSS'],
+      color: '#ffcf70'
+    },
+    {
+      year: '2021',
+      role: 'Junior Developer',
+      company: 'Web Solutions',
+      description: 'Implemented UI components and integrated RESTful APIs',
+      tech: ['JavaScript', 'React', 'CSS3'],
+      color: '#ff70db'
+    },
+  ];
+
+  return (
+    <Fragment>
+      <div ref={containerRef} className="horizontal-resume-wrapper" style={{ height: '400vh' }}>
+        <div className="horizontal-resume-sticky" style={{ 
+          position: 'sticky',
+          top: 0,
+          height: '100vh',
+          overflow: 'hidden',
+          display: 'flex',
+          alignItems: 'center',
+          background: '#0a0a0a'
+        }}>
+          <div 
+            ref={scrollContainerRef}
+            className="horizontal-resume-container"
+            style={{
+              display: 'flex',
+              gap: '4rem',
+              paddingLeft: '10vw',
+              paddingRight: '10vw',
+              overflow: 'hidden'
+            }}
+          >
+            {/* Start Marker */}
+            <div style={{ 
+              minWidth: '300px',
+              height: '400px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              paddingLeft: '2rem',
+              borderLeft: '4px solid #70e6ff'
+            }}>
+              <h2 style={{ 
+                fontSize: '3rem', 
+                fontWeight: 'bold', 
+                color: 'white',
+                marginBottom: '1rem'
+              }}>
+                My Journey
+              </h2>
+              <p style={{ fontSize: '1.2rem', color: '#a0a0a0' }}>
+                Scroll down to explore →
+              </p>
+            </div>
+
+            {/* Experience Cards */}
+            {experiences.map((exp, index) => (
+              <div 
+                key={index}
+                className="resume-card"
+                style={{
+                  minWidth: '400px',
+                  height: '450px',
+                  background: 'linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)',
+                  border: `2px solid ${exp.color}`,
+                  borderRadius: '16px',
+                  padding: '2rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '1.5rem',
+                  boxShadow: `0 0 30px ${exp.color}40`,
+                  position: 'relative',
+                  overflow: 'hidden'
+                }}
+              >
+                {/* Year Badge */}
+                <div style={{
+                  position: 'absolute',
+                  top: '1rem',
+                  right: '1rem',
+                  background: exp.color,
+                  color: '#000',
+                  padding: '0.5rem 1rem',
+                  borderRadius: '8px',
+                  fontWeight: 'bold',
+                  fontSize: '1.2rem'
+                }}>
+                  {exp.year}
+                </div>
+
+                {/* Role */}
+                <div style={{ marginTop: '3rem' }}>
+                  <h3 style={{ 
+                    fontSize: '1.8rem', 
+                    fontWeight: 'bold', 
+                    color: exp.color,
+                    marginBottom: '0.5rem'
+                  }}>
+                    {exp.role}
+                  </h3>
+                  <p style={{ 
+                    fontSize: '1.2rem', 
+                    color: '#a0a0a0',
+                    fontWeight: '500'
+                  }}>
+                    {exp.company}
+                  </p>
+                </div>
+
+                {/* Description */}
+                <p style={{ 
+                  fontSize: '1rem', 
+                  color: '#d0d0d0',
+                  lineHeight: '1.6',
+                  flex: 1
+                }}>
+                  {exp.description}
+                </p>
+
+                {/* Tech Stack */}
+                <div>
+                  <p style={{ 
+                    fontSize: '0.9rem', 
+                    color: '#808080',
+                    marginBottom: '0.5rem',
+                    fontWeight: '600'
+                  }}>
+                    Tech Stack:
+                  </p>
+                  <div style={{ 
+                    display: 'flex', 
+                    flexWrap: 'wrap', 
+                    gap: '0.5rem' 
+                  }}>
+                    {exp.tech.map((tech, i) => (
+                      <span 
+                        key={i}
+                        style={{
+                          padding: '0.4rem 0.8rem',
+                          background: '#1a1a1a',
+                          border: `1px solid ${exp.color}60`,
+                          borderRadius: '6px',
+                          fontSize: '0.85rem',
+                          color: exp.color
+                        }}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Connecting Line */}
+                {index < experiences.length - 1 && (
+                  <div style={{
+                    position: 'absolute',
+                    right: '-4rem',
+                    top: '50%',
+                    width: '4rem',
+                    height: '2px',
+                    background: `linear-gradient(90deg, ${exp.color} 0%, ${experiences[index + 1].color} 100%)`
+                  }} />
+                )}
+              </div>
+            ))}
+
+            {/* End Marker */}
+            <div style={{ 
+              minWidth: '300px',
+              height: '400px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'flex-end',
+              paddingRight: '2rem',
+              borderRight: '4px solid #70e6ff'
+            }}>
+              <h3 style={{ 
+                fontSize: '2rem', 
+                fontWeight: 'bold', 
+                color: 'white',
+                marginBottom: '1rem',
+                textAlign: 'right'
+              }}>
+                Let's Build Together
+              </h3>
+              <button style={{
+                padding: '1rem 2rem',
+                background: '#70e6ff',
+                color: '#000',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '1.1rem',
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}>
+                Get In Touch
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Fragment>
+  );
+}

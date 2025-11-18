@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll";
+import Logo from "./components/Logo";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -34,6 +35,7 @@ export default function RootLayout({
     <html lang="en" className={bbhSans.variable}>
       <body className={inter.className}>
         <SmoothScroll />
+        <Logo />
         {children}
       </body>
     </html>

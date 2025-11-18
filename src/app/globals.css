@@ -453,7 +453,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   align-items: center;
   padding-top: 5vh;
   padding-bottom: 5vh;
-  padding-left: 250px;
+  padding-left: 180px;
 }
 
 .flex-container {
@@ -550,4 +550,16 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
       width: 100%;
       height: auto;
   }
+}
+
+/* engine section */
+.engine-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.engine-container svg {
+  filter: drop-shadow(0 0 20px rgba(112, 230, 255, 0.3));
 }

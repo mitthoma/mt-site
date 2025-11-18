@@ -40,8 +40,8 @@ export default function Cube() {
 
         function applyGlitch(side: SVGElement) {
             const scaleFactor = 0.9 + Math.random() * 0.2;
-            const tx = -10 + Math.random() * 20;
-            const ty = -10 + Math.random() * 20;
+            const tx = -50 + Math.random() * 30;
+            const ty = -10 + Math.random() * 30;
 
             anime({
                 targets: side,
@@ -88,32 +88,32 @@ export default function Cube() {
                         <div className="cube" id="cube">
                             <div className="cube-face front">
                                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5,5 L95,5 L95,95 L5,95 Z" stroke="#eaeaea" strokeWidth="0" fill="transparent"/>
+                                    <path d="M5,5 L95,5 L95,95 L5,95 Z" stroke="#eaeaea" strokeWidth="0" fill="#eaeaea"/>
                                 </svg>
                             </div>
                             <div className="cube-face back">
                                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5,5 L95,5 L95,95 L5,95 Z" stroke="#eaeaea" strokeWidth="0" fill="transparent"/>
+                                    <path d="M5,5 L95,5 L95,95 L5,95 Z" stroke="#eaeaea" strokeWidth="0" fill="#eaeaea"/>
                                 </svg>
                             </div>
                             <div className="cube-face right">
                                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5,5 L95,5 L95,95 L5,95 Z" stroke="#eaeaea" strokeWidth="0" fill="transparent"/>
+                                    <path d="M5,5 L95,5 L95,95 L5,95 Z" stroke="#eaeaea" strokeWidth="0" fill="#eaeaea"/>
                                 </svg>
                             </div>
                             <div className="cube-face left">
                                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5,5 L95,5 L95,95 L5,95 Z" stroke="#eaeaea" strokeWidth="0" fill="transparent"/>
+                                    <path d="M5,5 L95,5 L95,95 L5,95 Z" stroke="#eaeaea" strokeWidth="0" fill="#eaeaea"/>
                                 </svg>
                             </div>
                             <div className="cube-face top">
                                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5,5 L95,5 L95,95 L5,95 Z" stroke="#eaeaea" strokeWidth="0" fill="transparent"/>
+                                    <path d="M5,5 L95,5 L95,95 L5,95 Z" stroke="#eaeaea" strokeWidth="0" fill="#eaeaea"/>
                                 </svg>
                             </div>
                             <div className="cube-face bottom">
                                 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5,5 L95,5 L95,95 L5,95 Z" stroke="#eaeaea" strokeWidth="0" fill="transparent"/>
+                                    <path d="M5,5 L95,5 L95,95 L5,95 Z" stroke="#eaeaea" strokeWidth="0" fill="#eaeaea"/>
                                 </svg>
                             </div>
                         </div>
