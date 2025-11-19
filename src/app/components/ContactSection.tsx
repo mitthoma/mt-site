@@ -290,7 +290,7 @@ export default function ContactSection() {
               textAlign: 'center',
               fontWeight: '500'
             }}>
-              Thank you for reaching out. I'll be in touch.
+              Thank you for reaching out. I&apos;ll be in touch.
             </div>
           </div>
         </div>
