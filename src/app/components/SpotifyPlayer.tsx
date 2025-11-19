@@ -33,7 +33,7 @@ export default function AudioPlayer({ expandedFromMenu = false, onClose }: Audio
     { title: "Track 002", artist: "Mitchell Thomas", src: "/audio/track1.m4a" },
     { title: "Track 003", artist: "Mitchell Thomas", src: "/audio/track3.wav" },
     { title: "Track 004", artist: "Mitchell Thomas", src: "/audio/track4.mp3" },
-    { title: "Track 005", artist: "Mitchell Thomas", src: "/audio/track5.mp3" },
+    { title: "Track 005", artist: "Mitchell Thomas", src: "/audio/Fairy.m4a" },
     { title: "Track 006", artist: "Mitchell Thomas", src: "/audio/track6.mp3" },
 
   ];

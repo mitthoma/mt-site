@@ -35,6 +35,70 @@ export default function Logo() {
         </h1>
       </div>
       
+      {/* Desktop Links - Hidden on Mobile */}
+      <div className="hidden md:flex fixed right-4 z-[9999] gap-4" style={{
+        top: '2rem'
+      }}>
+        <a
+          href="https://github.com/mitthoma"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            background: 'rgba(0, 0, 0, 0.9)',
+            backdropFilter: 'blur(10px)',
+            border: '1px solid #ffffff',
+            borderRadius: '10px',
+            padding: '0.75rem 1.25rem',
+            color: '#eaeaea',
+            fontSize: '0.85rem',
+            fontWeight: '600',
+            cursor: 'pointer',
+            boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
+            transition: 'all 0.3s ease',
+            textDecoration: 'none'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'scale(1.05)';
+            e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.5)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'scale(1)';
+            e.currentTarget.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.3)';
+          }}
+        >
+          GitHub
+        </a>
+        <a
+          href="https://linkedin.com/in/mitchellthecoder"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            background: 'rgba(0, 0, 0, 0.9)',
+            backdropFilter: 'blur(10px)',
+            border: '1px solid #ffffff',
+            borderRadius: '10px',
+            padding: '0.75rem 1.25rem',
+            color: '#eaeaea',
+            fontSize: '0.85rem',
+            fontWeight: '600',
+            cursor: 'pointer',
+            boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
+            transition: 'all 0.3s ease',
+            textDecoration: 'none'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'scale(1.05)';
+            e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.5)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'scale(1)';
+            e.currentTarget.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.3)';
+          }}
+        >
+          LinkedIn
+        </a>
+      </div>
+      
       <style jsx>{`
         @media (min-width: 768px) {
           h1 {

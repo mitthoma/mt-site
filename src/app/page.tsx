@@ -94,9 +94,51 @@ export default function Home() {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            gap: '2rem'
+            gap: '1.5rem',
+            opacity: isMenuOpen ? 1 : 0,
+            transition: 'opacity 0.3s ease-in-out'
           }}
         >
+          <a
+            href="https://github.com/mitthoma"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              background: 'rgba(255, 255, 255, 0.1)',
+              border: '2px solid #ffffff',
+              borderRadius: '10px',
+              padding: '1.5rem 3rem',
+              color: '#ffffff',
+              fontSize: '1.5rem',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
+              transition: 'all 0.3s ease',
+              textDecoration: 'none'
+            }}
+          >
+            GitHub
+          </a>
+          <a
+            href="https://linkedin.com/in/mitchellthecoder"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              background: 'rgba(255, 255, 255, 0.1)',
+              border: '2px solid #ffffff',
+              borderRadius: '10px',
+              padding: '1.5rem 3rem',
+              color: '#ffffff',
+              fontSize: '1.5rem',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
+              transition: 'all 0.3s ease',
+              textDecoration: 'none'
+            }}
+          >
+            LinkedIn
+          </a>
           <button
             onClick={handleMusicClick}
             style={{
