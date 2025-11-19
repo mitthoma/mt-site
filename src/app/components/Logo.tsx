@@ -1,7 +1,13 @@
 "use client";
-import { Fragment } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 
 export default function Logo() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -9,32 +15,33 @@ export default function Logo() {
     });
   };
 
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <Fragment>
       <div 
         onClick={scrollToTop}
+        className="fixed left-[5px] z-[9999] cursor-pointer transition-all duration-300"
         style={{
-          position: 'fixed',
           top: '-30px',
-          left: '5px',
-          zIndex: 9999,
-          cursor: 'pointer',
-          padding: '',
-          transition: 'all 0.3s ease'
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = 'scale(1.05)';
-          e.currentTarget.style.boxShadow = '0 0 20px #70e6ff80';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = 'scale(1)';
-          e.currentTarget.style.boxShadow = 'none';
         }}
       >
-        <h1 className="mt-10 text-2xl md:text-4xl font-bold tracking-tight text-white md:sm:text-6xl font-[family-name:var(--font-bbh-sans)]">
-              Mitchell Thomas
-            </h1>
+        <h1 className="mt-5 font-bold tracking-tight text-white font-[family-name:var(--font-bbh-sans)]" style={{
+          fontSize: '4.5rem'
+        }}>
+          Mitchell Thomas
+        </h1>
       </div>
+      
+      <style jsx>{`
+        @media (min-width: 768px) {
+          h1 {
+            font-size: 4rem !important;
+          }
+        }
+      `}</style>
     </Fragment>
   );
 }

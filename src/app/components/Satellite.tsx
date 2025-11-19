@@ -26,6 +26,7 @@ export default function Satellite() {
             const a = document.createElement('a');
             a.className = 'proxz-nav__satellite';
             a.href = "#";
+            a.addEventListener('click', (e) => e.preventDefault());
 
             const span = document.createElement('span');
             span.className = 'proxz-nav__label';

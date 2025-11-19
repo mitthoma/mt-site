@@ -44,7 +44,7 @@ export default function HorizontalResume() {
         'Reduced hosting costs by thousands monthly while enhancing system reliability and scalability'
       ],
       tech: ['Vue', 'Nuxt.js', 'Node.js', 'AWS', 'CI/CD', 'MySQL', 'TypeORM', 'Prisma', 'Multi-Tenancy', 'End-To-End', 'Enterprise Production Apps'],
-      color: '#ffffff'
+      color: '#eaeaea'
     },
     {
       year: '2019-Present',
@@ -56,7 +56,7 @@ export default function HorizontalResume() {
         'Built mobile apps for chiropractic practices driving revenue growth'
       ],
       tech: ['Vue 3', 'TypeScript', 'PostgreSQL', 'AWS', 'Swift', 'Java', 'Next.js', 'React Native', 'Prisma', 'React', 'Vue', 'Android/Java'],
-      color: '#e0e0e0'
+      color: '#eaeaea'
     },
     {
       year: '2018-2019',
@@ -68,7 +68,19 @@ export default function HorizontalResume() {
         'Collaborated with designers, marketers, and photographers'
       ],
       tech: ['React', 'JavaScript', 'HTML', 'CSS'],
-      color: '#c0c0c0'
+      color: '#eaeaea'
+    },
+    {
+      year: '2015-2019',
+      role: 'B.S. Computer Science',
+      company: 'Indiana University Bloomington',
+      bullets: [
+        'Specialization in Artificial Intelligence',
+        'Minor in Human Centered Computing',
+        'Resident Assistant for 2 years'
+      ],
+      tech: [],
+      color: '#eaeaea'
     },
   ];
 
@@ -112,7 +124,7 @@ export default function HorizontalResume() {
                 color: 'white',
                 marginBottom: '1rem'
               }}>
-                Work
+                Work & Education
               </h2>
               <p style={{ fontSize: '1.2rem', color: '#a0a0a0' }}>
                 Scroll down to explore →
@@ -134,7 +146,7 @@ export default function HorizontalResume() {
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '1.5rem',
-                  boxShadow: `0 0 30px ${exp.color}40`,
+                  boxShadow: `0 0 10px ${exp.color}40`,
                   position: 'relative',
                   overflow: 'hidden'
                 }}
@@ -190,37 +202,39 @@ export default function HorizontalResume() {
                 </ul>
 
                 {/* Tech Stack */}
-                <div>
-                  <p style={{ 
-                    fontSize: '0.9rem', 
-                    color: '#808080',
-                    marginBottom: '0.5rem',
-                    fontWeight: '600'
-                  }}>
-                    Tech Stack:
-                  </p>
-                  <div style={{ 
-                    display: 'flex', 
-                    flexWrap: 'wrap', 
-                    gap: '0.5rem' 
-                  }}>
-                    {exp.tech.map((tech, i) => (
-                      <span 
-                        key={i}
-                        style={{
-                          padding: '0.4rem 0.8rem',
-                          background: '#1a1a1a',
-                          border: `1px solid ${exp.color}60`,
-                          borderRadius: '10px',
-                          fontSize: '0.85rem',
-                          color: exp.color
-                        }}
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                {exp.tech.length > 0 && (
+                  <div>
+                    <p style={{ 
+                      fontSize: '0.9rem', 
+                      color: '#808080',
+                      marginBottom: '0.5rem',
+                      fontWeight: '600'
+                    }}>
+                      Tech Stack:
+                    </p>
+                    <div style={{ 
+                      display: 'flex', 
+                      flexWrap: 'wrap', 
+                      gap: '0.5rem' 
+                    }}>
+                      {exp.tech.map((tech, i) => (
+                        <span 
+                          key={i}
+                          style={{
+                            padding: '0.4rem 0.8rem',
+                            background: '#1a1a1a',
+                            border: `1px solid ${exp.color}60`,
+                            borderRadius: '10px',
+                            fontSize: '0.85rem',
+                            color: exp.color
+                          }}
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Connecting Line */}
                 {index < experiences.length - 1 && (
@@ -247,15 +261,15 @@ export default function HorizontalResume() {
               paddingRight: '2rem',
               borderRight: '4px solid #ffffff'
             }}>
-              {/* <h3 style={{ 
+              <h3  style={{ 
                 fontSize: '2rem', 
                 fontWeight: 'bold', 
                 color: 'white',
                 marginBottom: '1rem',
                 textAlign: 'right'
               }}>
-                Let's Build Together
-              </h3> */}
+                Want more?
+              </h3>
               <button style={{
                 padding: '1rem 2rem',
                 background: '#ffffff',
@@ -267,7 +281,7 @@ export default function HorizontalResume() {
                 cursor: 'pointer',
                 boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)'
               }}>
-                Get In Touch
+                Browse Projects
               </button>
             </div>
           </div>
@@ -283,7 +297,7 @@ export default function HorizontalResume() {
           marginBottom: '2rem',
           textAlign: 'center'
         }}>
-          Work
+          Work<br></br>& Education
         </h2>
         
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '500px', margin: '0 auto' }}>
@@ -299,7 +313,7 @@ export default function HorizontalResume() {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '1rem',
-                boxShadow: `0 0 30px ${exp.color}40`,
+                boxShadow: `0 0 10px ${exp.color}40`,
                 position: 'relative'
               }}
             >
@@ -353,37 +367,39 @@ export default function HorizontalResume() {
               </ul>
 
               {/* Tech Stack */}
-              <div>
-                <p style={{ 
-                  fontSize: '0.8rem', 
-                  color: '#808080',
-                  marginBottom: '0.5rem',
-                  fontWeight: '600'
-                }}>
-                  Tech Stack:
-                </p>
-                <div style={{ 
-                  display: 'flex', 
-                  flexWrap: 'wrap', 
-                  gap: '0.4rem' 
-                }}>
-                  {exp.tech.map((tech, i) => (
-                    <span 
-                      key={i}
-                      style={{
-                        padding: '0.3rem 0.6rem',
-                        background: '#1a1a1a',
-                        border: `1px solid ${exp.color}60`,
-                        borderRadius: '10px',
-                        fontSize: '0.75rem',
-                        color: exp.color
-                      }}
-                    >
-                      {tech}
-                    </span>
-                  ))}
+              {exp.tech.length > 0 && (
+                <div>
+                  <p style={{ 
+                    fontSize: '0.8rem', 
+                    color: '#808080',
+                    marginBottom: '0.5rem',
+                    fontWeight: '600'
+                  }}>
+                    Tech Stack:
+                  </p>
+                  <div style={{ 
+                    display: 'flex', 
+                    flexWrap: 'wrap', 
+                    gap: '0.4rem' 
+                  }}>
+                    {exp.tech.map((tech, i) => (
+                      <span 
+                        key={i}
+                        style={{
+                          padding: '0.3rem 0.6rem',
+                          background: '#1a1a1a',
+                          border: `1px solid ${exp.color}60`,
+                          borderRadius: '10px',
+                          fontSize: '0.75rem',
+                          color: exp.color
+                        }}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           ))}
         </div>

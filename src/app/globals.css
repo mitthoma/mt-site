@@ -547,9 +547,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   }
 
   .scene {
-      width: 100px;
-      height: 100px;
-      perspective: 400px;
+      width: 120px;
+      height: 120px;
+      perspective: 500px;
       margin: 0 auto;
   }
 
@@ -559,29 +559,29 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
       transform-style: preserve-3d;
   }
 
-  /* Mobile-specific cube face transforms - smaller translateZ */
+  /* Mobile-specific cube face transforms - increased translateZ for better gap */
   .front {
-      transform: translateZ(50px);
+      transform: translateZ(72px);
   }
   
   .back {
-      transform: translateZ(-50px) rotateY(180deg);
+      transform: translateZ(-72px) rotateY(180deg);
   }
   
   .right {
-      transform: rotateY(90deg) translateZ(50px);
+      transform: rotateY(90deg) translateZ(72px);
   }
   
   .left {
-      transform: rotateY(-90deg) translateZ(50px);
+      transform: rotateY(-90deg) translateZ(72px);
   }
   
   .top {
-      transform: rotateX(90deg) translateZ(50px);
+      transform: rotateX(90deg) translateZ(72px);
   }
   
   .bottom {
-      transform: rotateX(-90deg) translateZ(50px);
+      transform: rotateX(-90deg) translateZ(72px);
   }
 }
 

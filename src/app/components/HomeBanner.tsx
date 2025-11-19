@@ -17,7 +17,7 @@ export default function HomeBanner() {
           <div className="bg-[#131314] opacity-20" />
         </div>
         <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
-          <div className="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8 order-first lg:order-first">
+          <div className="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl order-first lg:order-first">
             <div className="mt-24 sm:mt-32 lg:mt-16">
               {/* <a href="#" className="inline-flex space-x-6">
                 <span className="rounded-full bg-[#131314] px-3 py-1 text-sm font-semibold leading-6 text-indigo-400 ring-1 ring-inset ring-indigo-500/20">
@@ -49,7 +49,7 @@ export default function HomeBanner() {
               </a>
             </div> */}
           </div>
-          <div className="mx-auto mt-8 md:mt-16 flex justify-center max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none lg:justify-start xl:ml-32 order-last lg:order-last">
+          <div className="mx-auto mt-24 md:mt-16 flex justify-center max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none lg:justify-start xl:ml-32 order-last lg:order-last">
             <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
               <Cube />
             </div>

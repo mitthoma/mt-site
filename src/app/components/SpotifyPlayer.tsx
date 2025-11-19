@@ -125,7 +125,7 @@ export default function AudioPlayer({ expandedFromMenu = false, onClose }: Audio
             border: '1px solid #ffffff',
             borderRadius: '10px',
             padding: '1rem',
-            boxShadow: '0 0 30px rgba(255, 255, 255, 0.3)',
+            boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
             maxWidth: '400px'
           }}>
             <div style={{
@@ -314,16 +314,16 @@ export default function AudioPlayer({ expandedFromMenu = false, onClose }: Audio
               alignItems: 'center',
               gap: '0.5rem',
               cursor: 'pointer',
-              boxShadow: '0 0 20px rgba(255, 255, 255, 0.3)',
+              boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
               transition: 'all 0.3s ease'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'scale(1.05)';
-              e.currentTarget.style.boxShadow = '0 0 30px rgba(255, 255, 255, 0.5)';
+              e.currentTarget.style.transform = 'scale(1.01)';
+              e.currentTarget.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.5)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.3)';
+              e.currentTarget.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.3)';
             }}
             onContextMenu={(e) => {
               e.preventDefault();

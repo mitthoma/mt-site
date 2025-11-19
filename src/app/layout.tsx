@@ -15,6 +15,12 @@ const bbhSans = localFont({
   display: 'swap',
 });
 
+const packHard = localFont({
+  src: '../../public/fonts/Pack-TRIALHard.otf',
+  variable: '--font-pack-hard',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   title: "Mitchell Thomas Software Engineer",
   description: "Portfolio showcase of work",
@@ -33,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={bbhSans.variable}>
+    <html lang="en" className={`${bbhSans.variable} ${packHard.variable}`}>
       <body className={inter.className}>
         <SmoothScroll />
         <Logo />
