@@ -74,7 +74,8 @@ export default function HorizontalResume() {
 
   return (
     <Fragment>
-      <div ref={containerRef} className="horizontal-resume-wrapper" style={{ height: '400vh' }}>
+      {/* Desktop Horizontal Scroll */}
+      <div ref={containerRef} className="horizontal-resume-wrapper hidden md:block" style={{ height: '400vh' }}>
         <div className="horizontal-resume-sticky" style={{ 
           position: 'sticky',
           top: 0,
@@ -270,6 +271,137 @@ export default function HorizontalResume() {
               </button>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Mobile Vertical Scroll */}
+      <div className="md:hidden" style={{ background: '#0a0a0a', padding: '2rem 1rem' }}>
+        <h2 style={{ 
+          fontSize: '2rem', 
+          fontWeight: 'bold', 
+          color: 'white',
+          marginBottom: '2rem',
+          textAlign: 'center'
+        }}>
+          Work
+        </h2>
+        
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '500px', margin: '0 auto' }}>
+          {experiences.map((exp, index) => (
+            <div
+              key={index}
+              style={{
+                minWidth: '100%',
+                background: 'linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)',
+                border: `2px solid ${exp.color}`,
+                borderRadius: '10px',
+                padding: '1.5rem',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1rem',
+                boxShadow: `0 0 30px ${exp.color}40`,
+                position: 'relative'
+              }}
+            >
+              {/* Year Badge */}
+              <div style={{
+                position: 'absolute',
+                top: '1rem',
+                right: '1rem',
+                background: exp.color,
+                color: '#000',
+                padding: '0.4rem 0.8rem',
+                borderRadius: '10px',
+                fontWeight: 'bold',
+                fontSize: '0.9rem'
+              }}>
+                {exp.year}
+              </div>
+
+              {/* Role */}
+              <div style={{ marginTop: '2rem' }}>
+                <h3 style={{ 
+                  fontSize: '1.2rem', 
+                  fontWeight: 'bold', 
+                  color: exp.color,
+                  marginBottom: '0.5rem'
+                }}>
+                  {exp.role}
+                </h3>
+                <p style={{ 
+                  fontSize: '1rem', 
+                  color: '#a0a0a0',
+                  fontWeight: '500'
+                }}>
+                  {exp.company}
+                </p>
+              </div>
+
+              {/* Description */}
+              <ul style={{ 
+                fontSize: '0.85rem', 
+                color: '#d0d0d0',
+                lineHeight: '1.5',
+                paddingLeft: '1.2rem',
+                margin: 0
+              }}>
+                {exp.bullets.map((bullet, i) => (
+                  <li key={i} style={{ marginBottom: '0.4rem' }}>
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+
+              {/* Tech Stack */}
+              <div>
+                <p style={{ 
+                  fontSize: '0.8rem', 
+                  color: '#808080',
+                  marginBottom: '0.5rem',
+                  fontWeight: '600'
+                }}>
+                  Tech Stack:
+                </p>
+                <div style={{ 
+                  display: 'flex', 
+                  flexWrap: 'wrap', 
+                  gap: '0.4rem' 
+                }}>
+                  {exp.tech.map((tech, i) => (
+                    <span 
+                      key={i}
+                      style={{
+                        padding: '0.3rem 0.6rem',
+                        background: '#1a1a1a',
+                        border: `1px solid ${exp.color}60`,
+                        borderRadius: '10px',
+                        fontSize: '0.75rem',
+                        color: exp.color
+                      }}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+          <button style={{
+            padding: '1rem 2rem',
+            background: '#ffffff',
+            color: '#000',
+            border: 'none',
+            borderRadius: '10px',
+            fontSize: '1rem',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+            boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)'
+          }}>
+            Get In Touch
+          </button>
         </div>
       </div>
     </Fragment>

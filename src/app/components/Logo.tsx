@@ -31,7 +31,7 @@ export default function Logo() {
           e.currentTarget.style.boxShadow = 'none';
         }}
       >
-        <h1 className="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl font-[family-name:var(--font-bbh-sans)]">
+        <h1 className="mt-10 text-2xl md:text-4xl font-bold tracking-tight text-white md:sm:text-6xl font-[family-name:var(--font-bbh-sans)]">
               Mitchell Thomas
             </h1>
       </div>

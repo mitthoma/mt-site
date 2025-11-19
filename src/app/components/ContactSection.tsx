@@ -57,14 +57,12 @@ export default function ContactSection() {
       position: 'relative',
       overflow: 'hidden'
     }}>
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
+      <div className="grid grid-cols-1 md:grid-cols-2" style={{
         width: '100%',
         maxWidth: '1400px',
         margin: '0 auto',
         gap: '3rem',
-        padding: '4rem 2rem'
+        padding: '2rem 1rem md:4rem md:2rem'
       }}>
         {/* Left Side - Video */}
         <div style={{

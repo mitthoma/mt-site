@@ -38,16 +38,16 @@ export default function AboutSection() {
                 <div className="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
                 <div className="lg:pr-4">
                     <div className="lg:max-w-lg">
-                    <p className="text-base font-semibold leading-7 text-white" style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.3)', paddingBottom: '0.5rem', display: 'inline-block' }}>Senior Full Stack Software Engineer</p>
-                    <h1 className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">7+ Years of Experience</h1>
-                    <p className="mt-6 text-xl leading-8 text-gray-300">
+                    <p className="text-sm md:text-base font-semibold leading-7 text-white" style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.3)', paddingBottom: '0.5rem', display: 'inline-block' }}>Senior Full Stack Software Engineer</p>
+                    <h1 className="mt-2 text-2xl md:text-3xl font-bold tracking-tight text-white sm:text-4xl">7+ Years of Experience</h1>
+                    <p className="mt-6 text-base md:text-xl leading-6 md:leading-8 text-gray-300">
                         Architecting scalable full-stack solutions from concept to deployment. Specializing in cloud infrastructure, modern web frameworks, and AI-powered applications.
                     </p>
                     </div>
                 </div>
                 </div>
                 {/* adjust lg:top-[x] value here to adjust where the below container freeze point is on scroll  */}
-                <div className="-ml-12 p-12 lg:sticky lg:top-80 lg:col-start-2 lg:row-span-2 lg:row-start-1 overflow-visible mt-24 mb-48">
+                <div className="mx-auto md:mx-0 p-4 md:-ml-12 md:p-12 lg:sticky lg:top-80 lg:col-start-2 lg:row-span-2 lg:row-start-1 overflow-visible mt-8 md:mt-24 mb-8 md:mb-48">
                 {/* <Image
                     width="100"
                     height="100"
@@ -64,7 +64,7 @@ export default function AboutSection() {
                     <div className="max-w-xl text-base leading-7 text-gray-300 lg:max-w-lg">
                     
                     {/* Tech Stack */}
-                    <h2 className="text-2xl font-bold tracking-tight text-white" style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.3)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>Tech Stack</h2>
+                    <h2 className="text-xl md:text-2xl font-bold tracking-tight text-white" style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.3)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>Tech Stack</h2>
                     <div className="space-y-4 mb-12">
                         <div>
                             <h3 className="font-semibold text-white mb-2">Languages & Frameworks</h3>
@@ -89,7 +89,7 @@ export default function AboutSection() {
                     </div>
 
                     {/* Projects */}
-                    <h2 className="text-2xl font-bold tracking-tight text-white" style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.3)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>Featured Projects</h2>
+                    <h2 className="text-xl md:text-2xl font-bold tracking-tight text-white" style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.3)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>Featured Projects</h2>
                     <div className="space-y-6 mb-12">
                         <div className="p-4 border border-white border-opacity-20 hover:border-opacity-40 transition-all" style={{ background: 'rgba(255, 255, 255, 0.05)', borderRadius: '10px' }}>
                             <h3 className="font-bold text-white text-lg mb-2">Kickstarter Blockchain Clone</h3>

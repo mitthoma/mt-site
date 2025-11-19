@@ -8,9 +8,20 @@ interface Track {
   src: string;
 }
 
-export default function AudioPlayer() {
+interface AudioPlayerProps {
+  expandedFromMenu?: boolean;
+  onClose?: () => void;
+}
+
+export default function AudioPlayer({ expandedFromMenu = false, onClose }: AudioPlayerProps = {}) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+
+  useEffect(() => {
+    if (expandedFromMenu) {
+      setIsExpanded(true);
+    }
+  }, [expandedFromMenu]);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
@@ -102,23 +113,20 @@ export default function AudioPlayer() {
   return (
     <>
       <audio ref={audioRef} src={currentTrack.src} key={currentTrackIndex} />
-      <div style={{
-        position: 'fixed',
-        bottom: '1rem',
-        right: '1rem',
+      <div className="fixed bottom-4 right-4 md:bottom-4 md:right-4" style={{
         zIndex: 9998,
         transition: 'all 0.3s ease'
       }}>
         {isExpanded ? (
           // Expanded Player with controls
-          <div style={{
+          <div className="w-[calc(100vw-2rem)] md:w-[280px]" style={{
             background: 'rgba(0, 0, 0, 0.95)',
             backdropFilter: 'blur(10px)',
             border: '1px solid #ffffff',
             borderRadius: '10px',
             padding: '1rem',
             boxShadow: '0 0 30px rgba(255, 255, 255, 0.3)',
-            width: '280px'
+            maxWidth: '400px'
           }}>
             <div style={{
               display: 'flex',
@@ -130,7 +138,10 @@ export default function AudioPlayer() {
                 Playlist ({playlist.length} tracks)
               </span>
               <button
-                onClick={() => setIsExpanded(false)}
+                onClick={() => {
+                  setIsExpanded(false);
+                  if (onClose) onClose();
+                }}
                 style={{
                   background: 'none',
                   border: 'none',
@@ -290,16 +301,16 @@ export default function AudioPlayer() {
             </div>
           </div>
         ) : (
-          // Minimized Button with "Produced by me" text
+          // Minimized Button with "Produced by me" text - Hidden on mobile
           <button
             onClick={() => setIsExpanded(true)}
+            className="hidden md:flex"
             style={{
               background: 'rgba(0, 0, 0, 0.9)',
               backdropFilter: 'blur(10px)',
               border: '1px solid #ffffff',
               borderRadius: '10px',
               padding: '0.75rem 1.25rem',
-              display: 'flex',
               alignItems: 'center',
               gap: '0.5rem',
               cursor: 'pointer',
