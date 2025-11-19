@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
+import Script from "next/script";
 import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll";
 import Logo from "./components/Logo";
@@ -40,6 +41,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${bbhSans.variable} ${packHard.variable}`}>
+      <head>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-J15MBE2V1V"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-J15MBE2V1V');
+          `}
+        </Script>
+      </head>
       <body className={inter.className}>
         <SmoothScroll />
         <Logo />
