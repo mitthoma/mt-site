@@ -146,7 +146,7 @@ export default function HorizontalResume() {
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '1.5rem',
-                  boxShadow: `0 0 10px ${exp.color}40`,
+                  boxShadow: `0 0 2px ${exp.color}40`,
                   position: 'relative',
                   overflow: 'hidden'
                 }}
@@ -270,7 +270,7 @@ export default function HorizontalResume() {
                 fontSize: '1.1rem',
                 fontWeight: 'bold',
                 cursor: 'pointer',
-                boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)'
+                boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)'
               }}>
                 Browse Projects
               </button>
@@ -304,7 +304,7 @@ export default function HorizontalResume() {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '1rem',
-                boxShadow: `0 0 10px ${exp.color}40`,
+                boxShadow: `0 0 2px ${exp.color}40`,
                 position: 'relative'
               }}
             >
@@ -406,7 +406,7 @@ export default function HorizontalResume() {
                 fontSize: '1.1rem',
                 fontWeight: 'bold',
                 cursor: 'pointer',
-                boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)'
+                boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)'
               }}>
                 Browse more projects
               </button>

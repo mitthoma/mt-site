@@ -47,7 +47,7 @@ export default function Home() {
           borderRadius: '10px',
           padding: '0.75rem',
           cursor: 'pointer',
-          boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
+          boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)',
           gap: '4px',
           width: '45px',
           height: '45px',
@@ -112,7 +112,7 @@ export default function Home() {
               fontSize: '1.5rem',
               fontWeight: 'bold',
               cursor: 'pointer',
-              boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
+              boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)',
               transition: 'all 0.3s ease',
               textDecoration: 'none'
             }}
@@ -132,7 +132,7 @@ export default function Home() {
               fontSize: '1.5rem',
               fontWeight: 'bold',
               cursor: 'pointer',
-              boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
+              boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)',
               transition: 'all 0.3s ease',
               textDecoration: 'none'
             }}
@@ -150,7 +150,7 @@ export default function Home() {
               fontSize: '1.5rem',
               fontWeight: 'bold',
               cursor: 'pointer',
-              boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
+              boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)',
               transition: 'all 0.3s ease'
             }}
           >

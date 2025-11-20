@@ -53,7 +53,7 @@ export default function Logo() {
             fontSize: '0.85rem',
             fontWeight: '600',
             cursor: 'pointer',
-            boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
+            boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)',
             transition: 'all 0.3s ease',
             textDecoration: 'none'
           }}
@@ -63,7 +63,7 @@ export default function Logo() {
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'scale(1)';
-            e.currentTarget.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.3)';
+            e.currentTarget.style.boxShadow = '0 0 2px rgba(255, 255, 255, 0.3)';
           }}
         >
           GitHub
@@ -82,7 +82,7 @@ export default function Logo() {
             fontSize: '0.85rem',
             fontWeight: '600',
             cursor: 'pointer',
-            boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
+            boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)',
             transition: 'all 0.3s ease',
             textDecoration: 'none'
           }}
@@ -92,7 +92,7 @@ export default function Logo() {
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'scale(1)';
-            e.currentTarget.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.3)';
+            e.currentTarget.style.boxShadow = '0 0 2px rgba(255, 255, 255, 0.3)';
           }}
         >
           LinkedIn

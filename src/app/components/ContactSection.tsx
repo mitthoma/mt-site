@@ -250,7 +250,7 @@ export default function ContactSection() {
                 fontWeight: 'bold',
                 cursor: isSubmitting ? 'not-allowed' : 'pointer',
                 transition: 'all 0.3s ease',
-                boxShadow: '0 0 10px rgba(255, 255, 255, 0.4)',
+                boxShadow: '0 0 2px rgba(255, 255, 255, 0.4)',
                 textTransform: 'uppercase',
                 letterSpacing: '1px',
                 opacity: isSubmitting ? 0.7 : 1
@@ -264,7 +264,7 @@ export default function ContactSection() {
               onMouseLeave={(e) => {
                 if (!isSubmitting) {
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.4)';
+                  e.currentTarget.style.boxShadow = '0 0 2px rgba(255, 255, 255, 0.4)';
                 }
               }}
             >

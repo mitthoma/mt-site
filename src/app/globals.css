@@ -147,6 +147,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     -webkit-backface-visibility: hidden;
     transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
+    /* Stop the spinning animation on mobile */
+    animation-play-state: paused !important;
+    -webkit-animation-play-state: paused !important;
+    /* Keep labels facing the user */
+    transform: rotate(0deg) rotateX(-90deg) !important;
+    -webkit-transform: rotate(0deg) rotateX(-90deg) !important;
   }
   
   .proxz-nav__satellite {
@@ -614,7 +620,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 .engine-container svg {
-  filter: drop-shadow(0 0 10px rgba(112, 230, 255, 0.3));
+  filter: drop-shadow(0 0 2px rgba(112, 230, 255, 0.3));
 }
 
 /* Custom scrollbar for audio player */
