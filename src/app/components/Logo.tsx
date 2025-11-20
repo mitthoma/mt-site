@@ -29,7 +29,7 @@ export default function Logo() {
         }}
       >
         <h1 className="mt-5 font-bold tracking-tight text-white font-[family-name:var(--font-bbh-sans)]" style={{
-          fontSize: '4.5rem'
+          fontSize: '3.5rem'
         }}>
           Mitchell Thomas
         </h1>

@@ -139,6 +139,26 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     align-items: center;
     justify-content: center;
   }
+  
+  /* Force proper 3D rendering and label orientation on mobile */
+  .proxz-nav__label {
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+  }
+  
+  .proxz-nav__satellite {
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  
+  .proxz-nav__orbit {
+    will-change: transform;
+    -webkit-transform-style: preserve-3d;
+  }
 }
 .proxz-nav__orbit, .proxz-nav__orbit:before, .proxz-nav__satellite {
   border-radius: 50%;

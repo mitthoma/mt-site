@@ -261,15 +261,6 @@ export default function HorizontalResume() {
               paddingRight: '2rem',
               borderRight: '4px solid #ffffff'
             }}>
-              <h3  style={{ 
-                fontSize: '2rem', 
-                fontWeight: 'bold', 
-                color: 'white',
-                marginBottom: '1rem',
-                textAlign: 'right'
-              }}>
-                Want more?
-              </h3>
               <button style={{
                 padding: '1rem 2rem',
                 background: '#ffffff',
@@ -405,19 +396,20 @@ export default function HorizontalResume() {
         </div>
 
         <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-          <button style={{
-            padding: '1rem 2rem',
-            background: '#ffffff',
-            color: '#000',
-            border: 'none',
-            borderRadius: '10px',
-            fontSize: '1rem',
-            fontWeight: 'bold',
-            cursor: 'pointer',
-            boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)'
-          }}>
-            Get In Touch
-          </button>
+  
+              <button style={{
+                padding: '1rem 2rem',
+                background: '#ffffff',
+                color: '#000',
+                border: 'none',
+                borderRadius: '10px',
+                fontSize: '1.1rem',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                boxShadow: '0 0 10px rgba(255, 255, 255, 0.3)'
+              }}>
+                Browse more projects
+              </button>
         </div>
       </div>
     </Fragment>

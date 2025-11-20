@@ -49,7 +49,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section style={{
+    <section className="contact-section" style={{
       background: '#000',
       minHeight: '75vh',
       display: 'flex',
@@ -97,7 +97,7 @@ export default function ContactSection() {
         </div>
 
         {/* Right Side - Contact Form */}
-        <div style={{
+        <div className="form-container" style={{
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -297,7 +297,31 @@ export default function ContactSection() {
       </div>
 
       <style jsx>{`
-        @media (max-width: 1024px) {
+        @media (max-width: 768px) {
+          .contact-section {
+            padding-top: 15% !important;
+          }
+          
+          section > div {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+          }
+          
+          .form-container {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            text-align: center !important;
+          }
+          
+          .form-container h2,
+          .form-container p {
+            text-align: center !important;
+          }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
           section > div {
             grid-template-columns: 1fr !important;
             gap: 2rem !important;
