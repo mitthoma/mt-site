@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { AnimatedBorderButton } from './AnimatedBorder';
+import TerminalSimulation from './TerminalSimulation';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -65,36 +66,14 @@ export default function ContactSection() {
         gap: '3rem',
         padding: '2rem 1rem md:4rem md:2rem'
       }}>
-        {/* Left Side - Video */}
+        {/* Left Side - Terminal */}
         <div style={{
           position: 'relative',
-          overflow: 'hidden',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
         }}>
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="none"
-            style={{
-              width: '75%',
-              height: 'auto',
-              objectFit: 'cover',
-              display: 'block'
-            }}
-            onLoadedData={(e) => {
-              // Ensure video plays on load
-              (e.target as HTMLVideoElement).play().catch(err => {
-                console.log('Video autoplay failed:', err);
-              });
-            }}
-          >
-            <source src="/videos/arrows.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+          <TerminalSimulation />
         </div>
 
         {/* Right Side - Contact Form */}

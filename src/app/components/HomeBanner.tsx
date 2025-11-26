@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Fragment } from 'react'
 // import Satellite from './Satellite'
 import Cube from './Cube'
+import GlitchText from './GlitchText'
 
 export default function HomeBanner() {
   return (
@@ -32,7 +33,9 @@ export default function HomeBanner() {
               Mitchell Thomas
             </h1> */}
             <h3 className="mt-6 text-base md:text-xl leading-6 md:leading-8 text-gray-300 px-4 md:px-0">
-              Computer science is no more about computers than astronomy is about telescopes.
+              <GlitchText trigger="continuous" interval={4500} speed={50}>
+                Computer science is no more about computers than astronomy is about telescopes.
+              </GlitchText>
             </h3>
             <p className="mt-4 md:mt-6 text-base md:text-xl leading-6 md:leading-8 text-gray-300 px-4 md:px-0">
               — Edsger Dijkstra
