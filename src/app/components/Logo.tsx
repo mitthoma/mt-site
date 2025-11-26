@@ -25,9 +25,9 @@ export default function Logo() {
     <Fragment>
       <div 
         onClick={scrollToTop}
-        className="fixed left-[5px] z-[9999] cursor-pointer transition-all duration-300 logo-box"
+        className="fixed left-[5px] z-[9999] cursor-pointer transition-all duration-300"
         style={{
-          top: '-60px',
+          top: '5px',
         }}
       >
         <Image 
@@ -36,9 +36,8 @@ export default function Logo() {
           width={224}
           height={224}
           priority
-          className="mt-5"
           style={{
-            height: '14rem',
+            height: '7rem',
             width: 'auto'
           }}
         />
@@ -81,11 +80,7 @@ export default function Logo() {
       <style jsx>{`
         @media (min-width: 768px) {
           img {
-            height: 16rem !important;
-          }
-
-          .logo-box {
-            top: -85px !important;
+            height: 4rem !important;
           }
         }
       `}</style>

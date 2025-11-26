@@ -59,7 +59,7 @@ export default function BrutalistProjects() {
         marginBottom: '4rem'
       }}>
         <h2 style={{
-          fontSize: 'clamp(3rem, 8vw, 8rem)',
+          fontSize: 'clamp(3rem, 2vw, 8rem)',
           fontWeight: 'bold',
           color: '#fff',
           letterSpacing: '-0.05em',

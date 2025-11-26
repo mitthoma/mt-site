@@ -7,6 +7,8 @@ interface GlitchTextProps {
   trigger?: 'hover' | 'mount' | 'both' | 'continuous';
   speed?: number;
   interval?: number; // For continuous mode - delay between animations in ms
+  hoverInterval?: number; // For hover mode - delay between re-glitches while hovered
+  externalHover?: boolean; // External hover state from parent
   className?: string;
   style?: React.CSSProperties;
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div';
@@ -17,6 +19,8 @@ export default function GlitchText({
   trigger = 'hover',
   speed = 30,
   interval = 5000,
+  hoverInterval = 3000,
+  externalHover,
   className = '',
   style = {},
   as: Component = 'span'
@@ -24,11 +28,73 @@ export default function GlitchText({
   const [displayText, setDisplayText] = useState(children);
   const [glitchingIndices, setGlitchingIndices] = useState<Set<number>>(new Set());
   const [isMounted, setIsMounted] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const animationIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const continuousIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const hoverIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const originalText = children;
 
   const GLITCH_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+-=[]{}|;:,.<>?~`';
+
+  const animateHover = useCallback(() => {
+    if (animationIntervalRef.current) {
+      return;
+    }
+
+    let iteration = 0;
+    const maxIterations = 8; // Shorter duration for hover
+
+    animationIntervalRef.current = setInterval(() => {
+      // Randomly select 10-15 characters to glitch
+      const numGlitching = Math.floor(Math.random() * 6) + 10;
+      const glitchIndices = new Set<number>();
+      
+      for (let i = 0; i < numGlitching; i++) {
+        let randomIdx;
+        do {
+          randomIdx = Math.floor(Math.random() * originalText.length);
+        } while (
+          originalText[randomIdx] === ' ' ||
+          !/[a-zA-Z]/.test(originalText[randomIdx])
+        );
+        glitchIndices.add(randomIdx);
+      }
+
+      const newText = originalText
+        .split("")
+        .map((char, idx) => {
+          // Keep spaces and special characters
+          if (char === ' ' || !/[a-zA-Z]/.test(char)) {
+            return char;
+          }
+          
+          // If this character is glitching, show random character
+          if (glitchIndices.has(idx)) {
+            return GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)];
+          }
+          
+          // Otherwise show original character
+          return originalText[idx];
+        })
+        .join("");
+
+      setDisplayText(newText);
+      setGlitchingIndices(glitchIndices);
+
+      iteration++;
+
+      if (iteration >= maxIterations) {
+        // Reset to original text
+        setDisplayText(originalText);
+        setGlitchingIndices(new Set());
+        
+        if (animationIntervalRef.current) {
+          clearInterval(animationIntervalRef.current);
+          animationIntervalRef.current = null;
+        }
+      }
+    }, speed);
+  }, [originalText, speed]);
 
   const animate = useCallback(() => {
     if (animationIntervalRef.current) {
@@ -95,6 +161,13 @@ export default function GlitchText({
     setIsMounted(true);
   }, []);
 
+  // Sync with external hover state if provided
+  useEffect(() => {
+    if (externalHover !== undefined) {
+      setIsHovered(externalHover);
+    }
+  }, [externalHover]);
+
   useEffect(() => {
     // Only run animations after component is mounted on client
     if (!isMounted) return;
@@ -151,10 +224,43 @@ export default function GlitchText({
     };
   }, [isMounted, trigger, interval, animate]);
 
+  // Handle continuous hover glitching
+  useEffect(() => {
+    if (!isMounted) return;
+    if (trigger !== 'hover' && trigger !== 'both') return;
+    if (!isHovered) return;
+
+    // Trigger first glitch immediately
+    animateHover();
+
+    // Set up interval to re-glitch every hoverInterval ms
+    hoverIntervalRef.current = setInterval(() => {
+      animateHover();
+    }, hoverInterval);
+
+    return () => {
+      if (hoverIntervalRef.current) {
+        clearInterval(hoverIntervalRef.current);
+        hoverIntervalRef.current = null;
+      }
+      if (animationIntervalRef.current) {
+        clearInterval(animationIntervalRef.current);
+        animationIntervalRef.current = null;
+      }
+      // Reset text when hover ends
+      setDisplayText(originalText);
+      setGlitchingIndices(new Set());
+    };
+  }, [isHovered, isMounted, trigger, animateHover, hoverInterval, originalText]);
+
   const handleMouseEnter = () => {
     if (trigger === 'hover' || trigger === 'both') {
-      animate();
+      setIsHovered(true);
     }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
   };
 
   return (
@@ -166,7 +272,8 @@ export default function GlitchText({
         position: 'relative',
         whiteSpace: 'normal'
       }}
-      onMouseEnter={handleMouseEnter}
+      onMouseEnter={externalHover === undefined ? handleMouseEnter : undefined}
+      onMouseLeave={externalHover === undefined ? handleMouseLeave : undefined}
     >
       {(() => {
         const words = displayText.split(' ');

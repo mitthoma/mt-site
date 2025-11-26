@@ -119,13 +119,20 @@ export default function HorizontalResume() {
               paddingLeft: '2rem',
               borderLeft: '4px solid #ffffff'
             }}>
-              <h2 style={{ 
-                fontSize: '3rem', 
-                fontWeight: 'bold', 
-                color: 'white',
-                marginBottom: '1rem'
+              <h2 style={{
+                fontSize: 'clamp(3rem, 2vw, 8rem)',
+                fontWeight: 'bold',
+                color: '#fff',
+                letterSpacing: '-0.05em',
+                lineHeight: '0.9',
+                margin: 0,
+                textTransform: 'uppercase',
+                fontFamily: 'monospace',
+                marginBottom: '2rem',
+                marginRight: '2rem'
               }}>
-                Work & Education
+                WORK +<br/>
+                EDUCATION
               </h2>
               <p style={{ fontSize: '1.2rem', color: '#a0a0a0' }}>
                 Scroll to explore →
@@ -284,14 +291,19 @@ export default function HorizontalResume() {
 
       {/* Mobile Vertical Scroll */}
       <div className="md:hidden" style={{ background: '#0a0a0a', padding: '2rem 1rem' }}>
-        <h2 style={{ 
-          fontSize: '2rem', 
-          fontWeight: 'bold', 
-          color: 'white',
+        <h2 style={{
+          fontSize: 'clamp(3rem, 2vw, 8rem)',
+          fontWeight: 'bold',
+          color: '#fff',
+          letterSpacing: '-0.05em',
+          lineHeight: '0.9',
+          margin: 0,
+          textTransform: 'uppercase',
+          fontFamily: 'monospace',
           marginBottom: '2rem',
-          textAlign: 'center'
         }}>
-          Work<br></br>& Education
+          WORK<br/>
+          + EDUCATION
         </h2>
         
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '500px', margin: '0 auto' }}>

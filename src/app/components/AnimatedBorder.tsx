@@ -1,5 +1,6 @@
 "use client";
 import { useState, ReactNode } from 'react';
+import GlitchText from './GlitchText';
 
 interface AnimatedBorderProps {
   children: ReactNode;
@@ -15,9 +16,6 @@ interface AnimatedBorderProps {
 export function AnimatedBorderLink({ children, href, style, className, borderColor = '#ffffff' }: AnimatedBorderProps) {
   const [isHovered, setIsHovered] = useState(false);
   
-  const boxShadow = style?.boxShadow as string || '0 0 2px rgba(255, 255, 255, 0.3)';
-  const hoverBoxShadow = '0 0 20px rgba(255, 255, 255, 0.5)';
-  
   return (
     <a
       href={href}
@@ -32,12 +30,15 @@ export function AnimatedBorderLink({ children, href, style, className, borderCol
         display: 'inline-block',
         textDecoration: 'none',
         cursor: 'pointer',
-        boxShadow: isHovered ? hoverBoxShadow : boxShadow,
-        transition: 'box-shadow 0.3s ease'
+        boxShadow: 'none'
       }}
     >
       <span style={{ position: 'relative', zIndex: 1, display: 'inline-block' }}>
-        {children}
+        {typeof children === 'string' ? (
+          <GlitchText trigger="hover" speed={30} hoverInterval={3000} externalHover={isHovered}>{children}</GlitchText>
+        ) : (
+          children
+        )}
       </span>
       <svg
         style={{
@@ -59,7 +60,7 @@ export function AnimatedBorderLink({ children, href, style, className, borderCol
           rx="10"
           fill="none"
           stroke={borderColor}
-          strokeWidth="2"
+          strokeWidth="1"
           strokeDasharray={isHovered ? "200 15" : "0"}
           strokeDashoffset="0"
           style={{
@@ -89,7 +90,11 @@ export function AnimatedBorderButton({ children, onClick, style, className, type
       }}
     >
       <span style={{ position: 'relative', zIndex: 1, display: 'block' }}>
-        {children}
+        {typeof children === 'string' ? (
+          <GlitchText trigger="hover" speed={30} hoverInterval={3000} externalHover={isHovered}>{children}</GlitchText>
+        ) : (
+          children
+        )}
       </span>
       <svg
         style={{
@@ -110,7 +115,7 @@ export function AnimatedBorderButton({ children, onClick, style, className, type
           rx="10"
           fill="none"
           stroke={borderColor}
-          strokeWidth="2"
+          strokeWidth="1"
           strokeDasharray={isHovered ? "200 15" : "0"}
           strokeDashoffset="0"
           style={{
@@ -137,7 +142,13 @@ export function AnimatedBorderDiv({ children, style, className, borderColor = '#
         isolation: 'isolate'
       }}
     >
-      {children}
+      <div style={{ position: 'relative', zIndex: 2 }}>
+        {typeof children === 'string' ? (
+          <GlitchText trigger="hover" speed={30} hoverInterval={3000} externalHover={isHovered}>{children}</GlitchText>
+        ) : (
+          children
+        )}
+      </div>
       <svg
         style={{
           position: 'absolute',
@@ -158,7 +169,7 @@ export function AnimatedBorderDiv({ children, style, className, borderColor = '#
           rx="10"
           fill="none"
           stroke={borderColor}
-          strokeWidth="2"
+          strokeWidth="1"
           strokeDasharray={isHovered ? "200 15" : "0"}
           strokeDashoffset="0"
           style={{

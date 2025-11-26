@@ -116,9 +116,7 @@ export default function Home() {
               color: '#ffffff',
               fontSize: '1.5rem',
               fontWeight: 'bold',
-              cursor: 'pointer',
-              boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)',
-              transition: 'all 0.3s ease'
+              cursor: 'pointer'
             }}
           >
             GitHub
@@ -132,9 +130,7 @@ export default function Home() {
               color: '#ffffff',
               fontSize: '1.5rem',
               fontWeight: 'bold',
-              cursor: 'pointer',
-              boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)',
-              transition: 'all 0.3s ease'
+              cursor: 'pointer'
             }}
           >
             LinkedIn
