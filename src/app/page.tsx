@@ -1,11 +1,16 @@
 "use client";
 
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import HomeBanner from "./components/HomeBanner";
-import AboutSection from "./components/AboutSection";
-import HorizontalResume from "./components/HorizontalResume";
-import ContactSection from "./components/ContactSection";
-import AudioPlayer from "./components/SpotifyPlayer";
+import { AnimatedBorderLink, AnimatedBorderButton } from "./components/AnimatedBorder";
+
+// Lazy load below-the-fold components
+const AboutSection = dynamic(() => import("./components/AboutSection"));
+const HorizontalResume = dynamic(() => import("./components/HorizontalResume"));
+const ContactSection = dynamic(() => import("./components/ContactSection"));
+const Copyright = dynamic(() => import("./components/Copyright"));
+const AudioPlayer = dynamic(() => import("./components/SpotifyPlayer"));
 
 export default function Home() {
   const [isMusicPlayerOpen, setIsMusicPlayerOpen] = useState(false);
@@ -31,6 +36,7 @@ export default function Home() {
         <AboutSection />
         <HorizontalResume />
         <ContactSection />
+        <Copyright />
       </main>
 
       {/* Hamburger Menu - Mobile Only */}
@@ -99,13 +105,10 @@ export default function Home() {
             transition: 'opacity 0.3s ease-in-out'
           }}
         >
-          <a
+          <AnimatedBorderLink
             href="https://github.com/mitthoma"
-            target="_blank"
-            rel="noopener noreferrer"
             style={{
               background: 'rgba(255, 255, 255, 0.1)',
-              border: '2px solid #ffffff',
               borderRadius: '10px',
               padding: '1.5rem 3rem',
               color: '#ffffff',
@@ -113,19 +116,15 @@ export default function Home() {
               fontWeight: 'bold',
               cursor: 'pointer',
               boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)',
-              transition: 'all 0.3s ease',
-              textDecoration: 'none'
+              transition: 'all 0.3s ease'
             }}
           >
             GitHub
-          </a>
-          <a
+          </AnimatedBorderLink>
+          <AnimatedBorderLink
             href="https://linkedin.com/in/mitchellthecoder"
-            target="_blank"
-            rel="noopener noreferrer"
             style={{
               background: 'rgba(255, 255, 255, 0.1)',
-              border: '2px solid #ffffff',
               borderRadius: '10px',
               padding: '1.5rem 3rem',
               color: '#ffffff',
@@ -133,17 +132,16 @@ export default function Home() {
               fontWeight: 'bold',
               cursor: 'pointer',
               boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)',
-              transition: 'all 0.3s ease',
-              textDecoration: 'none'
+              transition: 'all 0.3s ease'
             }}
           >
             LinkedIn
-          </a>
-          <button
+          </AnimatedBorderLink>
+          <AnimatedBorderButton
             onClick={handleMusicClick}
             style={{
               background: 'rgba(255, 255, 255, 0.1)',
-              border: '2px solid #ffffff',
+              border: 'none',
               borderRadius: '10px',
               padding: '1.5rem 3rem',
               color: '#ffffff',
@@ -155,7 +153,7 @@ export default function Home() {
             }}
           >
             Music produced by me
-          </button>
+          </AnimatedBorderButton>
         </div>
       )}
 

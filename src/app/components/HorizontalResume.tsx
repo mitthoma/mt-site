@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { Fragment } from 'react';
+import { AnimatedBorderButton } from './AnimatedBorder';
 
 export default function HorizontalResume() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -111,7 +112,7 @@ export default function HorizontalResume() {
             {/* Start Marker */}
             <div style={{ 
               minWidth: '300px',
-              height: '400px',
+              height: '500px',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
@@ -127,7 +128,7 @@ export default function HorizontalResume() {
                 Work & Education
               </h2>
               <p style={{ fontSize: '1.2rem', color: '#a0a0a0' }}>
-                Scroll down to explore →
+                Scroll to explore →
               </p>
             </div>
 
@@ -138,7 +139,8 @@ export default function HorizontalResume() {
                 className="resume-card"
                 style={{
                   minWidth: '400px',
-                  height: '450px',
+                  minHeight: '500px',
+                  height: 'auto',
                   background: 'linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)',
                   border: `2px solid ${exp.color}`,
                   borderRadius: '10px',
@@ -147,8 +149,7 @@ export default function HorizontalResume() {
                   flexDirection: 'column',
                   gap: '1.5rem',
                   boxShadow: `0 0 2px ${exp.color}40`,
-                  position: 'relative',
-                  overflow: 'hidden'
+                  position: 'relative'
                 }}
               >
                 {/* Year Badge */}
@@ -253,7 +254,7 @@ export default function HorizontalResume() {
             {/* End Marker */}
             <div style={{ 
               minWidth: '300px',
-              height: '400px',
+              height: '500px',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
@@ -261,19 +262,21 @@ export default function HorizontalResume() {
               paddingRight: '2rem',
               borderRight: '4px solid #ffffff'
             }}>
-              <button style={{
-                padding: '1rem 2rem',
-                background: '#ffffff',
-                color: '#000',
-                border: 'none',
-                borderRadius: '10px',
-                fontSize: '1.1rem',
-                fontWeight: 'bold',
-                cursor: 'pointer',
-                boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)'
-              }}>
+              <AnimatedBorderButton 
+                borderColor="#000000"
+                style={{
+                  padding: '1rem 2rem',
+                  background: '#ffffff',
+                  color: '#000',
+                  border: 'none',
+                  borderRadius: '10px',
+                  fontSize: '1.1rem',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)'
+                }}>
                 Browse Projects
-              </button>
+              </AnimatedBorderButton>
             </div>
           </div>
         </div>
@@ -297,6 +300,7 @@ export default function HorizontalResume() {
               key={index}
               style={{
                 minWidth: '100%',
+                minHeight: '350px',
                 background: 'linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)',
                 border: `2px solid ${exp.color}`,
                 borderRadius: '10px',
@@ -397,19 +401,21 @@ export default function HorizontalResume() {
 
         <div style={{ textAlign: 'center', marginTop: '3rem' }}>
   
-              <button style={{
-                padding: '1rem 2rem',
-                background: '#ffffff',
-                color: '#000',
-                border: 'none',
-                borderRadius: '10px',
-                fontSize: '1.1rem',
-                fontWeight: 'bold',
-                cursor: 'pointer',
-                boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)'
-              }}>
+              <AnimatedBorderButton 
+                borderColor="#000000"
+                style={{
+                  padding: '1rem 2rem',
+                  background: '#ffffff',
+                  color: '#000',
+                  border: 'none',
+                  borderRadius: '10px',
+                  fontSize: '1.1rem',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)'
+                }}>
                 Browse more projects
-              </button>
+              </AnimatedBorderButton>
         </div>
       </div>
     </Fragment>

@@ -8,6 +8,25 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+@keyframes borderDash {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 100;
+  }
+}
+
+/* Performance optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+svg {
+  will-change: auto;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -44,6 +63,21 @@ body {
 
 h1 {
   font-size: 36px;
+}
+
+/* Tomorrow font for all headings and buttons */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-tomorrow), sans-serif !important;
+}
+
+button, a {
+  font-family: var(--font-tomorrow), sans-serif !important;
+}
+
+/* Improve rendering performance for sections */
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
 }
 
 @layer utilities {
@@ -525,6 +559,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   opacity: 0.6;
 }
 
+.cube-face-vis {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #00ff00;
+  opacity: 0.6;
+}
 .front {
   transform: translateZ(75px);
 }

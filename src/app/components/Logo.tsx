@@ -1,5 +1,7 @@
 "use client";
 import { Fragment, useState, useEffect } from 'react';
+import Image from 'next/image';
+import { AnimatedBorderLink } from './AnimatedBorder';
 
 export default function Logo() {
   const [isMounted, setIsMounted] = useState(false);
@@ -23,87 +25,67 @@ export default function Logo() {
     <Fragment>
       <div 
         onClick={scrollToTop}
-        className="fixed left-[5px] z-[9999] cursor-pointer transition-all duration-300"
+        className="fixed left-[5px] z-[9999] cursor-pointer transition-all duration-300 logo-box"
         style={{
-          top: '-30px',
+          top: '-60px',
         }}
       >
-        <h1 className="mt-5 font-bold text-white font-[family-name:var(--font-ot-neue-montreal-extra-squeezed)]" style={{
-          fontSize: '3.5rem',
-          letterSpacing: '0.05em'
-        }}>
-          Mitchell Thomas
-        </h1>
+        <Image 
+          src="/images/logo2.svg" 
+          alt="Mitchell Thomas Logo" 
+          width={224}
+          height={224}
+          priority
+          className="mt-5"
+          style={{
+            height: '14rem',
+            width: 'auto'
+          }}
+        />
       </div>
       
       {/* Desktop Links - Hidden on Mobile */}
       <div className="hidden md:flex fixed right-4 z-[9999] gap-4" style={{
         top: '2rem'
       }}>
-        <a
+        <AnimatedBorderLink 
           href="https://github.com/mitthoma"
-          target="_blank"
-          rel="noopener noreferrer"
           style={{
             background: 'rgba(0, 0, 0, 0.9)',
             backdropFilter: 'blur(10px)',
-            border: '1px solid #ffffff',
             borderRadius: '10px',
             padding: '0.75rem 1.25rem',
             color: '#eaeaea',
             fontSize: '0.85rem',
-            fontWeight: '600',
-            cursor: 'pointer',
-            boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)',
-            transition: 'all 0.3s ease',
-            textDecoration: 'none'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'scale(1.05)';
-            e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.5)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'scale(1)';
-            e.currentTarget.style.boxShadow = '0 0 2px rgba(255, 255, 255, 0.3)';
+            fontWeight: '600'
           }}
         >
           GitHub
-        </a>
-        <a
+        </AnimatedBorderLink>
+        <AnimatedBorderLink 
           href="https://linkedin.com/in/mitchellthecoder"
-          target="_blank"
-          rel="noopener noreferrer"
           style={{
             background: 'rgba(0, 0, 0, 0.9)',
             backdropFilter: 'blur(10px)',
-            border: '1px solid #ffffff',
             borderRadius: '10px',
             padding: '0.75rem 1.25rem',
             color: '#eaeaea',
             fontSize: '0.85rem',
-            fontWeight: '600',
-            cursor: 'pointer',
-            boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)',
-            transition: 'all 0.3s ease',
-            textDecoration: 'none'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'scale(1.05)';
-            e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.5)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'scale(1)';
-            e.currentTarget.style.boxShadow = '0 0 2px rgba(255, 255, 255, 0.3)';
+            fontWeight: '600'
           }}
         >
           LinkedIn
-        </a>
+        </AnimatedBorderLink>
       </div>
       
       <style jsx>{`
         @media (min-width: 768px) {
-          h1 {
-            font-size: 4rem !important;
+          img {
+            height: 16rem !important;
+          }
+
+          .logo-box {
+            top: -85px !important;
           }
         }
       `}</style>

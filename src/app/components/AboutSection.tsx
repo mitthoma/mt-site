@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import { Fragment } from 'react'
 import Satellite from './Satellite'
+import { AnimatedBorderDiv } from './AnimatedBorder'
 
 export default function AboutSection() {
   return (
@@ -91,61 +92,75 @@ export default function AboutSection() {
                     {/* Projects */}
                     <h2 className="text-xl md:text-2xl font-bold tracking-tight text-white" style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.3)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>Featured Projects</h2>
                     <div className="space-y-6 mb-12">
-                        <div className="p-4 border border-white border-opacity-20 hover:border-opacity-40 transition-all" style={{ background: 'rgba(255, 255, 255, 0.05)', borderRadius: '10px' }}>
-                            <h3 className="font-bold text-white text-lg mb-2">Kickstarter Blockchain Clone</h3>
-                            <p className="text-gray-300 mb-3">
-                                Blockchain-powered crowdfunding platform with smart contracts enabling contributor voting on fund distributions.
-                            </p>
-                            <div className="flex flex-wrap gap-2 mb-3">
-                                {['React', 'Solidity', 'Ethereum', 'Next.js', 'Truffle'].map((tech) => (
-                                    <span key={tech} className="px-2 py-1 text-xs bg-white bg-opacity-10 border border-white border-opacity-20 text-gray-300" style={{ borderRadius: '10px' }}>
-                                        {tech}
-                                    </span>
-                                ))}
+                        <AnimatedBorderDiv style={{ background: 'rgba(255, 255, 255, 0.05)', borderRadius: '10px', border: 'none' }}>
+                            <div className="p-4">
+                                <h3 className="font-bold text-white text-lg mb-2">Kickstarter Blockchain Clone</h3>
+                                <p className="text-gray-300 mb-3">
+                                    Blockchain-powered crowdfunding platform with smart contracts enabling contributor voting on fund distributions.
+                                </p>
+                                <div className="flex flex-wrap gap-2 mb-3">
+                                    {['React', 'Solidity', 'Ethereum', 'Next.js', 'Truffle'].map((tech) => (
+                                        <span key={tech} className="px-2 py-1 text-xs bg-white bg-opacity-10 border border-white border-opacity-20 text-gray-300" style={{ borderRadius: '10px' }}>
+                                            {tech}
+                                        </span>
+                                    ))}
+                                </div>
+                                <a href="https://github.com/yourusername/kickstarter-blockchain" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                    </svg>
+                                    View on GitHub
+                                </a>
                             </div>
-                            <a href="https://github.com/yourusername/kickstarter-blockchain" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                                View on GitHub
-                            </a>
-                        </div>
-                        <div className="p-4 border border-white border-opacity-20 hover:border-opacity-40 transition-all" style={{ background: 'rgba(255, 255, 255, 0.05)', borderRadius: '10px' }}>
-                            <h3 className="font-bold text-white text-lg mb-2">Developer Meetup Platform</h3>
-                            <p className="text-gray-300 mb-3">
-                                Web community where developers can schedule meetups based around various chosen topics.
-                            </p>
-                            <div className="flex flex-wrap gap-2 mb-3">
-                                {['React', 'Node.js', 'MongoDB', 'Express'].map((tech) => (
-                                    <span key={tech} className="px-2 py-1 text-xs bg-white bg-opacity-10 border border-white border-opacity-20 text-gray-300" style={{ borderRadius: '10px' }}>
-                                        {tech}
-                                    </span>
-                                ))}
+                        </AnimatedBorderDiv>
+                        <AnimatedBorderDiv style={{ background: 'rgba(255, 255, 255, 0.05)', borderRadius: '10px', border: 'none' }}>
+                            <div className="p-4">
+                                <h3 className="font-bold text-white text-lg mb-2">Developer Meetup Platform</h3>
+                                <p className="text-gray-300 mb-3">
+                                    Web community where developers can schedule meetups based around various chosen topics.
+                                </p>
+                                <div className="flex flex-wrap gap-2 mb-3">
+                                    {['React', 'Node.js', 'MongoDB', 'Express'].map((tech) => (
+                                        <span key={tech} className="px-2 py-1 text-xs bg-white bg-opacity-10 border border-white border-opacity-20 text-gray-300" style={{ borderRadius: '10px' }}>
+                                            {tech}
+                                        </span>
+                                    ))}
+                                </div>
+                                <a href="https://github.com/yourusername/developer-meetup" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                    </svg>
+                                    View on GitHub
+                                </a>
                             </div>
-                            <a href="https://github.com/yourusername/developer-meetup" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                                View on GitHub
-                            </a>
-                        </div>
+                        </AnimatedBorderDiv>
                     </div>
 
                     {/* Publications */}
                     <h2 className="text-2xl font-bold tracking-tight text-white" style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.3)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>Publications</h2>
                     <div className="space-y-3">
                         {[
-                            { title: 'Comparing SVM and MLP Machine Learning Models', date: '3/20/2019' },
-                            { title: 'Deep Learning with COVID-19 X-Ray CNN', date: '3/20/2020' },
-                            { title: 'Benefits of Decentralized Cloud Storage', date: '4/6/2021' },
-                            { title: 'Simple Example of Deploying a Smart Contract', date: '4/23/2021' },
-                            { title: 'The Groundbreaking Bridge Between Real World Data And Smart Contracts', date: '10/13/2021' },
-                            { title: 'IPFS: The Web3 Data Storage Revolution', date: '10/25/2022' }
+                            { title: 'Comparing SVM and MLP Machine Learning Models', date: '3/20/2019', url: 'https://becominghuman.ai/comparing-svm-and-mlp-machine-learning-models-348d08efea6b' },
+                            { title: 'Deep Learning with COVID-19 X-Ray CNN', date: '3/20/2020', url: 'https://mitchellthecoder.medium.com/deep-learning-with-covid-19-xray-convoluted-neural-network-a57a521855c9' },
+                            { title: 'Benefits of Decentralized Cloud Storage', date: '4/6/2021', url: 'https://becominghuman.ai/benefits-of-decentralized-cloud-storage-3d6bd3cda3bd' },
+                            { title: 'Simple Example of Deploying a Smart Contract', date: '4/23/2021', url: 'https://becominghuman.ai/simple-example-of-deploying-a-smart-contract-and-what-that-means-776a249b1a68' },
+                            { title: 'The Groundbreaking Bridge Between Real World Data And Smart Contracts', date: '10/13/2021', url: 'https://becominghuman.ai/the-groundbreaking-bridge-between-real-world-data-and-smart-contracts-3856aef12dd' },
+                            { title: 'IPFS: The Web3 Data Storage Revolution', date: '10/25/2022', url: 'https://becominghuman.ai/ipfs-the-web3-data-storage-revolution-e3ba0b18ce17' }
                         ].map((pub, index) => (
-                            <div key={index} className="pb-3 border-b border-white border-opacity-10 last:border-0">
-                                <h3 className="font-semibold text-white text-sm">{pub.title}</h3>
-                                <p className="text-xs text-gray-400 mt-1">{pub.date} • Becoming Human: AI Magazine</p>
-                            </div>
+                            <a 
+                                key={index} 
+                                href={pub.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ textDecoration: 'none', display: 'block' }}
+                            >
+                                <AnimatedBorderDiv style={{ background: 'rgba(255, 255, 255, 0.03)', borderRadius: '10px', border: 'none' }}>
+                                    <div className="p-3">
+                                        <h3 className="font-semibold text-white text-sm">{pub.title}</h3>
+                                        <p className="text-xs text-gray-400 mt-1">{pub.date} • Becoming Human: AI Magazine</p>
+                                    </div>
+                                </AnimatedBorderDiv>
+                            </a>
                         ))}
                     </div>
                     </div>

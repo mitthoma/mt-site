@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import { AnimatedBorderButton } from './AnimatedBorder';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -77,7 +78,7 @@ export default function ContactSection() {
             loop
             muted
             playsInline
-            preload="auto"
+            preload="none"
             style={{
               width: '75%',
               height: 'auto',
@@ -237,39 +238,27 @@ export default function ContactSection() {
             </div>
 
             {/* Submit Button */}
-            <button
+            <AnimatedBorderButton
               type="submit"
               disabled={isSubmitting}
+              borderColor="#000000"
               style={{
                 padding: '1.25rem 2rem',
                 background: isSubmitting ? 'rgba(255, 255, 255, 0.5)' : 'linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%)',
-                border: 'none',
                 borderRadius: '10px',
                 color: '#000',
                 fontSize: '1.1rem',
                 fontWeight: 'bold',
-                cursor: isSubmitting ? 'not-allowed' : 'pointer',
                 transition: 'all 0.3s ease',
                 boxShadow: '0 0 2px rgba(255, 255, 255, 0.4)',
                 textTransform: 'uppercase',
                 letterSpacing: '1px',
-                opacity: isSubmitting ? 0.7 : 1
-              }}
-              onMouseEnter={(e) => {
-                if (!isSubmitting) {
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.6)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!isSubmitting) {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 0 2px rgba(255, 255, 255, 0.4)';
-                }
+                opacity: isSubmitting ? 0.7 : 1,
+                width: '100%'
               }}
             >
               {isSubmitting ? 'Sending...' : 'Send Message'}
-            </button>
+            </AnimatedBorderButton>
           </form>
 
           {/* Success Message */}

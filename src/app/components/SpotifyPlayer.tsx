@@ -1,6 +1,62 @@
 "use client";
 
 import { useState, useRef, useEffect } from 'react';
+import GlitchyVisualizer from './GlitchyVisualizer';
+
+const AnimatedBorderDiv = ({ children, onClick, className, style, onMouseEnter, onMouseLeave, onContextMenu }: any) => {
+  const [isHovered, setIsHovered] = useState(false);
+  
+  return (
+    <button
+      onClick={onClick}
+      className={className}
+      onMouseEnter={(e) => {
+        setIsHovered(true);
+        if (onMouseEnter) onMouseEnter(e);
+      }}
+      onMouseLeave={(e) => {
+        setIsHovered(false);
+        if (onMouseLeave) onMouseLeave(e);
+      }}
+      onContextMenu={onContextMenu}
+      style={{
+        position: 'relative',
+        ...style
+      }}
+    >
+      <div style={{ position: 'relative', zIndex: 1, display: 'inherit', alignItems: 'inherit', gap: 'inherit' }}>
+        {children}
+      </div>
+      <svg
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          pointerEvents: 'none',
+          overflow: 'visible'
+        }}
+      >
+        <rect
+          x="1"
+          y="1"
+          width="calc(100% - 2px)"
+          height="calc(100% - 2px)"
+          rx="10"
+          fill="none"
+          stroke="#ffffff"
+          strokeWidth="1"
+          strokeDasharray={isHovered ? "200 15" : "0"}
+          strokeDashoffset="0"
+          style={{
+            animation: isHovered ? 'borderDash 4s linear infinite' : 'none'
+          }}
+        />
+      </svg>
+    </button>
+  );
+};
 
 interface Track {
   title: string;
@@ -16,6 +72,7 @@ interface AudioPlayerProps {
 export default function AudioPlayer({ expandedFromMenu = false, onClose }: AudioPlayerProps = {}) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isVisualizerOpen, setIsVisualizerOpen] = useState(false);
 
   useEffect(() => {
     if (expandedFromMenu) {
@@ -153,6 +210,32 @@ export default function AudioPlayer({ expandedFromMenu = false, onClose }: Audio
                 ×
               </button>
             </div>
+
+            {/* Open Visualizer Button */}
+            {/* <button
+              onClick={() => setIsVisualizerOpen(true)}
+              style={{
+                width: '100%',
+                padding: '0.75rem',
+                background: 'rgba(255, 255, 255, 0.1)',
+                border: '1px solid #ffffff',
+                borderRadius: '10px',
+                color: '#ffffff',
+                fontSize: '0.9rem',
+                fontWeight: '600',
+                cursor: 'pointer',
+                marginBottom: '1rem',
+                transition: 'all 0.3s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+              }}
+            >
+              🎨 Open Visualizer
+            </button> */}
 
             {/* Current Track Info */}
             <div style={{
@@ -300,30 +383,28 @@ export default function AudioPlayer({ expandedFromMenu = false, onClose }: Audio
           </div>
         ) : (
           // Minimized Button with "Produced by me" text - Hidden on mobile
-          <button
+          <AnimatedBorderDiv
             onClick={() => setIsExpanded(true)}
             className="hidden md:flex"
             style={{
               background: 'rgba(0, 0, 0, 0.9)',
               backdropFilter: 'blur(10px)',
-              border: '1px solid #ffffff',
+              border: 'none',
               borderRadius: '10px',
               padding: '0.75rem 1.25rem',
               alignItems: 'center',
               gap: '0.5rem',
               cursor: 'pointer',
               boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)',
-              transition: 'all 0.3s ease'
+              transition: 'box-shadow 0.3s ease'
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'scale(1.01)';
+            onMouseEnter={(e: any) => {
               e.currentTarget.style.boxShadow = '0 0 2px rgba(255, 255, 255, 0.5)';
             }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'scale(1)';
+            onMouseLeave={(e: any) => {
               e.currentTarget.style.boxShadow = '0 0 2px rgba(255, 255, 255, 0.3)';
             }}
-            onContextMenu={(e) => {
+            onContextMenu={(e: any) => {
               e.preventDefault();
               setIsExpanded(true);
             }}
@@ -348,9 +429,16 @@ export default function AudioPlayer({ expandedFromMenu = false, onClose }: Audio
             }}>
               Music produced by me
             </span>
-          </button>
+          </AnimatedBorderDiv>
         )}
       </div>
+
+      {/* Visualizer */}
+      <GlitchyVisualizer
+        isOpen={isVisualizerOpen}
+        onClose={() => setIsVisualizerOpen(false)}
+        isPlaying={isPlaying}
+      />
     </>
   );
 }
