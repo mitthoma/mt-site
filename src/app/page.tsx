@@ -7,6 +7,7 @@ import { AnimatedBorderLink, AnimatedBorderButton } from "./components/AnimatedB
 
 // Lazy load below-the-fold components
 const AboutSection = dynamic(() => import("./components/AboutSection"));
+const BrutalistProjects = dynamic(() => import("./components/BrutalistProjects"));
 const HorizontalResume = dynamic(() => import("./components/HorizontalResume"));
 const ContactSection = dynamic(() => import("./components/ContactSection"));
 const Copyright = dynamic(() => import("./components/Copyright"));
@@ -34,6 +35,7 @@ export default function Home() {
       <main>
         <HomeBanner />
         <AboutSection />
+        <BrutalistProjects />
         <HorizontalResume />
         <ContactSection />
         <Copyright />
