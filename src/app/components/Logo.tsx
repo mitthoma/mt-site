@@ -1,6 +1,5 @@
 "use client";
 import { Fragment, useState, useEffect } from 'react';
-import Image from 'next/image';
 import { AnimatedBorderLink } from './AnimatedBorder';
 
 export default function Logo() {
@@ -30,17 +29,21 @@ export default function Logo() {
           top: '5px',
         }}
       >
-        <Image 
-          src="/images/logo2.svg" 
-          alt="Mitchell Thomas Logo" 
-          width={224}
-          height={224}
-          priority
-          style={{
-            height: '7rem',
-            width: 'auto'
-          }}
-        />
+        <h1 style={{
+          fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
+          fontWeight: 'bold',
+          color: '#fff',
+          letterSpacing: '-0.05em',
+          lineHeight: '0.9',
+          margin: 0,
+          textTransform: 'uppercase',
+          fontFamily: 'monospace',
+          padding: '1rem',
+          textShadow: '0 0 10px rgba(255, 255, 255, 0.3)'
+        }}>
+          MITCHELL<br/>
+          THOMAS
+        </h1>
       </div>
       
       {/* Desktop Links - Hidden on Mobile */}
@@ -78,9 +81,9 @@ export default function Logo() {
       </div>
       
       <style jsx>{`
-        @media (min-width: 768px) {
-          img {
-            height: 4rem !important;
+        @media (max-width: 768px) {
+          h1 {
+            font-size: 1.25rem !important;
           }
         }
       `}</style>
