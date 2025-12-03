@@ -1,46 +1,206 @@
 "use client";
 
 import { useState } from 'react';
+import MiniTerminal from './MiniTerminal';
 
 export default function BrutalistProjects() {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+
+  const projectCodeSnippets: { [key: number]: string[] } = {
+    1: [ // BlackBox - IPFS Blockchain Storage
+      "$ ipfs init",
+      "[+] Initializing IPFS node...",
+      "[+] Peer identity: QmXy7...",
+      "",
+      "$ truffle compile",
+      "Compiling DStorage.sol...",
+      "[+] Contract compiled successfully",
+      "",
+      "$ ipfs.add(buffer)",
+      "[+] File uploaded to IPFS",
+      "Hash: QmT4Am...",
+      "",
+      "$ contract.methods.uploadFile()",
+      "[+] Storing hash on blockchain",
+      "[+] Transaction confirmed",
+      "[+] Decentralized storage complete"
+    ],
+    2: [ // Chainfund - Crowdfunding Platform
+      "$ truffle migrate --network rinkeby",
+      "Deploying Campaign.sol...",
+      "[+] Contract deployed",
+      "",
+      "$ web3.eth.getBalance(address)",
+      "Balance: 15.5 ETH",
+      "",
+      "function createCampaign() {",
+      "  Campaign campaign = new Campaign();",
+      "  campaigns.push(campaign);",
+      "}",
+      "",
+      "$ campaign.contribute({value: 1e18})",
+      "[+] Contribution received",
+      "[+] Backer count: 127"
+    ],
+    3: [ // Chiropractic Admin Panel
+      "$ npm run dev",
+      "[+] Nuxt server starting...",
+      "[+] Prisma connected to PostgreSQL",
+      "",
+      "async function addPatient() {",
+      "  const patient = await prisma.patient",
+      "    .create({",
+      "      data: { name, records }",
+      "    });",
+      "}",
+      "",
+      "$ firebase deploy",
+      "[+] Deploying to Firebase...",
+      "[+] Upload complete",
+      "[+] Admin panel live"
+    ],
+    4: [ // Dev Meetup - Vue Social Platform
+      "$ vue create dev-meetup",
+      "[+] Creating Vue app...",
+      "",
+      "import { mapState } from 'vuex';",
+      "",
+      "async created() {",
+      "  const db = firebase.firestore();",
+      "  const meetups = await db",
+      "    .collection('meetups').get();",
+      "}",
+      "",
+      "$ npm run serve",
+      "[+] App running on port 8080",
+      "[+] Connected to Firebase"
+    ],
+    5: [ // Election Dapp
+      "$ truffle compile",
+      "Compiling Election.sol...",
+      "",
+      "contract Election {",
+      "  mapping(address => bool) voted;",
+      "  ",
+      "  function vote(uint _candidateId) {",
+      "    require(!voted[msg.sender]);",
+      "    candidates[_candidateId].votes++;",
+      "    voted[msg.sender] = true;",
+      "  }",
+      "}",
+      "",
+      "[+] Election contract deployed",
+      "[+] Voting system active"
+    ],
+    6: [ // Without The White Coat
+      "$ wp theme activate wtwc-custom",
+      "[+] Theme activated",
+      "",
+      "<?php",
+      "function custom_post_type() {",
+      "  register_post_type('stories',",
+      "    array(",
+      "      'public' => true,",
+      "      'label' => 'Stories'",
+      "    )",
+      "  );",
+      "}",
+      "?>",
+      "",
+      "[+] Custom post types registered",
+      "[+] Healthcare stories live"
+    ],
+    7: [ // Woven Clinics
+      "$ npx create-next-app woven",
+      "[+] Creating Next.js app...",
+      "",
+      "import { useState } from 'react';",
+      "",
+      "export default function Clinic() {",
+      "  const [appointments, setAppts] =",
+      "    useState([]);",
+      "  ",
+      "  return <Calendar />;",
+      "}",
+      "",
+      "$ npm run build",
+      "[+] Optimized production build",
+      "[+] Clinic portal deployed"
+    ],
+    8: [ // LGO Language Solutions
+      "$ curl -X POST /api/translate",
+      "[+] Translation API active",
+      "",
+      "const translateText = async () => {",
+      "  const response = await fetch(",
+      "    '/api/translate',",
+      "    { method: 'POST',",
+      "      body: { text, target } }",
+      "  );",
+      "  return response.json();",
+      "}",
+      "",
+      "[+] Processing 15 languages",
+      "[+] Translation complete"
+    ]
+  };
 
   const projects = [
     {
       id: 1,
       title: 'PROJECT_001',
-      name: 'FULL STACK APPLICATION',
-      tech: 'REACT / NODE / POSTGRES',
-      year: '2024',
-      videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      type: 'video'
+      name: 'BLACKBOX',
+      tech: 'REACT / WEB3 / IPFS / SOLIDITY',
+      year: '2024'
     },
     {
       id: 2,
       title: 'PROJECT_002',
-      name: 'BLOCKCHAIN PLATFORM',
-      tech: 'SOLIDITY / WEB3 / ETHERS',
-      year: '2023',
-      imageUrl: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&q=80',
-      type: 'image'
+      name: 'CHAINFUND',
+      tech: 'NEXT.JS / SOLIDITY / WEB3 / TRUFFLE',
+      year: '2023'
     },
     {
       id: 3,
       title: 'PROJECT_003',
-      name: 'AI INTEGRATION SYSTEM',
-      tech: 'PYTHON / TENSORFLOW / DOCKER',
-      year: '2024',
-      videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
-      type: 'video'
+      name: 'CHIROPRACTIC ADMIN',
+      tech: 'NUXT.JS / PRISMA / POSTGRESQL',
+      year: '2024'
     },
     {
       id: 4,
       title: 'PROJECT_004',
-      name: 'REAL-TIME ANALYTICS',
-      tech: 'TYPESCRIPT / GRAPHQL / REDIS',
-      year: '2023',
-      imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
-      type: 'image'
+      name: 'DEV MEETUP',
+      tech: 'VUE.JS / VUETIFY / FIREBASE / VUEX',
+      year: '2023'
+    },
+    {
+      id: 5,
+      title: 'PROJECT_005',
+      name: 'ELECTION DAPP',
+      tech: 'SOLIDITY / WEB3 / TRUFFLE / ETHEREUM',
+      year: '2023'
+    },
+    {
+      id: 6,
+      title: 'PROJECT_006',
+      name: 'WITHOUT THE WHITE COAT',
+      tech: 'WORDPRESS / PHP / CUSTOM THEME',
+      year: '2024'
+    },
+    {
+      id: 7,
+      title: 'PROJECT_007',
+      name: 'WOVEN CLINICS',
+      tech: 'REACT / NEXT.JS / TAILWIND / CMS',
+      year: '2024'
+    },
+    {
+      id: 8,
+      title: 'PROJECT_008',
+      name: 'LGO LANGUAGE SOLUTIONS',
+      tech: 'CUSTOM WEB / TRANSLATION API',
+      year: '2020'
     }
   ];
 
@@ -128,56 +288,16 @@ export default function BrutalistProjects() {
               </span>
             </div>
 
-            {/* Media */}
+            {/* Media - Mini Terminal */}
             <div style={{
-              aspectRatio: '16/9',
-              overflow: 'hidden',
+              height: '280px',
               background: '#000',
               position: 'relative'
             }}>
-              {project.type === 'video' ? (
-                <video
-                  src={project.videoUrl}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="none"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    filter: hoveredProject === index ? 'grayscale(0%)' : 'grayscale(100%)',
-                    transition: 'filter 0.3s ease'
-                  }}
-                />
-              ) : (
-                <img
-                  src={project.imageUrl}
-                  alt={project.name}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    filter: hoveredProject === index ? 'grayscale(0%)' : 'grayscale(100%)',
-                    transition: 'filter 0.3s ease'
-                  }}
-                />
-              )}
-              
-              {/* Overlay on hover */}
-              {hoveredProject === index && (
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  border: '4px solid #000',
-                  margin: '1rem'
-                }} />
-              )}
+              <MiniTerminal 
+                codeLines={projectCodeSnippets[project.id]} 
+                title={`${project.name.toLowerCase().replace(/ /g, '-')}`}
+              />
             </div>
 
             {/* Project Info */}
@@ -249,17 +369,27 @@ export default function BrutalistProjects() {
         padding: '1rem 0',
         borderTop: '2px solid #fff'
       }}>
-        <p style={{
-          fontFamily: 'monospace',
-          color: '#fff',
-          margin: 0,
-          fontSize: '0.75rem',
-          letterSpacing: '0.1em',
-          textAlign: 'right',
-          opacity: 0.7
-        }}>
-          [VIEW_ALL_PROJECTS] → GITHUB.COM
-        </p>
+        <a 
+          href="https://github.com/mitthoma"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            fontFamily: 'monospace',
+            color: '#fff',
+            margin: 0,
+            fontSize: '0.75rem',
+            letterSpacing: '0.1em',
+            textAlign: 'right',
+            opacity: 0.7,
+            textDecoration: 'none',
+            display: 'block',
+            transition: 'opacity 0.3s ease'
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+          onMouseLeave={(e) => e.currentTarget.style.opacity = '0.7'}
+        >
+          [VIEW_ALL_PROJECTS] → GITHUB.COM/MITTHOMA
+        </a>
       </div>
     </section>
   );

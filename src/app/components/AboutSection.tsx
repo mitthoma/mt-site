@@ -90,7 +90,7 @@ export default function AboutSection() {
                     </div>
 
                     {/* Projects */}
-                    <h2 className="text-xl md:text-2xl font-bold tracking-tight text-white" style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.3)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>Featured Projects</h2>
+                    {/* <h2 className="text-xl md:text-2xl font-bold tracking-tight text-white" style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.3)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>Featured Projects</h2>
                     <div className="space-y-6 mb-12">
                         <AnimatedBorderDiv style={{ background: 'rgba(255, 255, 255, 0.05)', borderRadius: '10px', border: 'none' }}>
                             <div className="p-4">
@@ -134,7 +134,7 @@ export default function AboutSection() {
                                 </a>
                             </div>
                         </AnimatedBorderDiv>
-                    </div>
+                    </div> */}
 
                     {/* Publications */}
                     <h2 className="text-2xl font-bold tracking-tight text-white" style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.3)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>Publications</h2>
