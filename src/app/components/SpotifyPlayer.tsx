@@ -427,7 +427,7 @@ export default function AudioPlayer({ expandedFromMenu = false, onClose }: Audio
               fontWeight: '600',
               whiteSpace: 'nowrap'
             }}>
-              Music produced by me
+              My Productions
             </span>
           </AnimatedBorderDiv>
         )}

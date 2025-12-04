@@ -1,0 +1,13 @@
+/* TEAM */
+Developer: Mitchell Thomas
+Site: https://mitchell-codes.com
+GitHub: https://github.com/mitthoma
+LinkedIn: https://linkedin.com/in/mitchellthecoder
+Location: United States
+
+/* SITE */
+Last update: 2024/12/03
+Standards: HTML5, CSS3, JavaScript ES6+
+Components: React, Next.js, TypeScript
+Software: VS Code, Git, Node.js
+Architecture: JAMstack, Serverless

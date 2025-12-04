@@ -1,0 +1,3 @@
+Contact: https://mitchell-codes.com
+Preferred-Languages: en
+Canonical: https://mitchell-codes.com/.well-known/security.txt

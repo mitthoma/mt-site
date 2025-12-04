@@ -150,7 +150,7 @@ export default function Home() {
               transition: 'all 0.3s ease'
             }}
           >
-            Music produced by me
+            My Productions
           </AnimatedBorderButton>
         </div>
       )}
