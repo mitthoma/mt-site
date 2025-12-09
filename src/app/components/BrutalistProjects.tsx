@@ -353,7 +353,8 @@ export default function BrutalistProjects() {
               right: '1rem',
               width: '20px',
               height: '20px',
-              border: '3px solid ' + (hoveredProject === index ? '#000' : '#fff'),
+              borderTop: '3px solid ' + (hoveredProject === index ? '#000' : '#fff'),
+              borderRight: '3px solid ' + (hoveredProject === index ? '#000' : '#fff'),
               borderLeft: 'none',
               borderBottom: 'none',
               pointerEvents: 'none'
