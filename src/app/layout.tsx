@@ -22,9 +22,58 @@ const tomorrow = Tomorrow({
   preload: true
 });
 
+const SITE_URL = "https://mitchell-codes.com";
+const TITLE = "Mitchell Thomas — Senior Full-Stack & AI Engineer";
+const DESCRIPTION =
+  "Senior full-stack and AI engineer in Nashville. 8 years shipping Node, React/Next, Vue/Nuxt, TypeScript and PostgreSQL products; now building agent systems and agentic workflows that replace real business processes.";
+
 export const metadata: Metadata = {
-  title: "Mitchell Thomas Software Engineer",
-  description: "Portfolio showcase of work",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: TITLE,
+    template: "%s · Mitchell Thomas",
+  },
+  description: DESCRIPTION,
+  applicationName: "Mitchell Thomas",
+  authors: [{ name: "Mitchell Thomas", url: SITE_URL }],
+  creator: "Mitchell Thomas",
+  keywords: [
+    "Mitchell Thomas",
+    "senior full-stack engineer",
+    "AI engineer",
+    "forward deployed engineer",
+    "agentic systems",
+    "LLM integration",
+    "Node.js",
+    "React",
+    "Next.js",
+    "Vue",
+    "Nuxt",
+    "TypeScript",
+    "PostgreSQL",
+    "Nashville",
+  ],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "profile",
+    url: SITE_URL,
+    siteName: "Mitchell Thomas",
+    title: TITLE,
+    description: DESCRIPTION,
+    locale: "en_US",
+    firstName: "Mitchell",
+    lastName: "Thomas",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
   icons: {
     icon: [
       { url: '/images/favicon.ico' },
@@ -64,6 +113,40 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={inter.className}>
+        <script
+          type="application/ld+json"
+          // Person schema so search engines attach the right entity to the domain.
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Mitchell Thomas",
+              url: SITE_URL,
+              jobTitle: "Senior Full-Stack & AI Engineer",
+              description: DESCRIPTION,
+              address: { "@type": "PostalAddress", addressLocality: "Nashville", addressRegion: "TN", addressCountry: "US" },
+              alumniOf: { "@type": "CollegeOrUniversity", name: "Indiana University Bloomington" },
+              worksFor: { "@type": "Organization", name: "OPEN Health" },
+              sameAs: [
+                "https://github.com/mitthoma",
+                "https://linkedin.com/in/mitchellthecoder",
+                "https://mitchellthecoder.medium.com",
+              ],
+              knowsAbout: [
+                "Agentic systems",
+                "LLM integration",
+                "Node.js",
+                "React",
+                "Next.js",
+                "Vue",
+                "Nuxt",
+                "TypeScript",
+                "PostgreSQL",
+                "AWS",
+              ],
+            }),
+          }}
+        />
         <SmoothScroll />
         <Logo />
         <AudioPlayer />
