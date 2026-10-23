@@ -149,22 +149,22 @@ export default function BrutalistProjects() {
     {
       id: 1,
       title: 'PROJECT_001',
-      name: 'BLACKBOX',
-      tech: 'REACT / WEB3 / IPFS / SOLIDITY',
+      name: 'CHIROPRACTIC ADMIN',
+      tech: 'NUXT.JS / PRISMA / POSTGRESQL',
       year: '2024'
     },
     {
       id: 2,
       title: 'PROJECT_002',
-      name: 'CHAINFUND',
-      tech: 'NEXT.JS / SOLIDITY / WEB3 / TRUFFLE',
-      year: '2023'
+      name: 'WOVEN CLINICS',
+      tech: 'REACT / NEXT.JS / TAILWIND / CMS',
+      year: '2024'
     },
     {
       id: 3,
       title: 'PROJECT_003',
-      name: 'CHIROPRACTIC ADMIN',
-      tech: 'NUXT.JS / PRISMA / POSTGRESQL',
+      name: 'WITHOUT THE WHITE COAT',
+      tech: 'WORDPRESS / PHP / CUSTOM THEME',
       year: '2024'
     },
     {
@@ -177,35 +177,35 @@ export default function BrutalistProjects() {
     {
       id: 5,
       title: 'PROJECT_005',
-      name: 'ELECTION DAPP',
-      tech: 'SOLIDITY / WEB3 / TRUFFLE / ETHEREUM',
-      year: '2023'
+      name: 'LGO LANGUAGE SOLUTIONS',
+      tech: 'CUSTOM WEB / TRANSLATION API',
+      year: '2020'
     },
     {
       id: 6,
       title: 'PROJECT_006',
-      name: 'WITHOUT THE WHITE COAT',
-      tech: 'WORDPRESS / PHP / CUSTOM THEME',
+      name: 'BLACKBOX',
+      tech: 'REACT / WEB3 / IPFS / SOLIDITY',
       year: '2024'
     },
     {
       id: 7,
       title: 'PROJECT_007',
-      name: 'WOVEN CLINICS',
-      tech: 'REACT / NEXT.JS / TAILWIND / CMS',
-      year: '2024'
+      name: 'CHAINFUND',
+      tech: 'NEXT.JS / SOLIDITY / WEB3 / TRUFFLE',
+      year: '2023'
     },
     {
       id: 8,
       title: 'PROJECT_008',
-      name: 'LGO LANGUAGE SOLUTIONS',
-      tech: 'CUSTOM WEB / TRANSLATION API',
-      year: '2020'
+      name: 'ELECTION DAPP',
+      tech: 'SOLIDITY / WEB3 / TRUFFLE / ETHEREUM',
+      year: '2023'
     }
   ];
 
   return (
-    <section style={{
+    <section id="work" style={{
       background: '#000',
       minHeight: '100vh',
       padding: '4rem 2rem',

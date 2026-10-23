@@ -37,20 +37,21 @@ export default function HorizontalResume() {
   const experiences = [
     {
       year: '2021-Present',
-      role: 'Senior Fullstack Developer',
-      company: 'OPEN Health',
+      role: 'Senior Full-Stack Engineer',
+      company: 'OPEN Health (Peloton Advantage)',
       bullets: [
+        'Building agent systems and agentic workflows that replace manual processes inside the company (2025–present)',
         'Architected and built from scratch a central API application supporting multiple platforms',
         'Spearheaded multi-tenancy architecture redesign optimizing database separation for improved security',
         'Reduced hosting costs by thousands monthly while enhancing system reliability and scalability'
       ],
-      tech: ['Vue', 'Nuxt.js', 'Node.js', 'AWS', 'CI/CD', 'MySQL', 'TypeORM', 'Prisma', 'Multi-Tenancy', 'End-To-End', 'Enterprise Production Apps'],
+      tech: ['LLM APIs', 'Agent Orchestration', 'Node.js', 'Vue', 'Nuxt.js', 'TypeScript', 'MySQL', 'TypeORM', 'Prisma', 'AWS', 'CI/CD', 'Multi-Tenancy'],
       color: '#eaeaea'
     },
     {
       year: '2019-Present',
-      role: 'Software Engineer, Co-Founder',
-      company: 'Blacsand, LLC',
+      role: 'Founder & Software Engineer',
+      company: 'Sandstone (formerly Blacsand), LLC',
       bullets: [
         'Founded and led a web development firm managing a team of 5 to deliver 25+ full-cycle projects',
         'Developed HIPAA-compliant SaaS platform with microservice architecture',

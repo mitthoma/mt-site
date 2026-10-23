@@ -39,10 +39,10 @@ export default function AboutSection() {
                 <div className="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8 satellite-mobile">
                 <div className="lg:pr-4">
                     <div className="lg:max-w-lg">
-                    <p className="text-sm md:text-base font-semibold leading-7 text-white" style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.3)', paddingBottom: '0.5rem', display: 'inline-block' }}>Senior Full Stack Software Engineer</p>
-                    <h1 className="mt-2 text-2xl md:text-3xl font-bold tracking-tight text-white sm:text-4xl">7+ Years of Experience</h1>
+                    <p className="text-sm md:text-base font-semibold leading-7 text-white" style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.3)', paddingBottom: '0.5rem', display: 'inline-block' }}>Senior Full-Stack &amp; AI Engineer</p>
+                    <h2 className="mt-2 text-2xl md:text-3xl font-bold tracking-tight text-white sm:text-4xl">8 Years of Experience</h2>
                     <p className="mt-6 text-base md:text-xl leading-6 md:leading-8 text-gray-300">
-                        Architecting scalable full-stack solutions from concept to deployment. Specializing in cloud infrastructure, modern web frameworks, and AI-powered applications.
+                        I build full-stack products end to end — Node, React/Next, Vue/Nuxt, TypeScript, PostgreSQL — and, for the last year, agent systems and agentic workflows that replace manual processes. Five years shipping inside a compliance-heavy pharma environment taught me to build things that have to be right the first time.
                     </p>
                     </div>
                 </div>
@@ -70,7 +70,7 @@ export default function AboutSection() {
                         <div>
                             <h3 className="font-semibold text-white mb-2">Languages & Frameworks</h3>
                             <div className="flex flex-wrap gap-2">
-                                {['JavaScript', 'TypeScript', 'Python', 'Vue', 'Nuxt', 'React', 'Next.js', 'Node.js', 'Express', 'SQL', 'MongoDB', 'Redis'].map((tech) => (
+                                {['TypeScript', 'JavaScript', 'Node.js', 'Express', 'React', 'Next.js', 'Vue', 'Nuxt', 'Python', 'PostgreSQL', 'Prisma', 'TypeORM', 'MongoDB', 'Redis'].map((tech) => (
                                     <span key={tech} className="px-3 py-1 bg-white bg-opacity-10 border border-white border-opacity-30 text-sm text-white" style={{ borderRadius: '10px' }}>
                                         {tech}
                                     </span>
@@ -78,9 +78,9 @@ export default function AboutSection() {
                             </div>
                         </div>
                         <div>
-                            <h3 className="font-semibold text-white mb-2">Tools & DevOps</h3>
+                            <h3 className="font-semibold text-white mb-2">AI, Infra &amp; DevOps</h3>
                             <div className="flex flex-wrap gap-2">
-                                {['Git', 'Docker', 'AWS', 'CI/CD', 'Jest', 'Smart Contracts', 'Microservices'].map((tech) => (
+                                {['LLM APIs', 'Agent Orchestration', 'Evals', 'AWS', 'Docker', 'CI/CD', 'Multi-tenant Architecture', 'Jest', 'Git'].map((tech) => (
                                     <span key={tech} className="px-3 py-1 bg-white bg-opacity-10 border border-white border-opacity-30 text-sm text-white" style={{ borderRadius: '10px' }}>
                                         {tech}
                                     </span>
