@@ -7,7 +7,7 @@ This is the source for [mitchell-codes.com](https://mitchell-codes.com), Mitchel
 - Next.js 14 (App Router), React 18, TypeScript
 - Tailwind + a few `styled-components`; custom motion with `animejs` and `lenis`
 - Contact form → `src/app/api/contact/route.ts` → Resend (`RESEND_API_KEY`)
-- Deploys on Vercel from `main`
+- Node 24 (`engines.node`, `.nvmrc`); deploys on Vercel from `main`
 
 ## Commands
 
