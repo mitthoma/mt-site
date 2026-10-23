@@ -22,14 +22,17 @@ export default function Logo() {
 
   return (
     <Fragment>
-      <div 
-        onClick={scrollToTop}
-        className="fixed left-[5px] z-[9999] cursor-pointer transition-all duration-300"
+      <a
+        href="#"
+        onClick={(e) => { e.preventDefault(); scrollToTop(); }}
+        aria-label="Mitchell Thomas — back to top"
+        className="fixed left-[5px] z-[9999] cursor-pointer transition-all duration-300 no-underline"
         style={{
           top: '5px',
         }}
       >
-        <h1 style={{
+        <span style={{
+          display: 'block',
           fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
           fontWeight: 'bold',
           color: '#fff',
@@ -43,8 +46,8 @@ export default function Logo() {
         }}>
           MITCHELL<br/>
           THOMAS
-        </h1>
-      </div>
+        </span>
+      </a>
       
       {/* Desktop Links - Hidden on Mobile */}
       <div className="hidden md:flex fixed right-4 z-[9999] gap-4" style={{

@@ -32,14 +32,35 @@ export default function HomeBanner() {
             {/* <h1 className="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl font-[family-name:var(--font-bbh-sans)]">
               Mitchell Thomas
             </h1> */}
-            <h3 className="mt-6 text-base md:text-xl leading-6 md:leading-8 text-gray-300 px-4 md:px-0">
+            <p className="text-sm md:text-base font-semibold tracking-wide text-gray-400 px-4 md:px-0 font-[family-name:var(--font-tomorrow)]">
+              mitchell@localhost:~$ whoami
+            </p>
+            <h1 className="mt-3 text-4xl font-bold tracking-tight text-white sm:text-6xl px-4 md:px-0">
+              Mitchell Thomas
+            </h1>
+            <p className="mt-4 text-lg md:text-2xl leading-7 md:leading-9 text-gray-200 px-4 md:px-0">
+              Senior Full-Stack &amp; AI Engineer — agentic systems, LLM integration, regulated industries.
+            </p>
+            <p className="mt-3 text-base md:text-lg leading-6 md:leading-8 text-gray-400 px-4 md:px-0">
+              8 years shipping full-stack products. Now building agent systems that replace real business processes.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-4 px-4 md:px-0">
+              <a href="#work" className="rounded-[10px] border border-white/60 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+                See the work
+              </a>
+              <a href="https://github.com/mitthoma" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-gray-300 hover:text-white">
+                GitHub <span aria-hidden="true">→</span>
+              </a>
+              <a href="https://linkedin.com/in/mitchellthecoder" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-gray-300 hover:text-white">
+                LinkedIn <span aria-hidden="true">→</span>
+              </a>
+            </div>
+            <blockquote className="mt-10 text-sm md:text-base leading-6 text-gray-500 px-4 md:px-0">
               <GlitchText trigger="continuous" interval={4500} speed={50}>
                 Computer science is no more about computers than astronomy is about telescopes.
               </GlitchText>
-            </h3>
-            <p className="mt-4 md:mt-6 text-base md:text-xl leading-6 md:leading-8 text-gray-300 px-4 md:px-0">
-              — Edsger Dijkstra
-            </p>
+              <cite className="mt-1 block not-italic">— Edsger Dijkstra</cite>
+            </blockquote>
             {/* <div className="mt-10 flex items-center gap-x-6">
               <a
                 href="#"

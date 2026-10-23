@@ -44,6 +44,8 @@ export default function Home() {
       {/* Hamburger Menu - Mobile Only */}
       <button
         onClick={toggleMenu}
+        aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+        aria-expanded={isMenuOpen}
         className="md:hidden flex flex-col"
         style={{
           position: 'fixed',
