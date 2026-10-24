@@ -11,16 +11,18 @@ interface AnimatedBorderProps {
   borderColor?: string;
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
+  /** Internal links (e.g. "/blog") open in the same tab. Defaults to true for backwards compatibility. */
+  external?: boolean;
 }
 
-export function AnimatedBorderLink({ children, href, style, className, borderColor = '#ffffff' }: AnimatedBorderProps) {
+export function AnimatedBorderLink({ children, href, style, className, borderColor = '#ffffff', external = true }: AnimatedBorderProps) {
   const [isHovered, setIsHovered] = useState(false);
-  
+
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener noreferrer' : undefined}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={className}
