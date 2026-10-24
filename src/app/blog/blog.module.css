@@ -1,0 +1,283 @@
+/* Scoped styles for /blog. Keeps the terminal palette; no globals touched. */
+
+.shell {
+  min-height: 100vh;
+  background: #131314;
+  color: #e5e7eb;
+}
+
+.container {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 7rem 1rem 6rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-top: 9rem;
+  }
+}
+
+.prompt {
+  font-family: var(--font-tomorrow), ui-monospace, monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: #9ca3af;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.nav a,
+.navLink {
+  color: #9ca3af;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.nav a:hover,
+.nav a:focus-visible,
+.navLink:hover,
+.navLink:focus-visible {
+  color: #fff;
+  border-bottom-color: #fff;
+  outline: none;
+}
+
+.nav a:focus-visible,
+.navLink:focus-visible,
+.card:focus-visible,
+.body a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.title {
+  margin-top: 1rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.lede {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #9ca3af;
+}
+
+.meta {
+  margin-top: 1rem;
+  font-family: var(--font-tomorrow), ui-monospace, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  color: #9ca3af;
+}
+
+.tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.tag {
+  padding: 0.1rem 0.5rem;
+  border: 1px solid #374151;
+  border-radius: 6px;
+  color: #d1d5db;
+  text-transform: uppercase;
+}
+
+.list {
+  list-style: none;
+  margin: 3rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  display: block;
+  padding: 1.25rem 1.25rem 1.1rem;
+  border: 1px solid #2a2a2e;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.card:hover,
+.card:focus-visible {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.cardIndex {
+  font-family: var(--font-tomorrow), ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+}
+
+.cardTitle {
+  margin-top: 0.35rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #fff;
+}
+
+.cardDesc {
+  margin-top: 0.5rem;
+  line-height: 1.6;
+  color: #9ca3af;
+}
+
+.empty {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  border: 1px dashed #374151;
+  border-radius: 10px;
+  color: #9ca3af;
+  font-family: var(--font-tomorrow), ui-monospace, monospace;
+  font-size: 0.9rem;
+}
+
+/* Article body */
+.body {
+  margin-top: 2.5rem;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #d1d5db;
+}
+
+.body > * + * {
+  margin-top: 1.25rem;
+}
+
+.body h2,
+.body h3 {
+  margin-top: 2.5rem;
+  color: #fff;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.body h2 {
+  font-size: 1.6rem;
+}
+
+.body h3 {
+  font-size: 1.25rem;
+}
+
+.body h2::before {
+  content: '## ';
+  color: #6b7280;
+}
+
+.body h3::before {
+  content: '### ';
+  color: #6b7280;
+}
+
+.body a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.body ul,
+.body ol {
+  padding-left: 1.5rem;
+}
+
+.body ul {
+  list-style: square;
+}
+
+.body ol {
+  list-style: decimal;
+}
+
+.body li + li {
+  margin-top: 0.4rem;
+}
+
+.body blockquote {
+  padding-left: 1rem;
+  border-left: 2px solid #4b5563;
+  color: #9ca3af;
+}
+
+.body code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.body pre {
+  overflow-x: auto;
+  padding: 1rem 1.25rem;
+  border: 1px solid #2a2a2e;
+  border-radius: 10px;
+  background: #0a0a0a;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.body pre code {
+  padding: 0;
+  background: none;
+}
+
+.body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.body th,
+.body td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #2a2a2e;
+  text-align: left;
+  vertical-align: top;
+}
+
+.body th {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.body hr {
+  border: 0;
+  border-top: 1px solid #2a2a2e;
+}
+
+.body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #2a2a2e;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  font-size: 0.85rem;
+}
