@@ -1,0 +1,36 @@
+---
+title: "This site is maintained by an agent. Here's the contract."
+description: "A nightly agent audits mitchell-codes.com, files issues, and opens pull requests. I merge. The interesting part is the contract that keeps that safe."
+date: "2026-10-24"
+tags: ["agents", "nextjs", "workflow"]
+---
+
+Since October 2026 this site has had two maintainers: me, and a scheduled agent that runs every night against the repo. It audits the site, opens GitHub issues for real problems, and proposes changes as pull requests. It never merges. I review from my phone in the morning and merge what I approve.
+
+That sounds like a gimmick until you look at what it actually took to make it boring. Almost none of the work was prompting. It was writing down the rules.
+
+## The contract lives in the repo
+
+The agent reads one file before it touches anything: `AGENTS.md`, checked into the repo next to the code. It is short, and every line in it exists because something would go wrong without it. The important ones:
+
+- **One concern per PR.** Content changes never ride in the same PR as `layout.tsx`, `globals.css`, `next.config.mjs`, or `package.json`. A copy tweak should be a one-tap merge; a dependency bump should not be hiding behind it.
+- **Build must pass locally before any push.** CI runs lint, typecheck, and build on every PR, but the agent is expected to have already run them. A red PR costs me a review cycle for nothing.
+- **Source of truth for copy is the resume, not guesswork.** The agent does not invent numbers, client names, or outcomes. If a claim needs a number that isn't on record, it leaves a `TODO(needs-number)` in the PR description — never on the page.
+- **Never:** force-push, rewrite history, delete content without a replacement, touch secrets or env, change DNS, add tracking.
+- **At most one small styling PR per night.** Modernization happens in increments that fit in a diff I can read. No redesign dumps.
+
+Everything above is enforced by convention, not by code. What makes it hold is that the agent's output is a pull request, and a pull request is a thing I can decline.
+
+## Audit first, then fix
+
+Each run starts with the same checklist: lint, typecheck, build, then SEO basics (title, description, Open Graph, canonical, sitemap, robots, structured data), accessibility basics (a single `h1`, heading order, alt text, focus states, accessible names), dead links, bundle size, and dependencies with known vulnerabilities.
+
+Only real problems become issues, and each issue carries an impact statement and a fix sketch. The first sweep found the kind of debt a personal site accumulates when it's the last thing you work on: two `h1`s on the page, no sitemap or robots, 37 MB of fonts in `public/` that nothing loaded, a contact form with no bot protection, and a Vercel project pinned to a Node runtime that had been discontinued, which is why deploys had been failing before any build step ran.
+
+Those became four PRs on day one, each small enough to read in a minute: a build fix, CI plus the contract file, SEO metadata, and a copy sweep. They were merged the same afternoon.
+
+## Why this is the thing I'd show a hiring manager
+
+I build agent systems for a living, mostly in a regulated environment where "the model did something" is not an acceptable answer to "what changed and why." The shape of that work is the same as this site's setup: constrain the action space, make every action reviewable, put a human at the irreversible step, and write the rules where the agent will actually read them.
+
+The site is a low-stakes place to practice that discipline in public. The repo is open — [`mitthoma/mt-site`](https://github.com/mitthoma/mt-site) — and the `AGENTS.md` in it is the real artifact of this post. The blog you are reading was its first feature PR.
