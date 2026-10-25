@@ -5,7 +5,6 @@ import Script from "next/script";
 import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll";
 import Logo from "./components/Logo";
-import AudioPlayer from "./components/SpotifyPlayer";
 
 
 const inter = Inter({ 
@@ -149,7 +148,9 @@ export default function RootLayout({
         />
         <SmoothScroll />
         <Logo />
-        <AudioPlayer />
+        {/* AudioPlayer is mounted by the home page (src/app/page.tsx), which owns its
+            open/close state for the mobile menu. Mounting it here too produced two
+            <audio> elements and duplicate controls in the tab order (issue #12). */}
         {children}
       </body>
     </html>
