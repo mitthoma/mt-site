@@ -110,6 +110,21 @@ export default function Home() {
           }}
         >
           <AnimatedBorderLink
+            href="/work"
+            external={false}
+            style={{
+              background: 'rgba(255, 255, 255, 0.1)',
+              borderRadius: '10px',
+              padding: '1.5rem 3rem',
+              color: '#ffffff',
+              fontSize: '1.5rem',
+              fontWeight: 'bold',
+              cursor: 'pointer'
+            }}
+          >
+            Work
+          </AnimatedBorderLink>
+          <AnimatedBorderLink
             href="/blog"
             external={false}
             style={{

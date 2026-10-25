@@ -83,7 +83,7 @@ export default function BrutalistProjects() {
       }}>
         {missions.map((m, index) => {
           const isHovered = hovered === index;
-          const live = m.status === 'operational' && m.href;
+          const live = Boolean(m.href);
           const fg = isHovered ? '#000' : '#fff';
           const card = (
             <div
@@ -204,7 +204,7 @@ export default function BrutalistProjects() {
                     letterSpacing: '-0.05em',
                     whiteSpace: 'nowrap',
                   }}>
-                    [{live ? 'ENTER →' : m.window}]
+                    [{live ? (m.status === 'operational' ? 'ENTER →' : 'BRIEF →') : m.window}]
                   </span>
                 </div>
               </div>
