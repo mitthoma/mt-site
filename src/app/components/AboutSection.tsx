@@ -71,7 +71,7 @@ export default function AboutSection() {
                             <h3 className="font-semibold text-white mb-2">Languages & Frameworks</h3>
                             <div className="flex flex-wrap gap-2">
                                 {['TypeScript', 'JavaScript', 'Node.js', 'Express', 'React', 'Next.js', 'Vue', 'Nuxt', 'Python', 'PostgreSQL', 'Prisma', 'TypeORM', 'MongoDB', 'Redis'].map((tech) => (
-                                    <span key={tech} className="px-3 py-1 bg-white bg-opacity-10 border border-white border-opacity-30 text-sm text-white" style={{ borderRadius: '10px' }}>
+                                    <span key={tech} className="mc-chip">
                                         {tech}
                                     </span>
                                 ))}
@@ -81,7 +81,7 @@ export default function AboutSection() {
                             <h3 className="font-semibold text-white mb-2">AI, Infra &amp; DevOps</h3>
                             <div className="flex flex-wrap gap-2">
                                 {['LLM APIs', 'Agent Orchestration', 'Evals', 'AWS', 'Docker', 'CI/CD', 'Multi-tenant Architecture', 'Jest', 'Git'].map((tech) => (
-                                    <span key={tech} className="px-3 py-1 bg-white bg-opacity-10 border border-white border-opacity-30 text-sm text-white" style={{ borderRadius: '10px' }}>
+                                    <span key={tech} className="mc-chip">
                                         {tech}
                                     </span>
                                 ))}
@@ -92,7 +92,7 @@ export default function AboutSection() {
                     {/* Projects */}
                     {/* <h2 className="text-xl md:text-2xl font-bold tracking-tight text-white" style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.3)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>Featured Projects</h2>
                     <div className="space-y-6 mb-12">
-                        <AnimatedBorderDiv style={{ background: 'rgba(255, 255, 255, 0.05)', borderRadius: '10px', border: 'none' }}>
+                        <AnimatedBorderDiv>
                             <div className="p-4">
                                 <h3 className="font-bold text-white text-lg mb-2">Kickstarter Blockchain Clone</h3>
                                 <p className="text-gray-300 mb-3">
@@ -100,7 +100,7 @@ export default function AboutSection() {
                                 </p>
                                 <div className="flex flex-wrap gap-2 mb-3">
                                     {['React', 'Solidity', 'Ethereum', 'Next.js', 'Truffle'].map((tech) => (
-                                        <span key={tech} className="px-2 py-1 text-xs bg-white bg-opacity-10 border border-white border-opacity-20 text-gray-300" style={{ borderRadius: '10px' }}>
+                                        <span key={tech} className="mc-chip mc-chip-sm">
                                             {tech}
                                         </span>
                                     ))}
@@ -113,7 +113,7 @@ export default function AboutSection() {
                                 </a>
                             </div>
                         </AnimatedBorderDiv>
-                        <AnimatedBorderDiv style={{ background: 'rgba(255, 255, 255, 0.05)', borderRadius: '10px', border: 'none' }}>
+                        <AnimatedBorderDiv>
                             <div className="p-4">
                                 <h3 className="font-bold text-white text-lg mb-2">Developer Meetup Platform</h3>
                                 <p className="text-gray-300 mb-3">
@@ -121,7 +121,7 @@ export default function AboutSection() {
                                 </p>
                                 <div className="flex flex-wrap gap-2 mb-3">
                                     {['React', 'Node.js', 'MongoDB', 'Express'].map((tech) => (
-                                        <span key={tech} className="px-2 py-1 text-xs bg-white bg-opacity-10 border border-white border-opacity-20 text-gray-300" style={{ borderRadius: '10px' }}>
+                                        <span key={tech} className="mc-chip mc-chip-sm">
                                             {tech}
                                         </span>
                                     ))}
@@ -154,7 +154,7 @@ export default function AboutSection() {
                                 rel="noopener noreferrer"
                                 style={{ textDecoration: 'none', display: 'block' }}
                             >
-                                <AnimatedBorderDiv style={{ background: 'rgba(255, 255, 255, 0.03)', borderRadius: '10px', border: 'none' }}>
+                                <AnimatedBorderDiv>
                                     <div className="p-3">
                                         <h3 className="font-semibold text-white text-sm">{pub.title}</h3>
                                         <p className="text-xs text-gray-400 mt-1">{pub.date} • Becoming Human: AI Magazine</p>

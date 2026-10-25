@@ -107,17 +107,7 @@ export default function ContactSection() {
           }}>
             {/* Name Field */}
             <div style={{ position: 'relative' }}>
-              <label style={{
-                display: 'block',
-                color: '#ffffff',
-                fontSize: '0.9rem',
-                fontWeight: '600',
-                marginBottom: '0.5rem',
-                transition: 'all 0.3s ease',
-                transform: focusedField === 'name' ? 'translateY(-2px)' : 'none'
-              }}>
-                Name
-              </label>
+              <label className="mc-field-label"><b>F01</b> · Name</label>
               <input
                 type="text"
                 name="name"
@@ -126,34 +116,13 @@ export default function ContactSection() {
                 onFocus={() => setFocusedField('name')}
                 onBlur={() => setFocusedField(null)}
                 required
-                style={{
-                  width: '100%',
-                  padding: '1rem',
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  border: `2px solid ${focusedField === 'name' ? '#ffffff' : 'rgba(255, 255, 255, 0.3)'}`,
-                  borderRadius: '10px',
-                  color: '#fff',
-                  fontSize: '1rem',
-                  outline: 'none',
-                  transition: 'all 0.3s ease',
-                  boxShadow: focusedField === 'name' ? '0 0 20px rgba(255, 255, 255, 0.3)' : 'none'
-                }}
+                className="mc-field"
               />
             </div>
 
             {/* Email Field */}
             <div style={{ position: 'relative' }}>
-              <label style={{
-                display: 'block',
-                color: '#fff',
-                fontSize: '0.9rem',
-                fontWeight: '600',
-                marginBottom: '0.5rem',
-                transition: 'all 0.3s ease',
-                transform: focusedField === 'email' ? 'translateY(-2px)' : 'none'
-              }}>
-                Email
-              </label>
+              <label className="mc-field-label"><b>F02</b> · Email</label>
               <input
                 type="email"
                 name="email"
@@ -162,34 +131,13 @@ export default function ContactSection() {
                 onFocus={() => setFocusedField('email')}
                 onBlur={() => setFocusedField(null)}
                 required
-                style={{
-                  width: '100%',
-                  padding: '1rem',
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  border: `2px solid ${focusedField === 'email' ? '#fff' : 'rgba(255, 255, 255, 0.3)'}`,
-                  borderRadius: '10px',
-                  color: '#fff',
-                  fontSize: '1rem',
-                  outline: 'none',
-                  transition: 'all 0.3s ease',
-                  boxShadow: focusedField === 'email' ? '0 0 20px rgba(255, 255, 255, 0.3)' : 'none'
-                }}
+                className="mc-field"
               />
             </div>
 
             {/* Message Field */}
             <div style={{ position: 'relative' }}>
-              <label style={{
-                display: 'block',
-                color: '#fff',
-                fontSize: '0.9rem',
-                fontWeight: '600',
-                marginBottom: '0.5rem',
-                transition: 'all 0.3s ease',
-                transform: focusedField === 'message' ? 'translateY(-2px)' : 'none'
-              }}>
-                Message
-              </label>
+              <label className="mc-field-label"><b>F03</b> · Message</label>
               <textarea
                 name="message"
                 value={formData.message}
@@ -198,44 +146,14 @@ export default function ContactSection() {
                 onBlur={() => setFocusedField(null)}
                 required
                 rows={6}
-                style={{
-                  width: '100%',
-                  padding: '1rem',
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  border: `2px solid ${focusedField === 'message' ? '#fff' : 'rgba(255, 255, 255, 0.3)'}`,
-                  borderRadius: '10px',
-                  color: '#fff',
-                  fontSize: '1rem',
-                  outline: 'none',
-                  transition: 'all 0.3s ease',
-                  resize: 'vertical',
-                  fontFamily: 'inherit',
-                  boxShadow: focusedField === 'message' ? '0 0 20px rgba(255, 255, 255, 0.3)' : 'none'
-                }}
+                className="mc-field"
+                style={{ resize: 'vertical', fontFamily: 'inherit' }}
               />
             </div>
 
             {/* Submit Button */}
-            <AnimatedBorderButton
-              type="submit"
-              disabled={isSubmitting}
-              borderColor="#000000"
-              style={{
-                padding: '1.25rem 2rem',
-                background: isSubmitting ? 'rgba(255, 255, 255, 0.5)' : 'linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%)',
-                borderRadius: '10px',
-                color: '#000',
-                fontSize: '1.1rem',
-                fontWeight: 'bold',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 0 2px rgba(255, 255, 255, 0.4)',
-                textTransform: 'uppercase',
-                letterSpacing: '1px',
-                opacity: isSubmitting ? 0.7 : 1,
-                width: '100%'
-              }}
-            >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
+            <AnimatedBorderButton type="submit" disabled={isSubmitting} variant="solid" className="mc-lg" index="TX" style={{ width: '100%', justifyContent: 'center' }}>
+              {isSubmitting ? 'Transmitting…' : 'Send message'}
             </AnimatedBorderButton>
           </form>
 
@@ -247,17 +165,8 @@ export default function ContactSection() {
             marginTop: showSuccess ? '1.5rem' : '0',
             opacity: showSuccess ? 1 : 0
           }}>
-            <div style={{
-              background: 'rgba(255, 255, 255, 0.1)',
-              border: '1px solid #ffffff',
-              borderRadius: '10px',
-              padding: '1rem',
-              color: '#70e6ff',
-              fontSize: '1rem',
-              textAlign: 'center',
-              fontWeight: '500'
-            }}>
-              Thank you for reaching out. I&apos;ll be in touch.
+            <div className="inst-tele" style={{ border: '1px solid rgba(255,255,255,0.4)', padding: '0.9rem 1rem', textAlign: 'center' }}>
+              <span className="acc">●</span> ACK · message received — I&apos;ll be in touch.
             </div>
           </div>
         </div>

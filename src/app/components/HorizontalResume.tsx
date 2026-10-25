@@ -270,21 +270,7 @@ export default function HorizontalResume() {
               paddingRight: '2rem',
               borderRight: '4px solid #ffffff'
             }}>
-              <AnimatedBorderButton 
-                borderColor="#000000"
-                style={{
-                  padding: '1rem 2rem',
-                  background: '#ffffff',
-                  color: '#000',
-                  border: 'none',
-                  borderRadius: '10px',
-                  fontSize: '1.1rem',
-                  fontWeight: 'bold',
-                  cursor: 'pointer',
-                  boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)'
-                }}>
-                Browse Projects
-              </AnimatedBorderButton>
+              <AnimatedBorderButton variant="solid" className="mc-lg" index="→">Browse Projects</AnimatedBorderButton>
             </div>
           </div>
         </div>
@@ -414,21 +400,7 @@ export default function HorizontalResume() {
 
         <div style={{ textAlign: 'center', marginTop: '3rem' }}>
   
-              <AnimatedBorderButton 
-                borderColor="#000000"
-                style={{
-                  padding: '1rem 2rem',
-                  background: '#ffffff',
-                  color: '#000',
-                  border: 'none',
-                  borderRadius: '10px',
-                  fontSize: '1.1rem',
-                  fontWeight: 'bold',
-                  cursor: 'pointer',
-                  boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)'
-                }}>
-                Browse more projects
-              </AnimatedBorderButton>
+              <AnimatedBorderButton variant="solid" className="mc-lg" index="→">Browse more projects</AnimatedBorderButton>
         </div>
       </div>
     </Fragment>

@@ -2,61 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import GlitchyVisualizer from './GlitchyVisualizer';
-
-const AnimatedBorderDiv = ({ children, onClick, className, style, onMouseEnter, onMouseLeave, onContextMenu }: any) => {
-  const [isHovered, setIsHovered] = useState(false);
-  
-  return (
-    <button
-      onClick={onClick}
-      className={className}
-      onMouseEnter={(e) => {
-        setIsHovered(true);
-        if (onMouseEnter) onMouseEnter(e);
-      }}
-      onMouseLeave={(e) => {
-        setIsHovered(false);
-        if (onMouseLeave) onMouseLeave(e);
-      }}
-      onContextMenu={onContextMenu}
-      style={{
-        position: 'relative',
-        ...style
-      }}
-    >
-      <div style={{ position: 'relative', zIndex: 1, display: 'inherit', alignItems: 'inherit', gap: 'inherit' }}>
-        {children}
-      </div>
-      <svg
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          pointerEvents: 'none',
-          overflow: 'visible'
-        }}
-      >
-        <rect
-          x="1"
-          y="1"
-          width="calc(100% - 2px)"
-          height="calc(100% - 2px)"
-          rx="10"
-          fill="none"
-          stroke="#ffffff"
-          strokeWidth="1"
-          strokeDasharray={isHovered ? "200 15" : "0"}
-          strokeDashoffset="0"
-          style={{
-            animation: isHovered ? 'borderDash 4s linear infinite' : 'none'
-          }}
-        />
-      </svg>
-    </button>
-  );
-};
+import { AnimatedBorderButton } from './AnimatedBorder';
 
 interface Track {
   title: string;
@@ -178,7 +124,7 @@ export default function AudioPlayer({ expandedFromMenu = false, onClose }: Audio
             background: 'rgba(0, 0, 0, 0.95)',
             backdropFilter: 'blur(10px)',
             border: '1px solid #ffffff',
-            borderRadius: '10px',
+            borderRadius: 0,
             padding: '1rem',
             boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)',
             maxWidth: '400px'
@@ -219,7 +165,7 @@ export default function AudioPlayer({ expandedFromMenu = false, onClose }: Audio
                 padding: '0.75rem',
                 background: 'rgba(255, 255, 255, 0.1)',
                 border: '1px solid #ffffff',
-                borderRadius: '10px',
+                borderRadius: 0,
                 color: '#ffffff',
                 fontSize: '0.9rem',
                 fontWeight: '600',
@@ -241,7 +187,7 @@ export default function AudioPlayer({ expandedFromMenu = false, onClose }: Audio
             <div style={{
               background: 'rgba(255, 255, 255, 0.1)',
               border: '1px solid #ffffff',
-              borderRadius: '10px',
+              borderRadius: 0,
               padding: '0.75rem',
               marginBottom: '1rem'
             }}>
@@ -262,7 +208,7 @@ export default function AudioPlayer({ expandedFromMenu = false, onClose }: Audio
                   padding: '0.75rem',
                   background: 'rgba(255, 255, 255, 0.2)',
                   border: '1px solid #ffffff',
-                  borderRadius: '10px',
+                  borderRadius: 0,
                   color: '#ffffff',
                   fontSize: '1rem',
                   cursor: 'pointer',
@@ -278,7 +224,7 @@ export default function AudioPlayer({ expandedFromMenu = false, onClose }: Audio
                   padding: '0.75rem',
                   background: isPlaying ? '#ffffff' : 'rgba(255, 255, 255, 0.2)',
                   border: '1px solid #ffffff',
-                  borderRadius: '10px',
+                  borderRadius: 0,
                   color: isPlaying ? '#000' : '#ffffff',
                   fontSize: '1rem',
                   fontWeight: 'bold',
@@ -295,7 +241,7 @@ export default function AudioPlayer({ expandedFromMenu = false, onClose }: Audio
                   padding: '0.75rem',
                   background: 'rgba(255, 255, 255, 0.2)',
                   border: '1px solid #ffffff',
-                  borderRadius: '10px',
+                  borderRadius: 0,
                   color: '#ffffff',
                   fontSize: '1rem',
                   cursor: 'pointer',
@@ -314,7 +260,7 @@ export default function AudioPlayer({ expandedFromMenu = false, onClose }: Audio
                   width: '100%',
                   height: '4px',
                   background: 'rgba(255, 255, 255, 0.2)',
-                  borderRadius: '10px',
+                  borderRadius: 0,
                   overflow: 'hidden',
                   cursor: 'pointer'
                 }}>
@@ -353,7 +299,7 @@ export default function AudioPlayer({ expandedFromMenu = false, onClose }: Audio
                   onClick={() => selectTrack(index)}
                   style={{
                     padding: '0.6rem',
-                    borderRadius: '10px',
+                    borderRadius: 0,
                     marginBottom: '0.4rem',
                     background: index === currentTrackIndex ? 'rgba(255, 255, 255, 0.2)' : 'transparent',
                     border: `1px solid ${index === currentTrackIndex ? '#ffffff' : 'transparent'}`,
@@ -383,53 +329,16 @@ export default function AudioPlayer({ expandedFromMenu = false, onClose }: Audio
           </div>
         ) : (
           // Minimized Button with "Produced by me" text - Hidden on mobile
-          <AnimatedBorderDiv
-            onClick={() => setIsExpanded(true)}
-            className="hidden md:flex"
-            style={{
-              background: 'rgba(0, 0, 0, 0.9)',
-              backdropFilter: 'blur(10px)',
-              border: 'none',
-              borderRadius: '10px',
-              padding: '0.75rem 1.25rem',
-              alignItems: 'center',
-              gap: '0.5rem',
-              cursor: 'pointer',
-              boxShadow: '0 0 2px rgba(255, 255, 255, 0.3)',
-              transition: 'box-shadow 0.3s ease'
-            }}
-            onMouseEnter={(e: any) => {
-              e.currentTarget.style.boxShadow = '0 0 2px rgba(255, 255, 255, 0.5)';
-            }}
-            onMouseLeave={(e: any) => {
-              e.currentTarget.style.boxShadow = '0 0 2px rgba(255, 255, 255, 0.3)';
-            }}
-            onContextMenu={(e: any) => {
-              e.preventDefault();
-              setIsExpanded(true);
-            }}
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2">
-              {isPlaying ? (
-                // Pause icon
-                <>
-                  <rect x="6" y="4" width="4" height="16" />
-                  <rect x="14" y="4" width="4" height="16" />
-                </>
-              ) : (
-                // Play icon
-                <polygon points="5 3 19 12 5 21 5 3" fill="#ffffff" />
-              )}
-            </svg>
-            <span style={{
-              color: '#eaeaea',
-              fontSize: '0.85rem',
-              fontWeight: '600',
-              whiteSpace: 'nowrap'
-            }}>
+          <div className="hidden md:block" onContextMenu={(e) => { e.preventDefault(); setIsExpanded(true); }}>
+            <AnimatedBorderButton
+              onClick={() => setIsExpanded(true)}
+              index={isPlaying ? '▶' : 'AUD'}
+              active={isPlaying}
+              aria-label="Open audio player"
+            >
               Music produced by me
-            </span>
-          </AnimatedBorderDiv>
+            </AnimatedBorderButton>
+          </div>
         )}
       </div>
 
