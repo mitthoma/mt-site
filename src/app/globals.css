@@ -496,13 +496,70 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
   transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-/* signal-loss flicker */
-.scene.glitch { animation: signalLoss 0.12s steps(2, end) 1; }
-@keyframes signalLoss {
-  0% { opacity: 1; transform: translateX(0); }
-  50% { opacity: 0.35; transform: translateX(-3px) skewX(-2deg); }
-  100% { opacity: 1; transform: translateX(0); }
+/* ---------- glitch: slice tear + RGB split + band displacement ---------- */
+.scene.glitch {
+  animation: coreTear 0.46s steps(1, end) 1;
+  will-change: transform, clip-path, filter;
 }
+@keyframes coreTear {
+  0%   { transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)); clip-path: inset(0); filter: none; }
+  8%   { transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateX(-10px) skewX(-8deg); clip-path: inset(6% 0 58% 0);
+         filter: drop-shadow(-5px 0 0 rgba(255, 42, 109, 0.95)) drop-shadow(5px 0 0 rgba(5, 217, 232, 0.95)); }
+  16%  { transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateX(8px); clip-path: inset(44% 0 22% 0); filter: none; }
+  24%  { transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateX(-4px) skewX(5deg); clip-path: inset(0 0 72% 0);
+         filter: drop-shadow(4px 0 0 rgba(255, 42, 109, 0.9)) drop-shadow(-4px 0 0 rgba(5, 217, 232, 0.9)); }
+  32%  { transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateX(14px) scaleY(1.02); clip-path: inset(62% 0 4% 0); filter: none; }
+  42%  { transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)); clip-path: inset(0); opacity: 0.25; filter: contrast(1.6); }
+  50%  { transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateX(-16px); clip-path: inset(26% 0 38% 0); opacity: 1;
+         filter: drop-shadow(-6px 0 0 rgba(255, 42, 109, 0.95)) drop-shadow(6px 0 0 rgba(5, 217, 232, 0.95)); }
+  60%  { transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateX(6px) skewX(-4deg); clip-path: inset(0); filter: none; }
+  72%  { transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateX(-3px); clip-path: inset(12% 0 80% 0);
+         filter: drop-shadow(-2px 0 0 rgba(255, 42, 109, 0.8)) drop-shadow(2px 0 0 rgba(5, 217, 232, 0.8)); }
+  84%  { transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateX(2px); clip-path: inset(0); filter: none; }
+  100% { transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)); clip-path: inset(0); filter: none; }
+}
+/* static bars + a sliding tear band across the whole instrument */
+.core-stage.glitch::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent 0 5px, rgba(255, 255, 255, 0.10) 5px 6px);
+  animation: barsJump 0.46s steps(5, end) 1;
+}
+.core-stage.glitch::after {
+  content: '';
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  top: 0;
+  height: 18px;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35) 30%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.35) 70%, transparent);
+  animation: bandSlide 0.46s linear 1;
+}
+@keyframes barsJump {
+  0% { transform: translateY(0); opacity: 0.9; }
+  40% { transform: translateY(-9px); opacity: 0.5; }
+  70% { transform: translateY(6px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0; }
+}
+@keyframes bandSlide {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(300px); }
+}
+/* brackets flash on hit */
+.core-stage.glitch .inst-frame::before,
+.core-stage.glitch .inst-frame::after,
+.core-stage.glitch .inst-frame i::before,
+.core-stage.glitch .inst-frame i::after {
+  border-color: var(--inst-accent);
+}
+.core-stage.glitch .inst-tele { animation: teleFlicker 0.46s steps(2, end) 1; }
+.core-stage.glitch .inst-tele b { color: var(--inst-accent); }
+@keyframes teleFlicker { 50% { opacity: 0.3; } }
 
 .cube {
   width: 100%;
@@ -584,6 +641,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   .cube-container { margin-left: 5vw; }
 }
 @media (max-width: 768px) {
+  @keyframes bandSlide { 100% { transform: translateY(260px); } }
   .cube-container {
     padding-left: 0;
     padding-top: 1rem;
