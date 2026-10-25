@@ -60,17 +60,17 @@ export default function Cube() {
         stageEl?.classList.remove('glitch');
         setCorrupt(false);
         then();
-      }, 470);
+      }, 390);
     };
     const schedule = () => {
       timer = setTimeout(() => {
         if (disposed) return;
         hit(() => {
           if (disposed) return;
-          if (Math.random() < 0.3) timer = setTimeout(() => { if (!disposed) hit(schedule); }, 260);
+          if (Math.random() < 0.3) timer = setTimeout(() => { if (!disposed) hit(schedule); }, 220);
           else schedule();
         });
-      }, 4000 + Math.random() * 5000);
+      }, 5000 + Math.random() * 6000);
     };
     schedule();
 
@@ -91,7 +91,6 @@ export default function Cube() {
   const faces = ['front', 'back', 'right', 'left', 'top', 'bottom'];
   const rx = ((t * 9) % 360).toFixed(1).padStart(5, '0');
   const ry = ((t * 18) % 360).toFixed(1).padStart(5, '0');
-  const hex = () => '0x' + Math.floor(Math.random() * 0xffff).toString(16).toUpperCase().padStart(4, '0');
 
   return (
     <Fragment>
@@ -100,21 +99,23 @@ export default function Cube() {
           <div className="core-stage">
             <div className="core-grid" />
             <div className="inst-frame"><i /></div>
-            <div className="scene" ref={sceneRef}>
-              <div className="cube" id="cube">
-                {faces.map((f) => (
-                  <div key={f} className={`cube-face ${f}`}>
-                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M5,5 L95,5 L95,95 L5,95 Z" fill="#eaeaea" /></svg>
+            <div className="core-rig" ref={sceneRef}>
+              {(['ghost ghost-a', 'ghost ghost-b', 'main'] as const).map((kind) => (
+                <div key={kind} className={`scene ${kind}`} aria-hidden="true">
+                  <div className="cube">
+                    {faces.map((f) => (
+                      <div key={f} className={`cube-face ${f}`} />
+                    ))}
+                    <div className="cube-inner"><i /><i /><i /><i /><i /><i /></div>
                   </div>
-                ))}
-                <div className="cube-inner"><i /><i /><i /><i /><i /><i /></div>
-              </div>
+                </div>
+              ))}
             </div>
             <div className="inst-tele" style={{ position: 'absolute', left: 14, top: 12 }}>
-              {corrupt ? <>CORE <b>{hex()}</b> · <span className="acc">▲</span> SIG_LOST</> : <>CORE <b>01</b> · <span className="acc">●</span> NOMINAL</>}
+              {corrupt ? <>CORE <b>01</b> · <span className="acc">▲</span> RESYNC</> : <>CORE <b>01</b> · <span className="acc">●</span> NOMINAL</>}
             </div>
             <div className="inst-tele" style={{ position: 'absolute', right: 14, bottom: 10, textAlign: 'right' }}>
-              {corrupt ? <>ROT <b>ERR</b> / <b>{hex()}</b></> : <>ROT <b>{rx}</b> / <b>{ry}</b></>}
+              {corrupt ? <>ROT <b>---.-</b> / <b>---.-</b></> : <>ROT <b>{rx}</b> / <b>{ry}</b></>}
             </div>
           </div>
         </div>
