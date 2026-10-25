@@ -19,7 +19,7 @@ const TRACKS = [
   { id: 'BCK', name: 'Backend',   desc: 'Node · TypeScript · Postgres',      lon: 140, lat: 32 },
   { id: 'FRT', name: 'Frontend',  desc: 'React · Next · Vue · Nuxt',         lon: 200, lat: -12 },
   { id: 'INF', name: 'Infra',     desc: 'AWS · Docker · CI/CD · traces',     lon: 260, lat: 40 },
-  { id: 'REG', name: 'Regulated', desc: 'pharma · MLR · audit trails',       lon: 320, lat: -34 },
+  { id: 'REG', name: 'Regulated', desc: 'compliance · review gates · audit', lon: 320, lat: -34 },
 ];
 
 const MERIDIANS = ['m1', 'm2', 'm3', 'm4', 'm5', 'm6'];
