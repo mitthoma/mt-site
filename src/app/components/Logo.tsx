@@ -3,6 +3,7 @@ import { Fragment, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { AnimatedBorderLink } from './AnimatedBorder';
+import StatusReadout from './StatusReadout';
 
 export default function Logo() {
   const [isMounted, setIsMounted] = useState(false);
@@ -29,34 +30,32 @@ export default function Logo() {
       <Link
         href="/"
         onClick={(e) => { if (isHome) { e.preventDefault(); scrollToTop(); } }}
-        aria-label={isHome ? 'Mitchell Thomas — back to top' : 'Mitchell Thomas — home'}
+        aria-label={isHome ? 'Back to top' : 'Home'}
         className="fixed left-[5px] z-[9999] cursor-pointer transition-all duration-300 no-underline"
-        style={{
-          top: '5px',
-        }}
+        style={{ top: '5px' }}
       >
-        <span style={{
-          display: 'block',
-          fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
-          fontWeight: 'bold',
-          color: '#fff',
-          letterSpacing: '-0.05em',
-          lineHeight: '0.9',
-          margin: 0,
-          textTransform: 'uppercase',
-          fontFamily: 'monospace',
-          padding: '1rem',
-          textShadow: '0 0 10px rgba(255, 255, 255, 0.3)'
-        }}>
-          MITCHELL<br/>
-          THOMAS
-        </span>
+        <StatusReadout pathname={pathname} />
       </Link>
       
       {/* Desktop Links - Hidden on Mobile */}
       <div className="hidden md:flex fixed right-4 z-[9999] gap-4" style={{
         top: '2rem'
       }}>
+        <AnimatedBorderLink
+          href="/work"
+          external={false}
+          style={{
+            background: 'rgba(0, 0, 0, 0.9)',
+            backdropFilter: 'blur(10px)',
+            borderRadius: '10px',
+            padding: '0.75rem 1.25rem',
+            color: '#eaeaea',
+            fontSize: '0.85rem',
+            fontWeight: '600'
+          }}
+        >
+          Work
+        </AnimatedBorderLink>
         <AnimatedBorderLink
           href="/blog"
           external={false}
