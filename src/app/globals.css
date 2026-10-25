@@ -989,3 +989,33 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 .mc-scroll i { width: 1px; height: 28px; background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent); animation: scrollPulse 1.8s ease-in-out infinite; }
 @keyframes scrollPulse { 0%, 100% { transform: scaleY(0.4); transform-origin: top; opacity: 0.4; } 50% { transform: scaleY(1); opacity: 1; } }
+
+/* ---- mission log: work + education cards ---- */
+.mc-log {
+  background: rgba(8, 8, 9, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 24px 24px;
+  transition: border-color 0.2s ease;
+}
+.mc-log::before, .mc-log::after {
+  content: ''; position: absolute; width: 10px; height: 10px; pointer-events: none;
+  border-color: var(--inst-term, #00ff66); border-style: solid; opacity: 0.9;
+}
+.mc-log::before { left: -1px; top: -1px; border-width: 1px 0 0 1px; }
+.mc-log::after  { right: -1px; bottom: -1px; border-width: 0 1px 1px 0; }
+.mc-log:hover { border-color: rgba(255, 255, 255, 0.7); }
+.mc-log-year {
+  font-family: var(--inst-mono); font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.28); padding: 0.4rem 0.6rem;
+  background: rgba(0, 0, 0, 0.6);
+}
+.mc-log-year b { color: var(--inst-term, #00ff66); font-weight: 600; }
+.mc-log h3 { font-family: var(--font-tomorrow, inherit); letter-spacing: 0.02em; }
+.mc-log h3 + p { font-family: var(--inst-mono); font-size: 0.78rem !important; letter-spacing: 0.14em; text-transform: uppercase; color: var(--inst-term, #00ff66) !important; }
+.mc-log ul { border-left: 1px solid rgba(255, 255, 255, 0.18); padding-left: 1.1rem; }
+.mc-log ul li::marker { color: var(--inst-term, #00ff66); }
+.mc-log p + div > .mc-chip, .mc-log .mc-chip { margin: 0; }

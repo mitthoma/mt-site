@@ -135,6 +135,7 @@ export default function HorizontalResume() {
                 WORK +<br/>
                 EDUCATION
               </h2>
+              <div className="inst-tele" style={{ marginBottom: '1rem' }}><span className="acc">●</span> LOG · {String(experiences.length).padStart(2, '0')} ENTRIES · CHRONO DESC</div>
               <p style={{ fontSize: '1.2rem', color: '#a0a0a0' }}>
                 Scroll to explore →
               </p>
@@ -144,19 +145,16 @@ export default function HorizontalResume() {
             {experiences.map((exp, index) => (
               <div 
                 key={index}
-                className="resume-card"
+                className="resume-card mc-log"
                 style={{
                   minWidth: '400px',
                   minHeight: '500px',
                   height: 'auto',
-                  background: 'linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)',
-                  border: `2px solid ${exp.color}`,
-                  borderRadius: '10px',
+                  
                   padding: '2rem',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '1.5rem',
-                  boxShadow: `0 0 2px ${exp.color}40`,
                   position: 'relative'
                 }}
               >
@@ -165,14 +163,8 @@ export default function HorizontalResume() {
                   position: 'absolute',
                   top: '1rem',
                   right: '1rem',
-                  background: exp.color,
-                  color: '#000',
-                  padding: '0.5rem 1rem',
-                  borderRadius: '10px',
-                  fontWeight: 'bold',
-                  fontSize: '1.2rem'
-                }}>
-                  {exp.year}
+                  }} className="mc-log-year">
+                  <b>{String(index + 1).padStart(2, '0')}</b> · {exp.year}
                 </div>
 
                 {/* Role */}
@@ -180,7 +172,7 @@ export default function HorizontalResume() {
                   <h3 style={{ 
                     fontSize: '1.4rem', 
                     fontWeight: 'bold', 
-                    color: exp.color,
+                    color: '#fff',
                     marginBottom: '0.5rem'
                   }}>
                     {exp.role}
@@ -213,31 +205,14 @@ export default function HorizontalResume() {
                 {/* Tech Stack */}
                 {exp.tech.length > 0 && (
                   <div>
-                    <p style={{ 
-                      fontSize: '0.9rem', 
-                      color: '#808080',
-                      marginBottom: '0.5rem',
-                      fontWeight: '600'
-                    }}>
-                      Tech Stack:
-                    </p>
+                    <p className="inst-tele" style={{ marginBottom: '0.5rem' }}>STACK</p>
                     <div style={{ 
                       display: 'flex', 
                       flexWrap: 'wrap', 
                       gap: '0.5rem' 
                     }}>
                       {exp.tech.map((tech, i) => (
-                        <span 
-                          key={i}
-                          style={{
-                            padding: '0.4rem 0.8rem',
-                            background: '#1a1a1a',
-                            border: `1px solid ${exp.color}60`,
-                            borderRadius: '10px',
-                            fontSize: '0.85rem',
-                            color: exp.color
-                          }}
-                        >
+                        <span key={i} className="mc-chip mc-chip-sm">
                           {tech}
                         </span>
                       ))}
@@ -253,7 +228,7 @@ export default function HorizontalResume() {
                     top: '50%',
                     width: '4rem',
                     height: '2px',
-                    background: `linear-gradient(90deg, ${exp.color} 0%, ${experiences[index + 1].color} 100%)`
+                    background: 'rgba(255,255,255,0.28)'
                   }} />
                 )}
               </div>
@@ -297,17 +272,15 @@ export default function HorizontalResume() {
           {experiences.map((exp, index) => (
             <div
               key={index}
+              className="mc-log"
               style={{
                 minWidth: '100%',
                 minHeight: '350px',
-                background: 'linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)',
-                border: `2px solid ${exp.color}`,
-                borderRadius: '10px',
+                
                 padding: '1.5rem',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '1rem',
-                boxShadow: `0 0 2px ${exp.color}40`,
                 position: 'relative'
               }}
             >
@@ -316,14 +289,8 @@ export default function HorizontalResume() {
                 position: 'absolute',
                 top: '1rem',
                 right: '1rem',
-                background: exp.color,
-                color: '#000',
-                padding: '0.4rem 0.8rem',
-                borderRadius: '10px',
-                fontWeight: 'bold',
-                fontSize: '0.9rem'
-              }}>
-                {exp.year}
+                }} className="mc-log-year">
+                <b>{String(index + 1).padStart(2, '0')}</b> · {exp.year}
               </div>
 
               {/* Role */}
@@ -331,7 +298,7 @@ export default function HorizontalResume() {
                 <h3 style={{ 
                   fontSize: '1.2rem', 
                   fontWeight: 'bold', 
-                  color: exp.color,
+                  color: '#fff',
                   marginBottom: '0.5rem'
                 }}>
                   {exp.role}
@@ -369,7 +336,7 @@ export default function HorizontalResume() {
                     marginBottom: '0.5rem',
                     fontWeight: '600'
                   }}>
-                    Tech Stack:
+                    STACK
                   </p>
                   <div style={{ 
                     display: 'flex', 
@@ -377,17 +344,7 @@ export default function HorizontalResume() {
                     gap: '0.4rem' 
                   }}>
                     {exp.tech.map((tech, i) => (
-                      <span 
-                        key={i}
-                        style={{
-                          padding: '0.3rem 0.6rem',
-                          background: '#1a1a1a',
-                          border: `1px solid ${exp.color}60`,
-                          borderRadius: '10px',
-                          fontSize: '0.75rem',
-                          color: exp.color
-                        }}
-                      >
+                      <span key={i} className="mc-chip mc-chip-sm">
                         {tech}
                       </span>
                     ))}
