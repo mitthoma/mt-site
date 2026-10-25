@@ -166,6 +166,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   --inst-dim: rgba(255, 255, 255, 0.12);
   --inst-text: #9ca3af;
   --inst-accent: #ffd166;
+  --inst-term: #00ff66;
   --inst-mono: var(--font-tomorrow), ui-monospace, 'Courier New', monospace;
 }
 
@@ -515,8 +516,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .scene.ghost .cube-face::before,
 .scene.ghost .cube-face::after { display: none; }
 .scene.ghost .cube-inner { display: none; }
-.scene.ghost-a { --g: rgba(5, 217, 232, 0.95); }
-.scene.ghost-b { --g: rgba(255, 42, 109, 0.95); }
+.scene.ghost-a { --g: rgba(0, 255, 102, 0.95); }
+.scene.ghost-b { --g: rgba(255, 255, 255, 0.9); }
 
 .core-rig.glitch .scene.ghost { visibility: visible; }
 .core-rig.glitch .scene.ghost-a { animation: sliceA 0.38s steps(1, end) 1 forwards; }
@@ -565,9 +566,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .core-stage.glitch .inst-frame::after,
 .core-stage.glitch .inst-frame i::before,
 .core-stage.glitch .inst-frame i::after {
-  border-color: var(--inst-accent);
+  border-color: var(--inst-term);
 }
-.core-stage.glitch .inst-tele b { color: var(--inst-accent); }
+.core-stage.glitch .inst-tele b,
+.core-stage.glitch .inst-tele .acc { color: var(--inst-term); }
+.core-stage.glitch .core-grid { filter: none; opacity: 1; }
+.core-stage.glitch::after { background: rgba(0, 255, 102, 0.6); }
 
 .cube {
   width: 100%;
