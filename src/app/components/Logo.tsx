@@ -73,6 +73,21 @@ export default function Logo() {
           Blog
         </AnimatedBorderLink>
         <AnimatedBorderLink
+          href="/now"
+          external={false}
+          style={{
+            background: 'rgba(0, 0, 0, 0.9)',
+            backdropFilter: 'blur(10px)',
+            borderRadius: '10px',
+            padding: '0.75rem 1.25rem',
+            color: '#eaeaea',
+            fontSize: '0.85rem',
+            fontWeight: '600'
+          }}
+        >
+          Now
+        </AnimatedBorderLink>
+        <AnimatedBorderLink
           href="https://github.com/mitthoma"
           style={{
             background: 'rgba(0, 0, 0, 0.9)',
