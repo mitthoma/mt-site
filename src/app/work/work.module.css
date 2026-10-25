@@ -1,0 +1,833 @@
+/* /work universes — same fleet language as /blog (shell, prompt, nav), plus
+   mission-specific accent via --accent. Scoped; no globals touched. */
+
+.shell {
+  min-height: 100vh;
+  background: #0a0a0b;
+  color: #e5e7eb;
+  --accent: #ffd166;
+  --mono: var(--font-tomorrow), ui-monospace, 'Courier New', monospace;
+}
+
+.container {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 1rem 6rem;
+}
+
+/* ---------- Boot sequence (hero) ---------- */
+.boot {
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 7rem 0 3rem;
+  position: relative;
+}
+
+.bootTop {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  color: #9ca3af;
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid #374151;
+  border-radius: 999px;
+  color: #e5e7eb;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.codename {
+  margin-top: 1.25rem;
+  font-family: var(--mono);
+  font-size: clamp(3rem, 11vw, 8.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  color: #fff;
+}
+
+.codename span {
+  color: var(--accent);
+}
+
+.tagline {
+  margin-top: 1.5rem;
+  max-width: 42rem;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  line-height: 1.6;
+  color: #d1d5db;
+}
+
+.bootLine {
+  margin-top: 2.25rem;
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  color: #9ca3af;
+  white-space: pre-wrap;
+}
+
+.bootLine b {
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.readout {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  border-top: 1px solid #262626;
+  border-bottom: 1px solid #262626;
+}
+
+.readoutCell {
+  padding: 0.9rem 0.75rem 0.9rem 0;
+  font-family: var(--mono);
+}
+
+.readoutCell small {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  color: #6b7280;
+}
+
+.readoutCell strong {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.projTag {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0 0.35rem;
+  border: 1px solid #374151;
+  border-radius: 4px;
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  color: #9ca3af;
+  vertical-align: middle;
+}
+
+.nav {
+  position: absolute;
+  top: 6.5rem;
+  left: 0;
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.85rem;
+}
+
+.nav a {
+  color: #9ca3af;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+  color: #fff;
+  border-bottom-color: #fff;
+  outline: none;
+}
+
+/* ---------- Sections ---------- */
+.section {
+  margin-top: 5rem;
+  scroll-margin-top: 5rem;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  border-bottom: 3px solid #fff;
+  padding-bottom: 0.5rem;
+}
+
+.sectionIndex {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+
+.sectionTitle {
+  font-family: var(--mono);
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1;
+}
+
+.prose {
+  margin-top: 1.75rem;
+  max-width: 46rem;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #d1d5db;
+}
+
+.prose p + p {
+  margin-top: 1.25rem;
+}
+
+.caption {
+  margin-top: 1rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: #9ca3af;
+  max-width: 46rem;
+}
+
+/* ---------- System map ---------- */
+.map {
+  margin-top: 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0.75rem;
+  position: relative;
+}
+
+.node {
+  grid-column: span 3;
+  padding: 0.9rem 0.9rem 0.8rem;
+  border: 2px solid #fff;
+  background: #000;
+  color: #fff;
+  font-family: var(--mono);
+  text-align: left;
+  cursor: default;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  position: relative;
+}
+
+.node:hover,
+.node:focus-visible,
+.nodeActive {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #000;
+  outline: none;
+}
+
+.nodeLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.nodeId {
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  opacity: 0.7;
+}
+
+.note {
+  margin-top: 1rem;
+  min-height: 3.2rem;
+  padding: 0.9rem 1rem;
+  border: 1px dashed #374151;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #d1d5db;
+}
+
+.note b {
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.edges {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+}
+
+.edges span b {
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+@media (max-width: 720px) {
+  .node {
+    grid-column: span 6;
+  }
+}
+
+/* ---------- Flight data ---------- */
+.tiles {
+  margin-top: 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0.75rem;
+}
+
+.tile {
+  padding: 1.1rem 1rem 1rem;
+  border: 2px solid #fff;
+  background: #000;
+  position: relative;
+}
+
+.tileLabel {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #9ca3af;
+}
+
+.tileValue {
+  margin-top: 0.5rem;
+  font-family: var(--mono);
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: #fff;
+}
+
+.tileValue small {
+  margin-left: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: #9ca3af;
+}
+
+.tileMethod {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+.tileKind {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  padding: 0.1rem 0.35rem;
+  border: 1px solid #374151;
+  color: #9ca3af;
+}
+
+.tileKindMeasured {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---------- Failure modes ---------- */
+.failures {
+  margin-top: 1.75rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.failure {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  border: 1px solid #2a2a2e;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.failure > div {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid #1f1f23;
+  line-height: 1.6;
+}
+
+.failure > div:last-child,
+.failure > div:nth-last-child(2) {
+  border-bottom: none;
+}
+
+.fKey {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  border-right: 1px solid #1f1f23;
+}
+
+.fKeyAccent {
+  color: var(--accent);
+}
+
+.fVal {
+  font-size: 0.95rem;
+  color: #d1d5db;
+}
+
+.fBadge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0 0.35rem;
+  border: 1px solid #374151;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  color: #9ca3af;
+  vertical-align: middle;
+}
+
+@media (max-width: 640px) {
+  .failure {
+    grid-template-columns: 1fr;
+  }
+  .fKey {
+    border-right: none;
+    border-bottom: none !important;
+    padding-bottom: 0.1rem !important;
+  }
+}
+
+/* ---------- Trace ---------- */
+.trace {
+  margin-top: 1.75rem;
+  border: 2px solid #fff;
+  background: #000;
+  font-family: var(--mono);
+}
+
+.traceHead {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid #fff;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: #9ca3af;
+}
+
+.traceHead b {
+  color: #fff;
+  font-weight: 700;
+}
+
+.traceRows {
+  display: grid;
+}
+
+.traceRow {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr 7rem 5rem 5rem 5rem;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid #1f1f23;
+  font-size: 0.78rem;
+  color: #d1d5db;
+  align-items: center;
+}
+
+.traceRow:last-child {
+  border-bottom: none;
+}
+
+.traceRow.header {
+  color: #6b7280;
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.traceT {
+  color: #6b7280;
+}
+
+.traceBar {
+  position: relative;
+}
+
+.traceBar i {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 2px;
+  background: var(--accent);
+  transform: translateY(-50%);
+  opacity: 0.8;
+}
+
+.traceBar span {
+  position: relative;
+  background: #000;
+  padding-right: 0.5rem;
+}
+
+.st_ok {
+  color: #5cff8d;
+}
+.st_gate {
+  color: var(--accent);
+}
+.st_retry {
+  color: #fbbf24;
+}
+.st_fail {
+  color: #ff5f56;
+}
+
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 720px) {
+  .traceRow {
+    grid-template-columns: 1fr 5rem 4rem;
+  }
+  .traceRow > :nth-child(1),
+  .traceRow > :nth-child(4),
+  .traceRow > :nth-child(5) {
+    display: none;
+  }
+}
+
+/* ---------- Build log ---------- */
+.log {
+  margin-top: 1.75rem;
+  list-style: none;
+  padding: 0;
+  display: grid;
+}
+
+.logItem {
+  display: grid;
+  grid-template-columns: 7rem 1.25rem 1fr;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #1f1f23;
+  align-items: baseline;
+}
+
+.logDate {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+}
+
+.logMark {
+  font-family: var(--mono);
+  color: #4b5563;
+}
+
+.logMarkDone {
+  color: var(--accent);
+}
+
+.logTitle {
+  color: #e5e7eb;
+  line-height: 1.5;
+}
+
+.logTitle a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.logNote {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* ---------- Launch pad ---------- */
+.launch {
+  margin-top: 1.75rem;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 0.75rem;
+}
+
+.code {
+  margin: 0;
+  padding: 1rem 1.1rem;
+  border: 2px solid #fff;
+  background: #000;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: #5cff8d;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.launchLinks {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+}
+
+.launchLink {
+  display: block;
+  padding: 0.9rem 1rem;
+  border: 2px solid #fff;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.launchLink:hover,
+.launchLink:focus-visible {
+  background: #fff;
+  color: #000;
+  outline: none;
+}
+
+.launchLinkDisabled {
+  border-style: dashed;
+  border-color: #374151;
+  color: #6b7280;
+  cursor: default;
+}
+
+.launchLinkDisabled:hover {
+  background: #000;
+  color: #6b7280;
+}
+
+@media (max-width: 720px) {
+  .launch {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Media manifest ---------- */
+.media {
+  margin-top: 1.75rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.mediaItem {
+  display: grid;
+  grid-template-columns: 5rem 1fr 6.5rem;
+  gap: 0.75rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #2a2a2e;
+  align-items: baseline;
+}
+
+.mediaKind {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.mediaTitle {
+  color: #e5e7eb;
+}
+
+.mediaSpec {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+.mediaStatus {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: right;
+  color: #9ca3af;
+}
+
+@media (max-width: 640px) {
+  .mediaItem {
+    grid-template-columns: 1fr;
+  }
+  .mediaStatus {
+    text-align: left;
+  }
+}
+
+/* ---------- Footer ---------- */
+.foot {
+  margin-top: 5rem;
+  padding-top: 1rem;
+  border-top: 2px solid #fff;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.foot a {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.7;
+}
+
+.foot a:hover,
+.foot a:focus-visible {
+  opacity: 1;
+  outline: none;
+}
+
+/* ---------- /work index ---------- */
+.indexTitle {
+  margin-top: 1rem;
+  font-family: var(--mono);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.manifest {
+  margin-top: 1rem;
+  padding: 0.5rem 0;
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: #fff;
+}
+
+.missionList {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.missionRow {
+  display: grid;
+  grid-template-columns: 7rem 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.1rem 1rem;
+  border: 2px solid #fff;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+a.missionRow:hover,
+a.missionRow:focus-visible {
+  background: #fff;
+  color: #000;
+  outline: none;
+}
+
+.missionRowPending {
+  border-color: #374151;
+  color: #9ca3af;
+}
+
+.mId {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+}
+
+.mName {
+  font-family: var(--mono);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.mRole {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  opacity: 0.8;
+}
+
+.mStatus {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .missionRow {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+}
+
+/* ---------- Motion ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: reveal 0.6s ease forwards;
+}
+
+@keyframes reveal {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}

@@ -18,7 +18,7 @@ export interface Mission {
   /** build window or ship year, shown in the card corner */
   window: string;
   status: MissionStatus;
-  /** set only when /work/<slug> exists */
+  /** set when /work/<slug> exists (a mission brief may be published before the system is operational) */
   href?: string;
   /** lines typed into the card's mini terminal */
   terminal: string[];
@@ -32,6 +32,7 @@ export const missions: Mission[] = [
     tech: 'TYPESCRIPT / NODE 24 / POSTGRES / CLAUDE API / DOCKER',
     window: 'T-MINUS',
     status: 'in-flight',
+    href: '/work/nightwatch',
     terminal: [
       '$ nightwatch run site-audit --budget 0.50',
       '[plan] 6 steps · tools: git, lighthouse, gh',
