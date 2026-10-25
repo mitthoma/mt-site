@@ -51,9 +51,9 @@ export default function HorizontalResume() {
     {
       year: '2019-Present',
       role: 'Founder & Software Engineer',
-      company: 'Sandstone (formerly Blacsand), LLC',
+      company: 'Timberwright (timberwright.ai)',
       bullets: [
-        'Founded and led a web development firm managing a team of 5 to deliver 25+ full-cycle projects',
+        'Founded Timberwright — your entire tech team as a service: managed care, SEO/AEO, and full-stack engineering for long-term retainer clients; 25+ full-cycle projects',
         'Developed HIPAA-compliant SaaS platform with microservice architecture',
         'Built mobile apps for chiropractic practices driving revenue growth'
       ],

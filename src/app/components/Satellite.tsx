@@ -3,90 +3,83 @@
 import { Fragment, useEffect, useRef } from "react";
 import { useActive } from '../hooks/useActive';
 
+const ORBITS = [
+    { title: 'Agents', desc: 'Orchestration · tool use · gates' },
+    { title: 'Evals', desc: 'Golden sets · judges · CI gates' },
+    { title: 'Backend', desc: 'Node · TypeScript · Postgres' },
+    { title: 'Frontend', desc: 'React · Next · Vue · Nuxt' },
+    { title: 'Infra', desc: 'AWS · Docker · CI/CD · traces' },
+    { title: 'Regulated', desc: 'Pharma · MLR · audit trails' },
+];
+
+/**
+ * THE ARRAY — six interleaved orbits around a glowing core.
+ * Geometry, colors, periods, and the power-on stagger live in CSS
+ * (per-orbit custom properties). JS only builds the DOM and pauses the
+ * animations when the array is offscreen / tab hidden / reduced motion.
+ */
 export default function Satellite() {
     const rootRef = useRef<HTMLUListElement>(null);
     const active = useActive(rootRef);
 
     useEffect(() => {
-        if (!active) return;
-        // Holgraphic Steps
-        const holgraphicSteps = rootRef.current as HTMLElement | null;
-        if (!holgraphicSteps) return;
+        const list = rootRef.current;
+        if (!list) return;
+        list.innerHTML = '';
 
-        const titles = ["Architecture", "Frontend", "Backend", "Database", "DevOps", "Scale"];
-        const descriptions = [
-            "System Design & Patterns",
-            "React · Next.js · TypeScript",
-            "Node.js · Python · APIs",
-            "PostgreSQL · Redis · MongoDB",
-            "Docker · AWS · CI/CD",
-            "Load Balancing · Caching"
-        ];
-
-        for (let i = 1; i <= 6; i++) {
+        ORBITS.forEach((o, idx) => {
             const li = document.createElement('li');
             li.className = 'proxz-nav__orbit';
-            li.dataset.step = i.toString();
+            li.dataset.step = String(idx + 1);
 
             const a = document.createElement('a');
             a.className = 'proxz-nav__satellite';
-            a.href = "#";
+            a.href = '#';
+            a.setAttribute('aria-label', `${o.title}: ${o.desc}`);
             a.addEventListener('click', (e) => e.preventDefault());
 
-            const span = document.createElement('span');
-            span.className = 'proxz-nav__label';
-            span.textContent = titles[i - 1];
-
-            const description = document.createElement('span');
-            description.className = 'proxz-nav__description';
-            description.textContent = descriptions[i - 1];
-
-            span.appendChild(description);
-            a.appendChild(span);
+            const label = document.createElement('span');
+            label.className = 'proxz-nav__label';
+            label.textContent = o.title;
+            const desc = document.createElement('span');
+            desc.className = 'proxz-nav__description';
+            desc.textContent = o.desc;
+            label.appendChild(desc);
+            a.appendChild(label);
             li.appendChild(a);
 
-            li.addEventListener('mouseover', handleMouseOver);
-            li.addEventListener('mouseout', handleMouseOut);
-
-            if (i === 1) {
+            li.addEventListener('mouseover', () => {
+                list.querySelectorAll('.active-step').forEach((el) => el.classList.remove('active-step'));
                 li.classList.add('active-step');
-            }
-
-            holgraphicSteps?.appendChild(li);
-        }
-
-        function handleMouseOver(e: MouseEvent) {
-            document.querySelectorAll('.active-step').forEach(function(activeStep) {
-                activeStep.classList.remove('active-step');
             });
+            li.addEventListener('mouseout', () => {
+                setTimeout(() => {
+                    if (!list.querySelector(':hover')) {
+                        list.querySelectorAll('.active-step').forEach((el) => el.classList.remove('active-step'));
+                        list.querySelector('[data-step="1"]')?.classList.add('active-step');
+                    }
+                }, 200);
+            });
+            if (idx === 0) li.classList.add('active-step');
+            list.appendChild(li);
+        });
 
-            (e.currentTarget as HTMLElement).classList.add('active-step');
-        }
+        const core = document.createElement('li');
+        core.className = 'array-core';
+        core.setAttribute('aria-hidden', 'true');
+        list.appendChild(core);
 
-        function handleMouseOut(e: MouseEvent) {
-            setTimeout(function() {
-                if (!holgraphicSteps?.querySelector('.active-step')) {
-                    holgraphicSteps?.querySelector('[data-step="1"]')?.classList.add('active-step');
-                }
-            }, 200);
-        }
+        return () => { list.innerHTML = ''; };
+    }, []);
 
-        // Cleanup: the orbit is rebuilt on each activation, so clear it.
-        return () => {
-            if (holgraphicSteps) holgraphicSteps.innerHTML = '';
-        };
-    }, [active]);
-
-    // Pause the 12 CSS orbit animations when offscreen / tab hidden / reduced motion.
     useEffect(() => {
-        const el = rootRef.current;
-        if (!el) return;
-        el.style.setProperty('--orbit-play', active ? 'running' : 'paused');
+        const sys = rootRef.current?.closest('.proxz-nav__system') as HTMLElement | null;
+        (sys ?? rootRef.current)?.style.setProperty('--orbit-play', active ? 'running' : 'paused');
     }, [active]);
 
     return (
         <Fragment>
-            <ul id="holgraphicSteps" ref={rootRef} />
+            <ul id="holgraphicSteps" ref={rootRef} aria-label="Areas of practice" />
         </Fragment>
     );
 }
