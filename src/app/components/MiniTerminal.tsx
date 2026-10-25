@@ -1,55 +1,67 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useActive } from '../hooks/useActive';
 
 interface MiniTerminalProps {
   codeLines: string[];
   title?: string;
 }
 
+const CHAR_MS = 20;
+const LINE_PAUSE_MS = 300;
+const EMPTY_LINE_MS = 50;
+const HOLD_MS = 6000;
+
+/**
+ * Types `codeLines` out character by character, then holds and replays.
+ *
+ * Perf notes: a single setTimeout chain drives the whole animation (one timer
+ * live at a time, one state update per tick), and it only runs while the card
+ * is on screen and the tab is visible. The previous version scheduled a timer
+ * per character per card via effect deps, ~50 React renders/s per card for the
+ * life of the page. With reduced motion the full text renders immediately.
+ */
 export default function MiniTerminal({ codeLines, title = "terminal" }: MiniTerminalProps) {
-  const [displayedLines, setDisplayedLines] = useState<string[]>([]);
-  const [currentLineIndex, setCurrentLineIndex] = useState(0);
-  const [currentCharIndex, setCurrentCharIndex] = useState(0);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const active = useActive(rootRef);
+  const [state, setState] = useState<{ line: number; char: number }>({ line: 0, char: 0 });
+  const reduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   useEffect(() => {
-    if (currentLineIndex >= codeLines.length) {
-      // Reset after finishing
-      setTimeout(() => {
-        setDisplayedLines([]);
-        setCurrentLineIndex(0);
-        setCurrentCharIndex(0);
-      }, 2000);
-      return;
-    }
+    if (!active) return;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let line = 0;
+    let char = 0;
 
-    const currentLine = codeLines[currentLineIndex];
+    const tick = () => {
+      if (line >= codeLines.length) {
+        timer = setTimeout(() => { line = 0; char = 0; setState({ line, char }); tick(); }, HOLD_MS);
+        return;
+      }
+      const current = codeLines[line];
+      if (char < current.length) {
+        char += 1;
+        setState({ line, char });
+        timer = setTimeout(tick, CHAR_MS);
+      } else {
+        timer = setTimeout(() => { line += 1; char = 0; setState({ line, char }); tick(); }, current.length === 0 ? EMPTY_LINE_MS : LINE_PAUSE_MS);
+      }
+    };
 
-    if (currentCharIndex < currentLine.length) {
-      // Type out current line character by character
-      const timeout = setTimeout(() => {
-        setDisplayedLines(prev => {
-          const newLines = [...prev];
-          newLines[currentLineIndex] = currentLine.substring(0, currentCharIndex + 1);
-          return newLines;
-        });
-        setCurrentCharIndex(prev => prev + 1);
-      }, 20); // Faster typing speed for mini version
+    setState({ line, char });
+    tick();
+    return () => { if (timer) clearTimeout(timer); };
+  }, [active, codeLines]);
 
-      return () => clearTimeout(timeout);
-    } else {
-      // Move to next line
-      const timeout = setTimeout(() => {
-        setCurrentLineIndex(prev => prev + 1);
-        setCurrentCharIndex(0);
-      }, currentLine.length === 0 ? 50 : 300); // Shorter pause
-
-      return () => clearTimeout(timeout);
-    }
-  }, [currentLineIndex, currentCharIndex, codeLines]);
+  const done = reduced || state.line >= codeLines.length;
+  const lines = done
+    ? codeLines
+    : codeLines.slice(0, state.line + 1).map((l, i) => (i === state.line ? l.slice(0, state.char) : l));
+  const cursorOn = !done && state.char < (codeLines[state.line]?.length ?? 0);
 
   return (
-    <div style={{
+    <div ref={rootRef} style={{
       background: '#0a0a0a',
       border: '1px solid #333',
       borderRadius: '4px',
@@ -80,6 +92,7 @@ export default function MiniTerminal({ codeLines, title = "terminal" }: MiniTerm
 
       {/* Terminal Content */}
       <div
+        aria-live="off"
         style={{
           padding: '0.75rem',
           flex: 1,
@@ -91,10 +104,10 @@ export default function MiniTerminal({ codeLines, title = "terminal" }: MiniTerm
         }}
         className="hide-scrollbar"
       >
-        {displayedLines.map((line, index) => (
-          <div key={index} style={{ marginBottom: '0.1rem' }}>
+        {lines.map((line, index) => (
+          <div key={index} style={{ marginBottom: '0.1rem', minHeight: '1.4em' }}>
             {line || ''}
-            {index === currentLineIndex && currentLineIndex < codeLines.length && currentCharIndex < codeLines[currentLineIndex].length && (
+            {index === state.line && cursorOn && (
               <span style={{
                 display: 'inline-block',
                 width: '6px',

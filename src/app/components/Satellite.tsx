@@ -1,12 +1,17 @@
 "use client";
 
-import { Fragment, useEffect } from "react";
-import anime from 'animejs/lib/anime.es.js';
+import { Fragment, useEffect, useRef } from "react";
+import { useActive } from '../hooks/useActive';
 
 export default function Satellite() {
+    const rootRef = useRef<HTMLUListElement>(null);
+    const active = useActive(rootRef);
+
     useEffect(() => {
+        if (!active) return;
         // Holgraphic Steps
-        const holgraphicSteps = document.getElementById('holgraphicSteps') as HTMLElement;
+        const holgraphicSteps = rootRef.current as HTMLElement | null;
+        if (!holgraphicSteps) return;
 
         const titles = ["Architecture", "Frontend", "Backend", "Database", "DevOps", "Scale"];
         const descriptions = [
@@ -66,30 +71,22 @@ export default function Satellite() {
             }, 200);
         }
 
-        // Rotating Images
-        let currentImageIndex = 0;
-        const images = document.querySelectorAll('.rotating-image') as NodeListOf<HTMLElement>;
-
-        const imageInterval = setInterval(() => {
-
-            if (images[currentImageIndex]) {
-
-            
-            images[currentImageIndex].style.display = 'none'; 
-            currentImageIndex = (currentImageIndex + 1) % images.length; 
-            images[currentImageIndex].style.display = 'block'; 
-            }
-        }, 400); 
-
-        // Cleanup function
+        // Cleanup: the orbit is rebuilt on each activation, so clear it.
         return () => {
-            clearInterval(imageInterval);
+            if (holgraphicSteps) holgraphicSteps.innerHTML = '';
         };
-    }, []);
+    }, [active]);
+
+    // Pause the 12 CSS orbit animations when offscreen / tab hidden / reduced motion.
+    useEffect(() => {
+        const el = rootRef.current;
+        if (!el) return;
+        el.style.setProperty('--orbit-play', active ? 'running' : 'paused');
+    }, [active]);
 
     return (
         <Fragment>
-            <ul id="holgraphicSteps" />
+            <ul id="holgraphicSteps" ref={rootRef} />
         </Fragment>
     );
 }
