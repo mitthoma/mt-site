@@ -42,7 +42,7 @@ export default function AboutSection() {
                     <p className="text-sm md:text-base font-semibold leading-7 text-white" style={{ borderBottom: '2px solid rgba(255, 255, 255, 0.3)', paddingBottom: '0.5rem', display: 'inline-block' }}>Senior Full-Stack &amp; AI Engineer</p>
                     <h2 className="mt-2 text-2xl md:text-3xl font-bold tracking-tight text-white sm:text-4xl">8 Years of Experience</h2>
                     <p className="mt-6 text-base md:text-xl leading-6 md:leading-8 text-gray-300">
-                        I build full-stack products end to end — Node, React/Next, Vue/Nuxt, TypeScript, PostgreSQL — and, for the last year, agent systems and agentic workflows that replace manual processes. Five years shipping inside a compliance-heavy pharma environment taught me to build things that have to be right the first time.
+                        I build full-stack products end to end — Node, React/Next, Vue/Nuxt, TypeScript, PostgreSQL — and, for the last year, agent systems and agentic workflows that replace manual processes. Five years shipping inside compliance-heavy, regulated environments taught me to build things that have to be right the first time.
                     </p>
                     </div>
                 </div>
