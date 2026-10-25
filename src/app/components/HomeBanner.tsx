@@ -6,6 +6,7 @@ import { Fragment } from 'react'
 // import Satellite from './Satellite'
 import Cube from './Cube'
 import GlitchText from './GlitchText'
+import { AnimatedBorderLink } from './AnimatedBorder'
 
 export default function HomeBanner() {
   return (
@@ -44,16 +45,10 @@ export default function HomeBanner() {
             <p className="mt-3 text-base md:text-lg leading-6 md:leading-8 text-gray-400 px-4 md:px-0">
               8 years shipping full-stack products. Now building agent systems that replace real business processes.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-4 px-4 md:px-0">
-              <a href="#work" className="rounded-[10px] border border-white/60 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
-                See the work
-              </a>
-              <a href="https://github.com/mitthoma" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-gray-300 hover:text-white">
-                GitHub <span aria-hidden="true">→</span>
-              </a>
-              <a href="https://linkedin.com/in/mitchellthecoder" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-gray-300 hover:text-white">
-                LinkedIn <span aria-hidden="true">→</span>
-              </a>
+            <div className="mt-8 flex flex-wrap items-center gap-3 px-4 md:px-0">
+              <AnimatedBorderLink href="#work" external={false} variant="solid" className="mc-lg" index="→">See the work</AnimatedBorderLink>
+              <AnimatedBorderLink href="https://github.com/mitthoma" variant="quiet" className="mc-lg">GitHub</AnimatedBorderLink>
+              <AnimatedBorderLink href="https://linkedin.com/in/mitchellthecoder" variant="quiet" className="mc-lg">LinkedIn</AnimatedBorderLink>
             </div>
             <blockquote className="mt-10 text-sm md:text-base leading-6 text-gray-500 px-4 md:px-0">
               <GlitchText trigger="continuous" interval={4500} speed={50}>
@@ -81,45 +76,12 @@ export default function HomeBanner() {
         </div>
 
         {/* Scroll Indicator */}
-        <div style={{
-          position: 'absolute',
-          bottom: '2rem',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '0.5rem',
-          animation: 'bounce 2s infinite'
-        }}>
-          <span style={{ color: '#ffffff', fontSize: '0.9rem', fontWeight: '500' }}>Scroll</span>
-          <svg 
-            width="24" 
-            height="24" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="#ffffff" 
-            strokeWidth="2" 
-            strokeLinecap="round" 
-            strokeLinejoin="round"
-          >
-            <polyline points="7 13 12 18 17 13"></polyline>
-            <polyline points="7 6 12 11 17 6"></polyline>
-          </svg>
+        <div className="mc-scroll" aria-hidden="true">
+          <span>Scroll</span>
+          <i />
         </div>
       </div>
 
-      {/* Keyframe animation for scroll indicator */}
-      <style jsx>{`
-        @keyframes bounce {
-          0%, 100% {
-            transform: translateX(-50%) translateY(0);
-          }
-          50% {
-            transform: translateX(-50%) translateY(10px);
-          }
-        }
-      `}</style>
     </Fragment>
   )
 }
