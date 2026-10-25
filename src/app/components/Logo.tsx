@@ -53,77 +53,14 @@ export default function Logo() {
         </span>
       </Link>
       
-      {/* Desktop Links - Hidden on Mobile */}
-      <div className="hidden md:flex fixed right-4 z-[9999] gap-4" style={{
-        top: '2rem'
-      }}>
-        <AnimatedBorderLink
-          href="/blog"
-          external={false}
-          style={{
-            background: 'rgba(0, 0, 0, 0.9)',
-            backdropFilter: 'blur(10px)',
-            borderRadius: '10px',
-            padding: '0.75rem 1.25rem',
-            color: '#eaeaea',
-            fontSize: '0.85rem',
-            fontWeight: '600'
-          }}
-        >
-          Blog
-        </AnimatedBorderLink>
-        <AnimatedBorderLink
-          href="/now"
-          external={false}
-          style={{
-            background: 'rgba(0, 0, 0, 0.9)',
-            backdropFilter: 'blur(10px)',
-            borderRadius: '10px',
-            padding: '0.75rem 1.25rem',
-            color: '#eaeaea',
-            fontSize: '0.85rem',
-            fontWeight: '600'
-          }}
-        >
-          Now
-        </AnimatedBorderLink>
-        <AnimatedBorderLink
-          href="https://github.com/mitthoma"
-          style={{
-            background: 'rgba(0, 0, 0, 0.9)',
-            backdropFilter: 'blur(10px)',
-            borderRadius: '10px',
-            padding: '0.75rem 1.25rem',
-            color: '#eaeaea',
-            fontSize: '0.85rem',
-            fontWeight: '600'
-          }}
-        >
-          GitHub
-        </AnimatedBorderLink>
-        <AnimatedBorderLink 
-          href="https://linkedin.com/in/mitchellthecoder"
-          style={{
-            background: 'rgba(0, 0, 0, 0.9)',
-            backdropFilter: 'blur(10px)',
-            borderRadius: '10px',
-            padding: '0.75rem 1.25rem',
-            color: '#eaeaea',
-            fontSize: '0.85rem',
-            fontWeight: '600'
-          }}
-        >
-          LinkedIn
-        </AnimatedBorderLink>
-      </div>
-      
-      <style jsx>{`
-        @media (max-width: 768px) {
-          h1 {
-            font-size: 1.25rem !important;
-          }
-        }
-      `}</style>
+      {/* Desktop nav — mission-control controls */}
+      <nav className="hidden md:flex fixed right-4 z-[9999] gap-2" style={{ top: '1.25rem' }} aria-label="Primary">
+        <AnimatedBorderLink href="/work" external={false} index="01" active={pathname.startsWith('/work')}>Work</AnimatedBorderLink>
+        <AnimatedBorderLink href="/blog" external={false} index="02" active={pathname.startsWith('/blog')}>Blog</AnimatedBorderLink>
+        <AnimatedBorderLink href="/now" external={false} index="03" active={pathname.startsWith('/now')}>Now</AnimatedBorderLink>
+        <AnimatedBorderLink href="https://github.com/mitthoma" index="04">GitHub</AnimatedBorderLink>
+        <AnimatedBorderLink href="https://linkedin.com/in/mitchellthecoder" index="05">LinkedIn</AnimatedBorderLink>
+      </nav>
     </Fragment>
   );
 }
