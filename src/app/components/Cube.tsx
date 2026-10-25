@@ -17,6 +17,7 @@ export default function Cube() {
   const sceneRef = useRef<HTMLDivElement>(null);
   const active = useActive(rootRef);
   const [t, setT] = useState(0);
+  const [corrupt, setCorrupt] = useState(false);
 
   useEffect(() => {
     const scene = sceneRef.current;
@@ -44,14 +45,32 @@ export default function Cube() {
     host.addEventListener('pointermove', onMove, { passive: true });
     host.addEventListener('pointerleave', onLeave, { passive: true });
 
+    // Glitch bursts: 460 ms tear every 4–9 s, with a 30% chance of a
+    // second hit 260 ms later. The stage gets the overlays and bracket
+    // flash; the scene gets the tear; the readouts corrupt for the burst.
+    const stageEl = root.querySelector('.core-stage') as HTMLElement | null;
     let timer: ReturnType<typeof setTimeout> | undefined;
     let disposed = false;
+    const hit = (then: () => void) => {
+      scene.classList.add('glitch');
+      stageEl?.classList.add('glitch');
+      setCorrupt(true);
+      timer = setTimeout(() => {
+        scene.classList.remove('glitch');
+        stageEl?.classList.remove('glitch');
+        setCorrupt(false);
+        then();
+      }, 470);
+    };
     const schedule = () => {
       timer = setTimeout(() => {
         if (disposed) return;
-        scene.classList.add('glitch');
-        timer = setTimeout(() => { scene.classList.remove('glitch'); if (!disposed) schedule(); }, 140);
-      }, 3000 + Math.random() * 5000);
+        hit(() => {
+          if (disposed) return;
+          if (Math.random() < 0.3) timer = setTimeout(() => { if (!disposed) hit(schedule); }, 260);
+          else schedule();
+        });
+      }, 4000 + Math.random() * 5000);
     };
     schedule();
 
@@ -63,6 +82,8 @@ export default function Cube() {
       host.removeEventListener('pointermove', onMove);
       host.removeEventListener('pointerleave', onLeave);
       scene.classList.remove('glitch');
+      stageEl?.classList.remove('glitch');
+      setCorrupt(false);
       onLeave();
     };
   }, [active]);
@@ -70,6 +91,7 @@ export default function Cube() {
   const faces = ['front', 'back', 'right', 'left', 'top', 'bottom'];
   const rx = ((t * 9) % 360).toFixed(1).padStart(5, '0');
   const ry = ((t * 18) % 360).toFixed(1).padStart(5, '0');
+  const hex = () => '0x' + Math.floor(Math.random() * 0xffff).toString(16).toUpperCase().padStart(4, '0');
 
   return (
     <Fragment>
@@ -89,10 +111,10 @@ export default function Cube() {
               </div>
             </div>
             <div className="inst-tele" style={{ position: 'absolute', left: 14, top: 12 }}>
-              CORE <b>01</b> · <span className="acc">●</span> NOMINAL
+              {corrupt ? <>CORE <b>{hex()}</b> · <span className="acc">▲</span> SIG_LOST</> : <>CORE <b>01</b> · <span className="acc">●</span> NOMINAL</>}
             </div>
             <div className="inst-tele" style={{ position: 'absolute', right: 14, bottom: 10, textAlign: 'right' }}>
-              ROT <b>{rx}</b> / <b>{ry}</b>
+              {corrupt ? <>ROT <b>ERR</b> / <b>{hex()}</b></> : <>ROT <b>{rx}</b> / <b>{ry}</b></>}
             </div>
           </div>
         </div>
