@@ -87,8 +87,7 @@ export default function ContactSection() {
             fontSize: '3rem',
             fontWeight: 'bold',
             color: '#fff',
-            marginBottom: '1rem',
-            fontFamily: '"BBH Sans Bogle Variable", sans-serif'
+            marginBottom: '1rem'
           }}>
             Get In Touch
           </h2>
