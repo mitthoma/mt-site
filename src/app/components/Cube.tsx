@@ -1,88 +1,67 @@
 "use client";
 
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useRef } from "react";
 import anime from 'animejs/lib/anime.es.js';
+import { useActive } from '../hooks/useActive';
 
 export default function Cube() {
+    const rootRef = useRef<HTMLDivElement>(null);
+    const active = useActive(rootRef);
+
     useEffect(() => {
-        // Cube animation
-        const cube = document.querySelector("#cube") as HTMLElement;
-        const cubeRotation = { x: 0, y: 0, z: 0 };
+        // Runs only while the cube is on screen, the tab is visible, and the
+        // user hasn't asked for reduced motion. Everything started here is torn
+        // down in the cleanup, so scrolling away stops all work.
+        if (!active) return;
+        const cube = rootRef.current?.querySelector('#cube') as HTMLElement | null;
+        if (!cube) return;
         const cubeSides = Array.from(cube.querySelectorAll('.cube-face svg')) as SVGElement[];
+        const timers = new Set<ReturnType<typeof setTimeout>>();
+        let disposed = false;
 
-        const rotateY = [0, 360];
-        const rotateX = [0, 180];
-        const duration = 30000;
-
-        function animateCubeRotation() {
-            anime({
-                targets: cubeRotation,
-                y: {
-                    value: rotateY,
-                    duration: duration,
-                    easing: 'linear',
-                },
-                x: {
-                    value: rotateX,
-                    duration: duration,
-                    easing: 'linear',
-                },
-                update: function() {
-                    cube.style.transform = `rotateX(${cubeRotation.x}deg) rotateY(${cubeRotation.y}deg) rotateZ(${cubeRotation.z}deg)`;
-                },
-                loop: true,
-            });
-        }
-
-        function animateGlitch() {
-            cubeSides.forEach(applyGlitch);
-        }
+        // Rotation is a CSS keyframe (compositor thread, no JS per frame);
+        // only the intermittent face glitch is scripted.
+        cube.style.animationPlayState = 'running';
 
         function applyGlitch(side: SVGElement) {
-            const scaleFactor = 0.9 + Math.random() * 0.2;
-            const tx = -50 + Math.random() * 30;
-            const ty = -10 + Math.random() * 30;
-
+            if (disposed) return;
             anime({
                 targets: side,
-                scaleX: scaleFactor,
-                scaleY: scaleFactor,
-                translateX: tx,
-                translateY: ty,
+                scaleX: 0.9 + Math.random() * 0.2,
+                scaleY: 0.9 + Math.random() * 0.2,
+                translateX: -50 + Math.random() * 30,
+                translateY: -10 + Math.random() * 30,
                 duration: 100,
-                complete: function() {
-                    resetGlitch(side);
-                },
+                complete: () => resetGlitch(side),
             });
         }
 
         function resetGlitch(side: SVGElement) {
+            if (disposed) return;
             anime({
                 targets: side,
-                scaleX: 1,
-                scaleY: 1,
-                translateX: 0,
-                translateY: 0,
+                scaleX: 1, scaleY: 1, translateX: 0, translateY: 0,
                 duration: 100,
-                complete: function() {
-                    setTimeout(function() {
-                        applyGlitch(side);
-                    }, 1000 + Math.random() * 4000);
+                complete: () => {
+                    const t = setTimeout(() => { timers.delete(t); applyGlitch(side); }, 1000 + Math.random() * 4000);
+                    timers.add(t);
                 },
             });
         }
 
-        animateCubeRotation();
-        animateGlitch();
-        // Cleanup function
+        cubeSides.forEach(applyGlitch);
+
         return () => {
-            // clearInterval(imageInterval);
+            disposed = true;
+            cube.style.animationPlayState = 'paused';
+            anime.remove(cubeSides);
+            timers.forEach(clearTimeout);
         };
-    }, []);
+    }, [active]);
 
     return (
         <Fragment>
-            <div className="cube-container">
+            <div className="cube-container" ref={rootRef}>
                 <div className="flex-container">
                     <div className="scene">
                         <div className="cube" id="cube">

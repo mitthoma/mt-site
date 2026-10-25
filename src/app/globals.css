@@ -369,6 +369,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   border: 2px dashed #eaeaea;
   transform: translate(-50%, -50%) rotate(0);
   animation: orbitRotation 40s linear infinite reverse;
+  animation-play-state: var(--orbit-play, running);
 }
 .proxz-nav__orbit:hover {
   cursor: pointer;
@@ -392,6 +393,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   transform: translate(-50%, -50%) rotate(0);
   -webkit-animation: orbitRotation 40s linear infinite;
           animation: orbitRotation 40s linear infinite;
+  animation-play-state: var(--orbit-play, running);
   transform-style: preserve-3d;
   text-decoration: none;
   display: flex;
@@ -410,6 +412,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   transform: rotate(0) rotateX(-90deg);
   opacity: .25;
   animation: satelliteRotation 40s linear infinite reverse;
+  animation-play-state: var(--orbit-play, running);
 }
 .proxz-nav__label {
   opacity: 0;
@@ -421,6 +424,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   transform: rotate(0) rotateX(-90deg);
   transition: opacity .25s ease-in-out;
   animation: satelliteRotation 40s linear infinite reverse;
+  animation-play-state: var(--orbit-play, running);
 }
 .proxz-nav__description {
   display: block;
@@ -475,27 +479,35 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   left: 50%;
   width: 100%;
   height: 100%;
-  z-index: º;
+  z-index: 0;
   transform-origin: 50% 100%;
   transform: translate(-50%, 0) rotateX(-86.8deg);
   background-image: radial-gradient(to top, rgba(0, 0, 0, 0) 30%, rgba(112, 230, 255, 0.1) 60%, rgba(0, 0, 0, 0) 70%);
   opacity: .75;
-  -webkit-animation: lightVibration .07s linear infinite;
-          animation: lightVibration .07s linear infinite;
+  will-change: transform, opacity;
+  -webkit-animation: lightVibration .12s linear infinite;
+          animation: lightVibration .12s linear infinite;
+  animation-play-state: var(--orbit-play, running);
 }
 
+/* Compositor-only: opacity + transform. Animating `height` here forced a full
+   layout every frame, forever (~60 layouts/s at idle) — the main cause of the
+   "page unresponsive" freezes. */
 @-webkit-keyframes lightVibration {
   50% {
     opacity: .25;
-    height: 100vh;
+    transform: translate(-50%, 0) rotateX(-86.8deg) scaleY(1.6);
   }
 }
 
 @keyframes lightVibration {
   50% {
     opacity: .25;
-    height: 100vh;
+    transform: translate(-50%, 0) rotateX(-86.8deg) scaleY(1.6);
   }
+}
+@keyframes cubeSpin {
+  to { transform: rotateX(180deg) rotateY(360deg) rotateZ(0deg); }
 }
 @-webkit-keyframes orbitRotation {
   100% {
@@ -545,6 +557,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
+  animation: cubeSpin 30s linear infinite;
+  animation-play-state: paused;
+  will-change: transform;
 }
 
 .cube-face {
@@ -691,4 +706,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .custom-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.4) rgba(255, 255, 255, 0.1);
+}
+
+/* Respect the OS setting: no decorative motion. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

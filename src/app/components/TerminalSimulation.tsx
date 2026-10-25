@@ -1,134 +1,89 @@
 "use client";
 
-import { useEffect, useRef, useState } from 'react';
-import GlitchText from './GlitchText';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useActive } from '../hooks/useActive';
 
+/**
+ * An agent run log, typed out line by line. Illustrative of how Nightwatch
+ * reports a job — the shape is real, the numbers are placeholders.
+ */
 const CODE_LINES = [
-  "$ ./initiate_breach.sh",
-  "[*] Initializing quantum encryption bypass...",
-  "[+] Establishing secure tunnel to 192.168.0.1",
-  "[+] Connection established",
+  "$ nightwatch run site-audit --budget 0.50 --gate human",
+  "[plan]    6 steps · tools: git, npm, lighthouse, gh",
+  "[budget]  $0.50 · 120k tokens · 15 min",
   "",
-  "$ nmap -sV -T4 192.168.0.0/24",
-  "Starting Nmap scan on 256 hosts...",
-  "Discovered open port 22/tcp on 192.168.0.15",
-  "Discovered open port 443/tcp on 192.168.0.15",
-  "Discovered open port 8080/tcp on 192.168.0.15",
+  "[1/6] git clone mitthoma/mt-site ............ 1.8s",
+  "[2/6] npm ci && npm run build ............... 41.2s",
+  "[3/6] lighthouse / /blog /now ............... perf 97 · a11y 100 · seo 100",
+  "[4/6] audit: headings, alt text, dead links . 0 findings",
+  "[5/6] deps: npm audit --omit=dev ............ 0 vulnerabilities",
+  "[6/6] draft: weekly post from build log ..... 430 words",
   "",
-  "$ ssh root@192.168.0.15",
-  "[*] Attempting SSH brute force...",
-  "[*] Trying: admin/admin... FAILED",
-  "[*] Trying: root/toor... FAILED",
-  "[*] Trying: admin/password123... SUCCESS",
-  "[+] Access granted to mainframe",
+  "[gate]    propose: open PR 'Blog: week-3 post'",
+  "[gate]    irreversible action → parked for human review",
   "",
-  "$ cat /etc/shadow",
-  "root:$6$xyz789$...:18500:0:99999:7:::",
-  "daemon:*:18500:0:99999:7:::",
-  "sys:*:18500:0:99999:7:::",
+  "[trace]   tokens_in 41,882 · tokens_out 3,104",
+  "[trace]   p50 2.1s · p95 6.8s · wall 1m 12s",
+  "[cost]    $0.071 of $0.50",
+  "[eval]    12/12 golden tasks · 0 regressions",
   "",
-  "$ python3 exploit.py --target 192.168.0.15",
-  "[*] Loading exploit modules...",
-  "[+] Buffer overflow detected at 0x7fff5fbff8a0",
-  "[+] Injecting shellcode...",
-  "[+] Privilege escalation successful",
-  "[+] Root access obtained",
-  "",
-  "$ ./decrypt_vault.py",
-  "[*] Analyzing encryption algorithm...",
-  "[*] AES-256 detected",
-  "[*] Running quantum decryption...",
-  "[████████████████████] 100%",
-  "[+] Vault decrypted successfully",
-  "",
-  "$ ls -la /secure/data/",
-  "drwxr-xr-x  5 root  root  4096 Nov 26 12:20 .",
-  "drwxr-xr-x 24 root  root  4096 Nov 26 12:15 ..",
-  "-rw-------  1 root  root  2048 Nov 26 11:30 credentials.db",
-  "-rw-------  1 root  root  8192 Nov 26 11:45 financial_records.enc",
-  "-rw-------  1 root  root  4096 Nov 26 12:00 api_keys.txt",
-  "",
-  "$ cat api_keys.txt",
-  "AWS_ACCESS_KEY=AKIA...XY7Z",
-  "STRIPE_SECRET_KEY=sk_live_...",
-  "GITHUB_TOKEN=ghp_...",
-  "",
-  "$ ./exfiltrate_data.sh",
-  "[*] Compressing files...",
-  "[*] Encrypting payload...",
-  "[*] Uploading to secure server...",
-  "[████████████████████] 100%",
-  "[+] Data exfiltration complete",
-  "",
-  "$ ./clean_logs.sh",
-  "[*] Removing traces...",
-  "[+] /var/log/auth.log cleared",
-  "[+] /var/log/secure cleared",
-  "[+] bash history wiped",
-  "[+] All traces removed",
-  "",
-  "$ exit",
-  "Connection closed.",
+  "[digest]  queued for 06:40 — 1 PR to merge, 0 issues",
+  "$ _",
 ];
 
+const CHAR_MS = 24;
+const LINE_PAUSE_MS = 420;
+const EMPTY_LINE_MS = 120;
+const HOLD_MS = 9000;
+
 export default function TerminalSimulation() {
-  const [displayedLines, setDisplayedLines] = useState<string[]>([]);
-  const [currentLineIndex, setCurrentLineIndex] = useState(0);
-  const [currentCharIndex, setCurrentCharIndex] = useState(0);
-  const [glitchLineIndices, setGlitchLineIndices] = useState<Set<number>>(new Set());
-  const terminalRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const active = useActive(rootRef);
+  const [state, setState] = useState<{ line: number; char: number }>({ line: 0, char: 0 });
+  const reduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // One timer alive at a time; runs only while on screen and the tab is visible.
   useEffect(() => {
-    if (currentLineIndex >= CODE_LINES.length) {
-      // Reset after finishing
-      setTimeout(() => {
-        setDisplayedLines([]);
-        setCurrentLineIndex(0);
-        setCurrentCharIndex(0);
-        setGlitchLineIndices(new Set());
-      }, 3000);
-      return;
-    }
+    if (!active) return;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let line = 0;
+    let char = 0;
+    const tick = () => {
+      if (line >= CODE_LINES.length) {
+        timer = setTimeout(() => { line = 0; char = 0; setState({ line, char }); tick(); }, HOLD_MS);
+        return;
+      }
+      const current = CODE_LINES[line];
+      if (char < current.length) {
+        char += 1;
+        setState({ line, char });
+        timer = setTimeout(tick, CHAR_MS);
+      } else {
+        timer = setTimeout(() => { line += 1; char = 0; setState({ line, char }); tick(); }, current.length === 0 ? EMPTY_LINE_MS : LINE_PAUSE_MS);
+      }
+    };
+    setState({ line, char });
+    tick();
+    return () => { if (timer) clearTimeout(timer); };
+  }, [active]);
 
-    const currentLine = CODE_LINES[currentLineIndex];
+  const done = reduced || state.line >= CODE_LINES.length;
+  const lines = done
+    ? CODE_LINES
+    : CODE_LINES.slice(0, state.line + 1).map((l, i) => (i === state.line ? l.slice(0, state.char) : l));
+  const cursorOn = !done && state.char < (CODE_LINES[state.line]?.length ?? 0);
 
-    if (currentCharIndex < currentLine.length) {
-      // Type out current line character by character
-      const timeout = setTimeout(() => {
-        setDisplayedLines(prev => {
-          const newLines = [...prev];
-          newLines[currentLineIndex] = currentLine.substring(0, currentCharIndex + 1);
-          return newLines;
-        });
-        setCurrentCharIndex(prev => prev + 1);
-      }, 30); // Typing speed
-
-      return () => clearTimeout(timeout);
-    } else {
-      // Move to next line
-      const timeout = setTimeout(() => {
-        // Randomly decide if this line should glitch
-        if (Math.random() < 0.15) { // 15% chance
-          setGlitchLineIndices(prev => new Set(prev).add(currentLineIndex));
-        }
-
-        setCurrentLineIndex(prev => prev + 1);
-        setCurrentCharIndex(0);
-      }, currentLine.length === 0 ? 100 : 500); // Pause at end of line
-
-      return () => clearTimeout(timeout);
-    }
-  }, [currentLineIndex, currentCharIndex]);
-
-  // Auto-scroll to bottom
-  useEffect(() => {
-    if (terminalRef.current) {
-      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
-    }
-  }, [displayedLines]);
+  // Keep the newest line in view. Only when a new line starts (not per
+  // character) — reading scrollHeight forces layout, and the old version did
+  // it on every keystroke for the life of the page.
+  useLayoutEffect(() => {
+    const el = scrollRef.current;
+    if (el && el.scrollHeight - el.clientHeight > 0) el.scrollTop = el.scrollHeight;
+  }, [state.line, done]);
 
   return (
-    <div style={{
+    <div ref={rootRef} style={{
       background: '#0a0a0a',
       border: '2px solid #333',
       borderRadius: '8px',
@@ -151,13 +106,14 @@ export default function TerminalSimulation() {
           <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#27c93f' }} />
         </div>
         <span style={{ color: '#666', fontSize: '0.875rem', marginLeft: '1rem' }}>
-          bash — mitchell@localhost
+          nightwatch — mitchell@localhost
         </span>
       </div>
 
       {/* Terminal Content */}
       <div
-        ref={terminalRef}
+        ref={scrollRef}
+        aria-live="off"
         style={{
           padding: '1.5rem',
           height: '500px',
@@ -169,16 +125,10 @@ export default function TerminalSimulation() {
         }}
         className="hide-scrollbar"
       >
-        {displayedLines.map((line, index) => (
-          <div key={index} style={{ marginBottom: '0.25rem' }}>
-            {line && glitchLineIndices.has(index) && line.length > 0 ? (
-              <GlitchText trigger="continuous" interval={3000} speed={40}>
-                {line}
-              </GlitchText>
-            ) : (
-              line || ''
-            )}
-            {index === currentLineIndex && currentLineIndex < CODE_LINES.length && currentCharIndex < CODE_LINES[currentLineIndex].length && (
+        {lines.map((line, index) => (
+          <div key={index} style={{ marginBottom: '0.25rem', minHeight: '1.6em', whiteSpace: 'pre' }}>
+            {line || ''}
+            {index === state.line && cursorOn && (
               <span style={{
                 display: 'inline-block',
                 width: '8px',
