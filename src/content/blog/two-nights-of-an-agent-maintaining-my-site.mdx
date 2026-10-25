@@ -1,0 +1,32 @@
+---
+title: "Two nights of an agent maintaining my site found things I'd stopped seeing"
+description: "A discontinued runtime, 98 MB of dead assets, and a duplicated element that broke keyboard navigation. None of it was hard to find. It just needed someone to look with a checklist and no attachment to how the site got that way."
+date: "2026-10-26"
+tags: ["agents", "nextjs", "a11y", "workflow"]
+---
+
+I handed my personal site to an agent on Friday. The rules were short: audit, open issues for real problems, at most three PRs a night, nothing merges without me, and never close an issue. Two nights in, here's what it actually found — and the part I didn't expect.
+
+## Night one
+
+The production build had been failing because Vercel was pinned to Node 20, a runtime Vercel discontinued. Not a code bug — a setting I hadn't looked at in a long time. The agent found it, pinned `engines.node` to 24 in the repo, and opened the fix with a CI workflow and an `AGENTS.md` so the next run had rules to follow.
+
+Same night: a build fix with input validation on the contact form, an SEO baseline (sitemap, robots, OG image, Person JSON-LD), and a copy sweep that turned three competing headlines into one `h1`. Four PRs, all merged, production green.
+
+## Night two
+
+`public/` was 115 MB. Thirty-seven megabytes of fonts nothing referenced and five audio tracks nobody played. After the cleanup PR: 17 MB.
+
+It also found that the `AudioPlayer` component was mounted twice — once in the layout, once on the page — so there were two `<audio>` elements and every control appeared twice in the tab order, with the keyboard reaching the hidden one first. A screen-reader user would have hit that on the first Tab. It had been shipping that way, and I hadn't noticed because I don't navigate my own site with a keyboard.
+
+Then it built `/blog`: MDX, listing, RSS, per-post OG images. One real engineering detour: `next-mdx-remote` won't prerender under Next 15 with React 18, because Next externalizes it and it renders against `node_modules/react` instead of the App Router's vendored copy. Compiling with `@mdx-js/mdx` inside the app bundle works. That reason is now a comment in the code, not a Slack message that evaporates.
+
+## The part I didn't expect
+
+The most valuable output wasn't the code. It was the audit. A discontinued runtime, 98 MB of dead assets, a duplicated element that broke keyboard navigation — none of that is hard to find. It just requires someone to look with a checklist and no attachment to how the site got that way. An agent has both.
+
+## The constraint that made it work
+
+Three PRs a night, PR-only, human merges. On night two it hit the cap and parked the fourth item as a written draft instead of opening a sloppy PR. That cap is the feature. Autonomy isn't what makes an agent useful on a codebase you care about; a contract you can audit the next morning is.
+
+Next: the first of my overnight multi-agent systems goes public, with a README that reads as a case study instead of a feature list.
