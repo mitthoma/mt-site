@@ -262,6 +262,23 @@ export default function BrutalistProjects() {
         >
           [BUILD_LOG] → /BLOG
         </Link>
+        <Link
+          href="/fleet"
+          style={{
+            fontFamily: 'monospace',
+            color: '#fff',
+            margin: 0,
+            fontSize: '0.75rem',
+            letterSpacing: '0.1em',
+            opacity: 0.7,
+            textDecoration: 'none',
+            transition: 'opacity 0.3s ease'
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+          onMouseLeave={(e) => e.currentTarget.style.opacity = '0.7'}
+        >
+          [FLEET_DEMO] → /FLEET
+        </Link>
         <a
           href="https://github.com/mitthoma"
           target="_blank"

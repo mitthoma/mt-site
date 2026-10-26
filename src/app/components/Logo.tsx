@@ -41,10 +41,11 @@ export default function Logo() {
       {/* Desktop nav — mission-control controls */}
       <nav className="hidden md:flex fixed right-4 z-[9999] gap-2" style={{ top: '1.25rem' }} aria-label="Primary">
         <AnimatedBorderLink href="/work" external={false} index="01" active={pathname.startsWith('/work')}>Work</AnimatedBorderLink>
-        <AnimatedBorderLink href="/blog" external={false} index="02" active={pathname.startsWith('/blog')}>Blog</AnimatedBorderLink>
-        <AnimatedBorderLink href="/now" external={false} index="03" active={pathname.startsWith('/now')}>Now</AnimatedBorderLink>
-        <AnimatedBorderLink href="https://github.com/mitthoma" index="04">GitHub</AnimatedBorderLink>
-        <AnimatedBorderLink href="https://linkedin.com/in/mitchellthecoder" index="05">LinkedIn</AnimatedBorderLink>
+        <AnimatedBorderLink href="/fleet" external={false} index="02" active={pathname.startsWith('/fleet')}>Fleet</AnimatedBorderLink>
+        <AnimatedBorderLink href="/blog" external={false} index="03" active={pathname.startsWith('/blog')}>Blog</AnimatedBorderLink>
+        <AnimatedBorderLink href="/now" external={false} index="04" active={pathname.startsWith('/now')}>Now</AnimatedBorderLink>
+        <AnimatedBorderLink href="https://github.com/mitthoma" index="05">GitHub</AnimatedBorderLink>
+        <AnimatedBorderLink href="https://linkedin.com/in/mitchellthecoder" index="06">LinkedIn</AnimatedBorderLink>
       </nav>
     </Fragment>
   );

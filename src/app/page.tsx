@@ -56,11 +56,12 @@ export default function Home() {
         <div className="md:hidden mc-overlay" role="dialog" aria-label="Menu">
           <p className="mc-hd">mitchell@localhost:~$ ls ./nav</p>
           <AnimatedBorderLink href="/work" external={false} index="01">Work</AnimatedBorderLink>
-          <AnimatedBorderLink href="/blog" external={false} index="02">Blog</AnimatedBorderLink>
-          <AnimatedBorderLink href="/now" external={false} index="03">Now</AnimatedBorderLink>
-          <AnimatedBorderLink href="https://github.com/mitthoma" index="04">GitHub</AnimatedBorderLink>
-          <AnimatedBorderLink href="https://linkedin.com/in/mitchellthecoder" index="05">LinkedIn</AnimatedBorderLink>
-          <AnimatedBorderButton onClick={handleMusicClick} index="06">Music produced by me</AnimatedBorderButton>
+          <AnimatedBorderLink href="/fleet" external={false} index="02">Fleet</AnimatedBorderLink>
+          <AnimatedBorderLink href="/blog" external={false} index="03">Blog</AnimatedBorderLink>
+          <AnimatedBorderLink href="/now" external={false} index="04">Now</AnimatedBorderLink>
+          <AnimatedBorderLink href="https://github.com/mitthoma" index="05">GitHub</AnimatedBorderLink>
+          <AnimatedBorderLink href="https://linkedin.com/in/mitchellthecoder" index="06">LinkedIn</AnimatedBorderLink>
+          <AnimatedBorderButton onClick={handleMusicClick} index="07">Music produced by me</AnimatedBorderButton>
         </div>
       )}
 
