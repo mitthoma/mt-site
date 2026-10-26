@@ -18,9 +18,9 @@ export const nightwatch: Universe = {
   updated: '2026-10-25',
   boot: 'nightwatch run site-audit --budget 0.50 --gate human',
   problem: [
-    'Most "AI automation" is a chat window someone has to sit in front of. The work I actually want done — audit a codebase, sweep a job board, draft the week\'s post, keep a resume current — is repetitive, multi-step, and happens best while nobody is watching. It also touches things that must not be done by accident: pushing to main, sending a message, spending money.',
+    'Most "AI automation" is a chat window someone has to sit in front of. The work I actually want done — audit a codebase, triage a backlog, draft the week\'s post, reconcile a client\'s data — is repetitive, multi-step, and happens best while nobody is watching. It also touches things that must not be done by accident: pushing to main, sending a message, spending money.',
     'The hard part isn\'t getting a model to do a task. It\'s running fifty of them a night without knowing what they cost, what they touched, where they failed, or whether last Tuesday\'s change made them worse. Without traces and evals an agent fleet is a pile of logs and a credit-card bill.',
-    'Nightwatch is the runtime I wanted: declare a job, set a budget, say which tools it may use and which actions need a human, and get a morning digest with every trace, every dollar, and a pass/fail against a golden set. It runs this site. It runs my job search. Then it gets open-sourced.',
+    'Nightwatch is the runtime I wanted: declare a job, set a budget, say which tools it may use and which actions need a human, and get a morning digest with every trace, every dollar, and a pass/fail against a golden set. It runs this site and the recurring work at my studio. Then it gets open-sourced.',
   ],
   system: {
     caption:
@@ -53,7 +53,7 @@ export const nightwatch: Universe = {
     { label: 'p95 run time', value: '< 3', unit: 'min', method: 'Wall clock from enqueue to digest-ready, 95th percentile over 7 days.', measured: false },
     { label: 'Tool-call success', value: '> 98', unit: '%', method: 'Tool calls that return without error on first attempt, excluding gated actions.', measured: false },
     { label: 'Eval pass rate', value: '100', unit: '% of golden', method: 'Golden tasks passing judge + assertions on the current build. Gate: no regression > 2%.', measured: false },
-    { label: 'Hours replaced', value: '~6', unit: 'hrs / week', method: 'Self-reported time previously spent on the jobs Nightwatch now runs (site audit, job sweep, post draft).', measured: false },
+    { label: 'Hours replaced', value: '~6', unit: 'hrs / week', method: 'Self-reported time previously spent on the jobs Nightwatch now runs (site audit, backlog triage, post draft).', measured: false },
     { label: 'Unattended actions', value: '0', unit: 'irreversible', method: 'Count of irreversible actions executed without a human approval. Must stay zero.', measured: false },
   ],
   failureModes: [

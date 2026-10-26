@@ -27,6 +27,7 @@ export default function Logo() {
 
   return (
     <Fragment>
+      <div className="md:hidden mc-topbar" aria-hidden="true" />
       <Link
         href="/"
         onClick={(e) => { if (isHome) { e.preventDefault(); scrollToTop(); } }}

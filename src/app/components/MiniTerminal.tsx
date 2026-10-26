@@ -63,8 +63,8 @@ export default function MiniTerminal({ codeLines, title = "terminal" }: MiniTerm
   return (
     <div ref={rootRef} style={{
       background: '#0a0a0a',
-      border: '1px solid #333',
-      borderRadius: '4px',
+      border: '1px solid rgba(255,255,255,0.28)',
+      borderRadius: 0,
       overflow: 'hidden',
       fontFamily: 'monospace',
       height: '100%',
@@ -73,19 +73,15 @@ export default function MiniTerminal({ codeLines, title = "terminal" }: MiniTerm
     }}>
       {/* Terminal Header */}
       <div style={{
-        background: '#1a1a1a',
+        background: 'rgba(255,255,255,0.04)',
         padding: '0.4rem 0.6rem',
-        borderBottom: '1px solid #333',
+        borderBottom: '1px solid rgba(255,255,255,0.18)',
         display: 'flex',
         alignItems: 'center',
         gap: '0.3rem'
       }}>
-        <div style={{ display: 'flex', gap: '0.3rem' }}>
-          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ff5f56' }} />
-          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ffbd2e' }} />
-          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#27c93f' }} />
-        </div>
-        <span style={{ color: '#666', fontSize: '0.65rem', marginLeft: '0.5rem' }}>
+        <i className="mc-led" style={{ background: '#00ff66', boxShadow: '0 0 6px #00ff66' }} aria-hidden="true" />
+        <span className="inst-tele" style={{ marginLeft: '0.4rem' }}>
           {title}
         </span>
       </div>
@@ -105,7 +101,7 @@ export default function MiniTerminal({ codeLines, title = "terminal" }: MiniTerm
         className="hide-scrollbar"
       >
         {lines.map((line, index) => (
-          <div key={index} style={{ marginBottom: '0.1rem', minHeight: '1.4em' }}>
+          <div key={index} style={{ marginBottom: '0.1rem', minHeight: '1.4em', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>
             {line || ''}
             {index === state.line && cursorOn && (
               <span style={{

@@ -1019,3 +1019,18 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .mc-log ul { border-left: 1px solid rgba(255, 255, 255, 0.18); padding-left: 1.1rem; }
 .mc-log ul li::marker { color: var(--inst-term, #00ff66); }
 .mc-log p + div > .mc-chip, .mc-log .mc-chip { margin: 0; }
+
+/* ---- mobile top bar backdrop behind the status readout + burger ---- */
+.mc-topbar {
+  position: fixed; top: 0; left: 0; right: 0; height: 64px; z-index: 9990;
+  background: rgba(5, 5, 6, 0.86);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+}
+/* terminals: shorter on phones */
+@media (max-width: 767px) {
+  .mission-term { --term-h: 190px; height: var(--term-h) !important; }
+  .horizontal-resume-wrapper + div .mc-log { min-height: 0; }
+}

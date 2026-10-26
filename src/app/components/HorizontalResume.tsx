@@ -275,7 +275,6 @@ export default function HorizontalResume() {
               className="mc-log"
               style={{
                 minWidth: '100%',
-                minHeight: '350px',
                 
                 padding: '1.5rem',
                 display: 'flex',
