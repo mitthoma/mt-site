@@ -3,6 +3,11 @@ import { Resend } from 'resend';
 
 const MAX = { name: 100, email: 254, message: 5000 } as const;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// Bot protection (issue #7). The form sends a honeypot field (`company`) that
+// people never see and the time it has been open. Nobody types a name, an
+// email, and a message in under three seconds.
+const MIN_FORM_MS = 3000;
+const REJECTED = { error: 'Name, a valid email, and a message are required' } as const;
 
 function escapeHtml(s: string) {
   return s
@@ -35,14 +40,24 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
   }
 
-  const { name, email, message } = (body ?? {}) as Record<string, unknown>;
+  const { name, email, message, company, elapsedMs } = (body ?? {}) as Record<string, unknown>;
+
+  // Honeypot filled, or submitted faster than a person could — same generic
+  // 400 as a validation failure so there is nothing to learn from the response.
+  if (
+    (typeof company === 'string' && company.trim() !== '') ||
+    typeof elapsedMs !== 'number' || !Number.isFinite(elapsedMs) || elapsedMs < MIN_FORM_MS
+  ) {
+    return NextResponse.json(REJECTED, { status: 400 });
+  }
+
   if (
     typeof name !== 'string' || typeof email !== 'string' || typeof message !== 'string' ||
     !name.trim() || !email.trim() || !message.trim() ||
     name.length > MAX.name || email.length > MAX.email || message.length > MAX.message ||
     !EMAIL_RE.test(email)
   ) {
-    return NextResponse.json({ error: 'Name, a valid email, and a message are required' }, { status: 400 });
+    return NextResponse.json(REJECTED, { status: 400 });
   }
 
   const safeName = escapeHtml(name.trim());
