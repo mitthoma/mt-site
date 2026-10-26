@@ -78,7 +78,7 @@ export default function BrutalistProjects() {
         maxWidth: '1400px',
         margin: '0 auto',
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 380px), 1fr))',
         gap: '2rem'
       }}>
         {missions.map((m, index) => {
@@ -141,8 +141,9 @@ export default function BrutalistProjects() {
               </div>
 
               {/* Media - Mini Terminal */}
-              <div style={{
-                height: '280px',
+              <div className="mission-term" style={{
+                height: '210px',
+                ['--term-h' as string]: '210px',
                 background: '#000',
                 position: 'relative'
               }}>

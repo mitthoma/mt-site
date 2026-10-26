@@ -85,29 +85,26 @@ export default function TerminalSimulation() {
   return (
     <div ref={rootRef} style={{
       background: '#0a0a0a',
-      border: '2px solid #333',
-      borderRadius: '8px',
+      border: '1px solid rgba(255,255,255,0.28)',
+      borderRadius: 0,
       overflow: 'hidden',
       fontFamily: 'monospace',
-      boxShadow: '0 0 20px rgba(0, 255, 0, 0.1)'
+      position: 'relative'
     }}>
       {/* Terminal Header */}
       <div style={{
-        background: '#1a1a1a',
-        padding: '0.75rem 1rem',
-        borderBottom: '1px solid #333',
+        background: 'rgba(255,255,255,0.04)',
+        padding: '0.6rem 0.9rem',
+        borderBottom: '1px solid rgba(255,255,255,0.18)',
         display: 'flex',
         alignItems: 'center',
         gap: '0.5rem'
       }}>
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
-          <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ff5f56' }} />
-          <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#ffbd2e' }} />
-          <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#27c93f' }} />
-        </div>
-        <span style={{ color: '#666', fontSize: '0.875rem', marginLeft: '1rem' }}>
-          nightwatch — mitchell@localhost
+        <i className="mc-led" style={{ background: '#00ff66', boxShadow: '0 0 6px #00ff66' }} aria-hidden="true" />
+        <span className="inst-tele" style={{ marginLeft: '0.5rem' }}>
+          TTY <b>01</b> · nightwatch — mitchell@localhost
         </span>
+        <span className="inst-tele" style={{ marginLeft: 'auto' }}><span className="acc">●</span> LIVE</span>
       </div>
 
       {/* Terminal Content */}
@@ -116,17 +113,17 @@ export default function TerminalSimulation() {
         aria-live="off"
         style={{
           padding: '1.5rem',
-          height: '500px',
+          height: 'var(--term-h, 500px)',
           overflowY: 'auto',
           color: '#00ff00',
           fontSize: '0.875rem',
           lineHeight: '1.6',
           fontFamily: 'Courier New, monospace'
         }}
-        className="hide-scrollbar"
+        className="hide-scrollbar mission-term"
       >
         {lines.map((line, index) => (
-          <div key={index} style={{ marginBottom: '0.25rem', minHeight: '1.6em', whiteSpace: 'pre' }}>
+          <div key={index} style={{ marginBottom: '0.25rem', minHeight: '1.6em', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>
             {line || ''}
             {index === state.line && cursorOn && (
               <span style={{

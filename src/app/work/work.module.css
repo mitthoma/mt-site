@@ -82,6 +82,8 @@
   font-size: 0.95rem;
   color: #9ca3af;
   white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-width: 100%;
 }
 
 .bootLine b {
