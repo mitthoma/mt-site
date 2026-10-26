@@ -4,8 +4,8 @@ This is the source for [mitchell-codes.com](https://mitchell-codes.com), Mitchel
 
 ## Stack
 
-- Next.js 14 (App Router), React 18, TypeScript
-- Tailwind + a few `styled-components`; custom motion with `animejs` and `lenis`
+- Next.js 15 (App Router), React 18, TypeScript
+- Tailwind + CSS modules, a few `styled-components` / `styled-jsx` blocks; custom motion with `animejs` and `lenis`; mission-control design tokens and `.mc-*` controls in `src/app/globals.css`
 - Contact form → `src/app/api/contact/route.ts` → Resend (`RESEND_API_KEY`)
 - Node 24 (`engines.node`, `.nvmrc`); deploys on Vercel from `main`
 
@@ -45,15 +45,16 @@ Positioning line used everywhere: **Senior Full-Stack & AI Engineer — agentic 
 - Commits end with a `Co-Authored-By: Claude …` trailer.
 - GitHub access from agent sessions is REST-only: use `gh api repos/mitthoma/mt-site/...` (not `gh pr list`, which needs GraphQL).
 
-## Content model (being added)
+## Content model
 
-- `/blog` — MDX posts in `src/content/blog/`, with listing, RSS, and OG images. Weekly technical posts publish here first.
-- `/work/<slug>` — one case-study page per shipped project: problem, architecture, failure modes, numbers, repo link.
-- `/now` — one paragraph, updated weekly: building, learning, looking for.
+- `/blog` — MDX posts in `src/content/blog/`, with listing, RSS (`/blog/rss.xml`), and OG images. Weekly technical posts publish here first.
+- `/work` + `/work/<slug>` — one mission brief / case-study page per showcase project, from `src/content/work/<slug>.ts` (registered in `src/content/work/index.ts`; sitemap and OG image follow the registry). Numbers render TARGET until `measured: true`; a page is `operational` only when the system runs.
+- Selected Work on `/` and the `/work` manifest come from `src/content/missions.ts`; a mission gets `href` when its brief exists.
+- `/now` — one paragraph in `src/content/now.mdx`, updated weekly; mirrored to the GitHub profile README.
+- `/fleet` — interactive demo of the six systems on one client problem (`src/content/fleet.ts`).
 
 ## Known debt (tracked as issues)
 
-- Dependency vulnerabilities on Next 14.2.5; upgrade path to 14.2.x latest → 15.
-- `public/fonts` (37 MB) is unreferenced and includes trial/personal-use licensed files; `public/audio` ships 9 tracks, 4 are used.
-- Contact route has no rate limiting or bot protection.
-- Hero has no `<h1>`; metadata lacks OG/Twitter/canonical/sitemap/robots/structured data.
+- Dev-only dependency housekeeping: `eslint` 8 → 9 (`next lint` is deprecated in Next 16), `@types/node` 20 → 24, transitive advisories cleared by `npm audit fix` (lockfile-only). Prod audit is clean on Next 15.5.28.
+- Contact route: honeypot + time-on-form in PR #25 (issue #7); no per-IP rate limiting yet.
+- `next build` / `next lint` rewrite `tsconfig.json` (adds `"target": "ES2017"`) — revert before committing.
