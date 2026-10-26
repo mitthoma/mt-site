@@ -78,6 +78,8 @@ export interface Universe {
   tagline: string; // one-line role
   accent: string; // hex
   status: MissionStatus;
+  /** primary language, for structured data (default TypeScript) */
+  language?: string;
   repo: string | null;
   demo: string | null;
   updated: string; // YYYY-MM-DD
@@ -89,6 +91,14 @@ export interface Universe {
   failureModes: FailureMode[];
   trace: { title: string; note: string; steps: TraceStep[] };
   buildLog: BuildLogEntry[];
-  launch: { compose: string; readme: string | null; tourNote: string };
+  launch: {
+    compose: string;
+    readme: string | null;
+    tourNote: string;
+    /** labels for the disabled launch links while the brief is in flight */
+    sourceNote?: string;
+    demoNote?: string;
+    readmeNote?: string;
+  };
   media: MediaItem[];
 }
