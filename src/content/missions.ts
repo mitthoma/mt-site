@@ -53,6 +53,7 @@ export const missions: Mission[] = [
     tech: 'PYTHON 3.12 / TYPER / PYDANTIC / GITHUB ACTIONS',
     window: 'T-MINUS',
     status: 'pending',
+    href: '/work/verdict',
     terminal: [
       '$ verdict run agent.yaml --tasks golden/',
       'running 48 tasks ............ 00:51',

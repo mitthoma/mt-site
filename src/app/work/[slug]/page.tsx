@@ -93,7 +93,7 @@ export default async function UniversePage({ params }: { params: Promise<Params>
     description: u.tagline,
     url: universeUrl(u.slug),
     codeRepository: u.repo ?? undefined,
-    programmingLanguage: 'TypeScript',
+    programmingLanguage: u.language ?? 'TypeScript',
     dateModified: u.updated,
     author: { '@type': 'Person', name: 'Mitchell Thomas', url: SITE_URL },
   };
@@ -188,7 +188,7 @@ export default async function UniversePage({ params }: { params: Promise<Params>
             <h2 className={styles.sectionTitle}>Failure modes</h2>
           </div>
           <p className={styles.caption}>
-            What goes wrong with agent fleets, what Nightwatch does about it, and the eval that proves the fix holds. ANTICIPATED entries are designed-for; OBSERVED entries happened in a real run.
+            What goes wrong with systems like this, what {u.codename} does about it, and the eval that proves the fix holds. ANTICIPATED entries are designed-for; OBSERVED entries happened in a real run.
           </p>
           <div className={styles.failures}>
             {u.failureModes.map((f, i) => (
@@ -278,21 +278,21 @@ export default async function UniversePage({ params }: { params: Promise<Params>
                   [SOURCE] → {u.repo.replace('https://', '')}
                 </a>
               ) : (
-                <span className={`${styles.launchLink} ${styles.launchLinkDisabled}`}>[SOURCE] → repo goes public at W1</span>
+                <span className={`${styles.launchLink} ${styles.launchLinkDisabled}`}>[SOURCE] → {u.launch.sourceNote ?? 'repo goes public at W1'}</span>
               )}
               {u.demo ? (
                 <a className={styles.launchLink} href={u.demo} target="_blank" rel="noopener noreferrer">
                   [DEMO] → 90s walkthrough
                 </a>
               ) : (
-                <span className={`${styles.launchLink} ${styles.launchLinkDisabled}`}>[DEMO] → recorded at W4</span>
+                <span className={`${styles.launchLink} ${styles.launchLinkDisabled}`}>[DEMO] → {u.launch.demoNote ?? 'recorded at W4'}</span>
               )}
               {u.launch.readme ? (
                 <a className={styles.launchLink} href={u.launch.readme} target="_blank" rel="noopener noreferrer">
                   [README] → code tour
                 </a>
               ) : (
-                <span className={`${styles.launchLink} ${styles.launchLinkDisabled}`}>[README] → case study, W4</span>
+                <span className={`${styles.launchLink} ${styles.launchLinkDisabled}`}>[README] → {u.launch.readmeNote ?? 'case study, W4'}</span>
               )}
             </div>
           </div>
