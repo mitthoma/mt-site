@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatedBorderButton } from './AnimatedBorder';
 import TerminalSimulation from './TerminalSimulation';
 
@@ -13,6 +13,14 @@ export default function ContactSection() {
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  // Bot protection (issue #7): a honeypot field real users never see, and the
+  // time the form has been open. The API rejects a filled honeypot or a
+  // submit faster than a human could type.
+  const [honeypot, setHoneypot] = useState('');
+  const openedAt = useRef<number>(0);
+  useEffect(() => {
+    openedAt.current = Date.now();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,7 +32,11 @@ export default function ContactSection() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          company: honeypot,
+          elapsedMs: openedAt.current ? Date.now() - openedAt.current : 0,
+        }),
       });
 
       if (response.ok) {
@@ -105,11 +117,26 @@ export default function ContactSection() {
             flexDirection: 'column',
             gap: '1.5rem'
           }}>
-            {/* Name Field */}
-            <div style={{ position: 'relative' }}>
-              <label className="mc-field-label"><b>F01</b> · Name</label>
+            {/* Honeypot — hidden from people (and screen readers); bots fill it */}
+            <div className="sr-only" aria-hidden="true">
+              <label htmlFor="contact-company">Company</label>
               <input
                 type="text"
+                id="contact-company"
+                name="company"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
+
+            {/* Name Field */}
+            <div style={{ position: 'relative' }}>
+              <label className="mc-field-label" htmlFor="contact-name"><b>F01</b> · Name</label>
+              <input
+                type="text"
+                id="contact-name"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
@@ -122,9 +149,10 @@ export default function ContactSection() {
 
             {/* Email Field */}
             <div style={{ position: 'relative' }}>
-              <label className="mc-field-label"><b>F02</b> · Email</label>
+              <label className="mc-field-label" htmlFor="contact-email"><b>F02</b> · Email</label>
               <input
                 type="email"
+                id="contact-email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
@@ -137,8 +165,9 @@ export default function ContactSection() {
 
             {/* Message Field */}
             <div style={{ position: 'relative' }}>
-              <label className="mc-field-label"><b>F03</b> · Message</label>
+              <label className="mc-field-label" htmlFor="contact-message"><b>F03</b> · Message</label>
               <textarea
+                id="contact-message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
