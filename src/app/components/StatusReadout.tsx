@@ -42,8 +42,11 @@ export default function StatusReadout({ pathname }: { pathname: string }) {
         whiteSpace: 'nowrap',
       }}
     >
-      <span style={{ display: 'block', color: '#fff' }}>
-        mitchell@localhost:<span style={{ color: '#ffd166' }}>{cwd}</span>$
+      {/* prompt line: the path truncates with an ellipsis so long slugs never run under the burger */}
+      <span style={{ display: 'flex', color: '#fff', minWidth: 0 }}>
+        <span style={{ flex: '0 0 auto' }}>mitchell@localhost:</span>
+        <span style={{ color: '#ffd166', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis' }}>{cwd}</span>
+        <span style={{ flex: '0 0 auto' }}>$</span>
       </span>
       <span style={{ display: 'block' }}>
         NSH <span style={{ color: '#fff' }}>{now || '--:--'}</span>

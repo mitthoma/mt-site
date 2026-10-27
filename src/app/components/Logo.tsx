@@ -33,7 +33,7 @@ export default function Logo() {
         onClick={(e) => { if (isHome) { e.preventDefault(); scrollToTop(); } }}
         aria-label={isHome ? 'Back to top' : 'Home'}
         className="fixed left-[5px] z-[9999] cursor-pointer transition-all duration-300 no-underline"
-        style={{ top: '5px' }}
+        style={{ top: '5px', maxWidth: 'calc(100vw - 72px)' }}
       >
         <StatusReadout pathname={pathname} />
       </Link>

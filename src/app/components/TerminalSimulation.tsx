@@ -89,22 +89,25 @@ export default function TerminalSimulation() {
       borderRadius: 0,
       overflow: 'hidden',
       fontFamily: 'monospace',
-      position: 'relative'
+      position: 'relative',
+      width: '100%',
+      minWidth: 0
     }}>
-      {/* Terminal Header */}
+      {/* Terminal Header — the TTY label truncates so the header never sets the panel's min width */}
       <div style={{
         background: 'rgba(255,255,255,0.04)',
         padding: '0.6rem 0.9rem',
         borderBottom: '1px solid rgba(255,255,255,0.18)',
         display: 'flex',
         alignItems: 'center',
-        gap: '0.5rem'
+        gap: '0.5rem',
+        minWidth: 0
       }}>
-        <i className="mc-led" style={{ background: '#00ff66', boxShadow: '0 0 6px #00ff66' }} aria-hidden="true" />
-        <span className="inst-tele" style={{ marginLeft: '0.5rem' }}>
+        <i className="mc-led" style={{ background: '#00ff66', boxShadow: '0 0 6px #00ff66', flex: '0 0 auto' }} aria-hidden="true" />
+        <span className="inst-tele" style={{ marginLeft: '0.5rem', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis' }}>
           TTY <b>01</b> · nightwatch — mitchell@localhost
         </span>
-        <span className="inst-tele" style={{ marginLeft: 'auto' }}><span className="acc">●</span> LIVE</span>
+        <span className="inst-tele" style={{ marginLeft: 'auto', flex: '0 0 auto' }}><span className="acc">●</span> LIVE</span>
       </div>
 
       {/* Terminal Content */}
