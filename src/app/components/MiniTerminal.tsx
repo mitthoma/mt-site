@@ -16,16 +16,22 @@ const HOLD_MS = 6000;
 /**
  * Types `codeLines` out character by character, then holds and replays.
  *
+ * First paint (server render, before hydration, JS off, reduced motion) shows
+ * the full transcript as a static panel — never an empty box. The typing run
+ * starts the moment the panel scrolls into view (no root margin), so the
+ * visitor sees it type rather than arriving mid-replay.
+ *
  * Perf notes: a single setTimeout chain drives the whole animation (one timer
  * live at a time, one state update per tick), and it only runs while the card
  * is on screen and the tab is visible. The previous version scheduled a timer
  * per character per card via effect deps, ~50 React renders/s per card for the
- * life of the page. With reduced motion the full text renders immediately.
+ * life of the page.
  */
 export default function MiniTerminal({ codeLines, title = "terminal" }: MiniTerminalProps) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const active = useActive(rootRef);
-  const [state, setState] = useState<{ line: number; char: number }>({ line: 0, char: 0 });
+  const active = useActive(rootRef, '0px');
+  /** null = static transcript (not yet scrolled into view) */
+  const [state, setState] = useState<{ line: number; char: number } | null>(null);
   const reduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   useEffect(() => {
@@ -54,11 +60,11 @@ export default function MiniTerminal({ codeLines, title = "terminal" }: MiniTerm
     return () => { if (timer) clearTimeout(timer); };
   }, [active, codeLines]);
 
-  const done = reduced || state.line >= codeLines.length;
-  const lines = done
+  const done = reduced || state === null || state.line >= codeLines.length;
+  const lines = state === null || done
     ? codeLines
     : codeLines.slice(0, state.line + 1).map((l, i) => (i === state.line ? l.slice(0, state.char) : l));
-  const cursorOn = !done && state.char < (codeLines[state.line]?.length ?? 0);
+  const cursorOn = !done && state !== null && state.char < (codeLines[state.line]?.length ?? 0);
 
   return (
     <div ref={rootRef} style={{
@@ -103,7 +109,7 @@ export default function MiniTerminal({ codeLines, title = "terminal" }: MiniTerm
         {lines.map((line, index) => (
           <div key={index} style={{ marginBottom: '0.1rem', minHeight: '1.4em', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>
             {line || ''}
-            {index === state.line && cursorOn && (
+            {cursorOn && index === state?.line && (
               <span style={{
                 display: 'inline-block',
                 width: '6px',
