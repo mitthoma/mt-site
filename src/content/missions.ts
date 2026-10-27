@@ -104,6 +104,7 @@ export const missions: Mission[] = [
     tech: 'TYPESCRIPT / MCP PROXY / POLICY ENGINE / POSTGRES AUDIT / RED-TEAM SUITE',
     window: 'T-MINUS',
     status: 'pending',
+    href: '/work/sentinel',
     terminal: [
       '$ sentinel serve --policy jobs/site-audit.yaml',
       'proxying 11 tools · 3 gated · 2 denied',
