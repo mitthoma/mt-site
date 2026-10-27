@@ -178,11 +178,17 @@ export default function ContactSection() {
             padding-top: 15% !important;
           }
           
+          /* minmax(0, 1fr): a plain 1fr column is min-content-sized, so the
+             terminal header's nowrap labels pushed the column to ~394px and
+             the section's overflow:hidden clipped the right edge (#27). */
           section > div {
-            grid-template-columns: 1fr !important;
+            grid-template-columns: minmax(0, 1fr) !important;
             gap: 2rem !important;
             padding-left: 1rem !important;
             padding-right: 1rem !important;
+          }
+          section > div > div {
+            min-width: 0;
           }
           
           .form-container {
@@ -199,7 +205,7 @@ export default function ContactSection() {
         
         @media (min-width: 769px) and (max-width: 1024px) {
           section > div {
-            grid-template-columns: 1fr !important;
+            grid-template-columns: minmax(0, 1fr) !important;
             gap: 2rem !important;
           }
         }

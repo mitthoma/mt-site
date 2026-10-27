@@ -43,7 +43,7 @@ export default function FleetPage() {
         <FleetDemo />
 
         <section className={styles.products} aria-labelledby="products-h">
-          <p id="products-h" className={styles.productsHead}>[OFFERINGS] — what the same six systems become when pointed at a client</p>
+          <h2 id="products-h" className={styles.productsHead}>[OFFERINGS] — what the same six systems become when pointed at a client</h2>
           <div className={styles.productGrid}>
             {PRODUCTS.map((p) => (
               <div key={p.code} className={p.code === 'P01' ? `${styles.product} mc-card` : styles.product}>
