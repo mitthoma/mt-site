@@ -88,6 +88,7 @@ export const missions: Mission[] = [
     tech: 'TYPESCRIPT / DUCKDB / POSTGRES / STRUCTURED OUTPUTS / DATA CHECKS',
     window: 'T-MINUS',
     status: 'pending',
+    href: '/work/ledger',
     terminal: [
       '$ ledger map ./exports/*.csv --target schema/orders.json',
       'profiling 14 files · 212k rows .......... ok',

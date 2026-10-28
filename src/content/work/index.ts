@@ -1,8 +1,9 @@
 import type { Universe } from './types';
 import { nightwatch } from './nightwatch';
 import { verdict } from './verdict';
+import { ledger } from './ledger';
 
-export const universes: Universe[] = [nightwatch, verdict];
+export const universes: Universe[] = [nightwatch, verdict, ledger];
 
 export function getUniverse(slug: string): Universe | undefined {
   return universes.find((u) => u.slug === slug);
