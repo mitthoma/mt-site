@@ -71,6 +71,7 @@ export const missions: Mission[] = [
     tech: 'RAG / PGVECTOR / STRUCTURED OUTPUTS / AUDIT LOG',
     window: 'T-MINUS',
     status: 'pending',
+    href: '/work/redline',
     terminal: [
       '$ redline review deck-v3.pdf --rules claims-policy',
       'indexing 14 reference docs ..... ok',
