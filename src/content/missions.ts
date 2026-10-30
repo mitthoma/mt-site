@@ -120,6 +120,7 @@ export const missions: Mission[] = [
     tech: 'TYPESCRIPT / WEBRTC / STREAMING STT·TTS / TOOL USE / LATENCY TRACES',
     window: 'T-MINUS',
     status: 'pending',
+    href: '/work/parley',
     terminal: [
       '$ parley call --agent scheduling.yaml --budget-ms 800',
       'ring ... connected · codec opus · 48k',
