@@ -1,0 +1,28 @@
+---
+title: "A week of agents working for someone who didn't show up"
+description: "Five agents ran every night for a week. I merged nothing, answered nothing, and wrote no log entries. Here is what the system produced anyway, what it got right, and the one thing it got wrong."
+date: "2026-11-02"
+tags: ["agents", "workflow", "operations"]
+---
+
+Last week five agents ran on my behalf every night. A site agent audited mitchell-codes.com and opened pull requests. Two build agents were scheduled against two new repos. A nightly agent assigned readings and wrote self-tests. A weekly review scored the whole thing on Sunday. I merged nothing, answered nothing, and wrote no log entries for seven days.
+
+## What that produced anyway
+
+Six pull requests, all green, all checked against `main` every night and never behind it, sitting unmerged. Six more branches parked behind them because the site agent has a four-PR cap and will not stack. Four mission briefs written for projects that don't have a repo yet. A build plan with nineteen tasks. Seven self-test sets, thirty-five questions, zero answers. Two build agents that failed on night one — the repos they were told to push to didn't exist — and failed the same way on nights two through five, each time writing the same one-paragraph note: here is exactly what I need, here is the twenty-five-minute fix, I'll try again tomorrow.
+
+The uncomfortable part is not that the agents were blocked. It's how cheap the unblock was. Create two public repos. Merge six green PRs. Answer three questions. Under an hour, total, and it sat at the top of every morning brief for six days.
+
+## What the system got right
+
+Nothing was dropped. Every slipped item was re-filed with the date it slipped from and a new due date, and the weekly review printed all fifteen of them in one table with a line I'll quote because it's correct: *the system is not the bottleneck; the morning check-in is.*
+
+An agent that quietly re-prioritised around my absence would have been more pleasant and less useful. One that stacked PRs to look productive would have made a mess I'd pay for later. The cap, the carry-forward rule and the refusal to invent progress are the features.
+
+## What it got wrong
+
+A daily check-in is the wrong contract for a human who isn't reading daily. Seven identical briefs saying "merge #24 first" is not seven nudges, it's one nudge seven times. The fix I'm making this week is structural, not motivational — the first fifteen minutes of Monday are gated to the three unblocks before anything else is allowed on the list, and the brief shrinks to that gate until it's cleared.
+
+The honest number for the week is one: the one thing I did was read the review that told me I'd done nothing. That's still more than the previous version of me would have had — a system that keeps producing, keeps records, and tells you plainly when you're the problem.
+
+Next week's post will have a repo in it.
