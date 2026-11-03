@@ -275,6 +275,11 @@ export default function GlitchText({
       onMouseEnter={externalHover === undefined ? handleMouseEnter : undefined}
       onMouseLeave={externalHover === undefined ? handleMouseLeave : undefined}
     >
+      {/* Accessible name: the real text, once. The per-character spans below are
+          presentation only — inline-block spans read letter-by-letter and the
+          scramble would otherwise be announced as random characters. */}
+      <span className="sr-only">{originalText}</span>
+      <span aria-hidden="true">
       {(() => {
         const words = displayText.split(' ');
         let charIndex = 0;
@@ -314,6 +319,7 @@ export default function GlitchText({
           );
         });
       })()}
+      </span>
     </Component>
   );
 }
