@@ -29,6 +29,11 @@ export default function GlitchText({
   const [glitchingIndices, setGlitchingIndices] = useState<Set<number>>(new Set());
   const [isMounted, setIsMounted] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  // Per-character cell widths, measured from the original text right before a scramble starts.
+  // Random glyphs are not the same width as the glyphs they replace, so without this every
+  // scramble frame reflows the line (and anything below it) — 25 layout shifts per cycle.
+  const [lockedWidths, setLockedWidths] = useState<number[] | null>(null);
+  const rootRef = useRef<HTMLElement | null>(null);
   const animationIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const continuousIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const hoverIntervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -36,11 +41,24 @@ export default function GlitchText({
 
   const GLITCH_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+-=[]{}|;:,.<>?~`';
 
+  // One layout read per scramble, while the text is still the original: lock each character's
+  // box to the width it has now, so swapping the glyph inside it cannot move its neighbours.
+  const lockWidths = useCallback(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const widths: number[] = [];
+    root.querySelectorAll<HTMLElement>('[data-ch]').forEach((el) => {
+      widths[Number(el.dataset.ch)] = el.getBoundingClientRect().width;
+    });
+    setLockedWidths(widths);
+  }, []);
+
   const animateHover = useCallback(() => {
     if (animationIntervalRef.current) {
       return;
     }
 
+    lockWidths();
     let iteration = 0;
     const maxIterations = 8; // Shorter duration for hover
 
@@ -87,20 +105,22 @@ export default function GlitchText({
         // Reset to original text
         setDisplayText(originalText);
         setGlitchingIndices(new Set());
-        
+        setLockedWidths(null);
+
         if (animationIntervalRef.current) {
           clearInterval(animationIntervalRef.current);
           animationIntervalRef.current = null;
         }
       }
     }, speed);
-  }, [originalText, speed]);
+  }, [originalText, speed, lockWidths]);
 
   const animate = useCallback(() => {
     if (animationIntervalRef.current) {
       return;
     }
 
+    lockWidths();
     let iteration = 0;
     const maxIterations = 25; // Duration of glitch effect
 
@@ -147,14 +167,15 @@ export default function GlitchText({
         // Reset to original text
         setDisplayText(originalText);
         setGlitchingIndices(new Set());
-        
+        setLockedWidths(null);
+
         if (animationIntervalRef.current) {
           clearInterval(animationIntervalRef.current);
           animationIntervalRef.current = null;
         }
       }
     }, speed);
-  }, [originalText, speed]);
+  }, [originalText, speed, lockWidths]);
 
   useEffect(() => {
     // Set mounted state to prevent hydration mismatch
@@ -250,6 +271,7 @@ export default function GlitchText({
       // Reset text when hover ends
       setDisplayText(originalText);
       setGlitchingIndices(new Set());
+      setLockedWidths(null);
     };
   }, [isHovered, isMounted, trigger, animateHover, hoverInterval, originalText]);
 
@@ -265,6 +287,7 @@ export default function GlitchText({
 
   return (
     <Component
+      ref={(el: HTMLElement | null) => { rootRef.current = el; }}
       className={className}
       style={{
         ...style,
@@ -283,12 +306,16 @@ export default function GlitchText({
           const wordChars = word.split('').map((char) => {
             const idx = charIndex++;
             const isGlitching = glitchingIndices.has(idx);
-            
+            const lockedWidth = lockedWidths?.[idx];
+
             return (
               <span
                 key={idx}
+                data-ch={idx}
                 style={{
                   display: 'inline-block',
+                  // Fixed cell while scrambling: the glyph changes, the box (and the line) does not.
+                  ...(lockedWidth !== undefined ? { width: `${lockedWidth}px`, textAlign: 'center' as const } : {}),
                   opacity: isGlitching ? 0.7 : 1,
                   filter: isGlitching ? 'brightness(0.7)' : 'brightness(1)',
                   transition: 'opacity 0.05s ease, filter 0.05s ease'
