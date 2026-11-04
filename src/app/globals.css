@@ -408,9 +408,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   font-size: 9.5px;
   letter-spacing: 0.06em;
   text-transform: none;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.52); /* #858585 on #000 = 5.6:1; 0.45 was 4.42:1, under AA for 9.5px text */
 }
-.track .num { color: rgba(255, 255, 255, 0.45); }
+.track .num { color: rgba(255, 255, 255, 0.52); }
 .track .pos { font-variant-numeric: tabular-nums; font-size: 10px; color: rgba(255, 255, 255, 0.55); }
 .track.active { color: #fff; }
 .track.active .num { color: var(--inst-accent); }

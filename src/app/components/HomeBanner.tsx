@@ -50,7 +50,7 @@ export default function HomeBanner() {
               <AnimatedBorderLink href="https://github.com/mitthoma" variant="quiet" className="mc-lg">GitHub</AnimatedBorderLink>
               <AnimatedBorderLink href="https://linkedin.com/in/mitchellthecoder" variant="quiet" className="mc-lg">LinkedIn</AnimatedBorderLink>
             </div>
-            <blockquote className="mt-10 text-sm md:text-base leading-6 text-gray-500 px-4 md:px-0">
+            <blockquote className="mt-10 text-sm md:text-base leading-6 text-gray-400 px-4 md:px-0">
               <GlitchText trigger="continuous" interval={4500} speed={50}>
                 Computer science is no more about computers than astronomy is about telescopes.
               </GlitchText>
